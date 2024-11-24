@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Ka Mai da Zanenka Mai Daraja Ka Canza shi Zuwa Zinariya da Azurfa Mai Ƙima, Domin Dogon Lokaci!",
+        "description": "Ka canza fasahar ka ta hannu zuwa zinariya ta dijital a farko. Kowanne aiki da aka tabbatar ya zama kadarar da aka tsare kuma za a iya kasuwanci da shi tare da tabbacin daraja mai girma."
+      },
+      "cta": {
+        "convert": "Canza Zanenka",
+        "explore": "Duba Asusu"
+      },
+      "features": {
+        "title": "Kudi Ya Zama Fasahar Mutane! Amma, Ta Yaya?",
+        "validation": {
+          "title": "Tabbatarwa Mai Tsaro",
+          "description": "AI mai ci gaba da tabbatarwa ta mutum yana tabbatar da inganci."
+        },
+        "growth": {
+          "title": "Kawai Karuwar Daraja!",
+          "description": "Darajar fasahar ka tana ƙaruwa ta hanyar tsarin al'ummarmu! Yawan abubuwan da ka so, saye da siyarwa, yana ƙara maka kaso a cikin ayyukan da ke ƙara samun daraja."
+        },
+        "distribution": {
+          "title": "Raba Ƙimar da Adalci Mai Ban Mamaki!",
+          "description": "Bayyananniyar da kuma ainihin rarraba ƙimar tsakanin masu ƙirƙira, masu saka jari, da masu tara waɗanda za su sami ikon mallakar ayyukan fasaha ta jiki!"
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,185 @@
+{
+  "name": "TabAsCoin - Art to Digital Gold",
+  "short_name": "TabAsCoin",
+  "description": "Convert your handmade art into digital currency with guaranteed value appreciation through our gold-backed token system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#EAB308",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Upload Art",
+      "short_name": "Upload",
+      "description": "Upload new artwork",
+      "url": "/upload",
+      "icons": [{ "src": "/icons/upload-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "My Gallery",
+      "short_name": "Gallery",
+      "description": "View your artwork collection",
+      "url": "/dashboard",
+      "icons": [{ "src": "/icons/gallery-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Exchange",
+      "short_name": "Exchange",
+      "description": "Exchange your tokens",
+      "url": "/shop",
+      "icons": [{ "src": "/icons/exchange-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Explore Art",
+      "short_name": "Explore",
+      "description": "Discover new artworks",
+      "url": "/explore",
+      "icons": [{ "src": "/icons/explore-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Home Screen - Convert Art to Digital Gold"
+    },
+    {
+      "src": "/screenshots/gallery.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Art Gallery - Discover Unique Artworks"
+    },
+    {
+      "src": "/screenshots/upload.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Upload Interface - Convert Your Art"
+    },
+    {
+      "src": "/screenshots/exchange.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Exchange - Trade Your Tokens"
+    }
+  ],
+  "categories": ["art", "finance", "lifestyle", "productivity"],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "protocol_handlers": [
+    {
+      "protocol": "web+tabz",
+      "url": "/token/%s"
+    },
+    {
+      "protocol": "web+agt",
+      "url": "/token/%s"
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "scope": "/",
+  "id": "com.tabascoin.app",
+  "lang": "en",
+  "dir": "ltr",
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "share_target": {
+    "action": "/upload",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "description",
+      "files": [
+        {
+          "name": "artwork",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/upload",
+      "accept": {
+        "image/*": [".jpg", ".jpeg", ".png", ".webp", ".heic"]
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "name": "Token Price",
+      "short_name": "Price",
+      "description": "Shows current TABZ and AGT token prices",
+      "tag": "token-price",
+      "ms_ac_template": "widget/token-price.json"
+    },
+    {
+      "name": "Latest Art",
+      "short_name": "Art",
+      "description": "Shows latest artwork uploads",
+      "tag": "latest-art",
+      "ms_ac_template": "widget/latest-art.json"
+    }
+  ]
+}

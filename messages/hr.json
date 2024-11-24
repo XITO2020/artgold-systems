@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Učinite svoju umjetnost poznatom, pretvorite je u vrijedni novac, zlato i srebro na duge staze!",
+        "description": "Pretvorite svoje ručno izrađene remek-djela u digitalno zlato kao prvi korak. Svako potvrđeno djelo postaje sigurna i trgovinska imovina s zajamčenim povećanjem vrijednosti."
+      },
+      "cta": {
+        "convert": "Pretvorite Svoju Umjetnost",
+        "explore": "Pogledajte Riznicu"
+      },
+      "features": {
+        "title": "Novac ponovno mora postati umjetnost ljudi! Ali, kako?",
+        "validation": {
+          "title": "Sigurna Verifikacija",
+          "description": "Napredna AI i ljudska verifikacija jamče autentičnost."
+        },
+        "growth": {
+          "title": "Samo Rast Vrijednosti!",
+          "description": "Vrijednost vaše umjetnosti raste zahvaljujući našem zajedničkom sustavu! Što više lajkate, kupujete i prodajete, to više dionica imate u tokenima u djelima koja postaju sve vrijednija."
+        },
+        "distribution": {
+          "title": "Impresivna Pravedna Distribucija!",
+          "description": "Transparentna i originalna raspodjela vrijednosti između stvaratelja, investitora i kolekcionara koji imaju pravo fizički posjedovati djela!"
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Urobte svoju tvorbu cennejšou a premeňte ju na hodnotné peniaze, zlato a striebro na dlhodobé obdobie!",
+        "description": "Premeňte svoje ručne vyrobené majstrovské diela na digitálne zlato ako prvý krok. Každé overené dielo sa stáva bezpečným a obchodovateľným aktívom so zaručeným rastom hodnoty."
+      },
+      "cta": {
+        "convert": "Premeniť Vaše Umenie",
+        "explore": "Preskúmať Pokladnicu"
+      },
+      "features": {
+        "title": "Peniaze by mali byť opäť umením ľudí! Ale ako?",
+        "validation": {
+          "title": "Bezpečné Overenie",
+          "description": "Pokročilá umelá inteligencia a ľudské overenie zabezpečujú autenticitu."
+        },
+        "growth": {
+          "title": "Len Rast Hodnoty!",
+          "description": "Hodnota vášho umenia sa zvyšuje len vďaka nášmu komunitnému systému! Čím viac lajkujete, kupujete a predávate, tým viac podielov v hodnotných dielach získavate."
+        },
+        "distribution": {
+          "title": "Neuveriteľne Spravodlivá Distribúcia!",
+          "description": "Transparentné a originálne rozdelenie hodnoty medzi tvorcov, investorov a zberateľov, ktorí majú právo fyzicky vlastniť diela!"
+        }
+      }
+    }
+  }
+  

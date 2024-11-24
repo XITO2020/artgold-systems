@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Yenza ubuciko bakho buwaziwe, buyeke bube yimali ebalulekile, igolide kanye nesiliva esikhathini eside!",
+        "description": "Guqula imisebenzi yakho yobuciko eyenziwe ngesandla ibe yigolide ledijithali njengezinyathelo zokuqala. Umsebenzi ngamunye oqinisekisiwe uba yimpahla ephephile nephathekayo enokukhuphuka kwenani okuqinisekisiwe."
+      },
+      "cta": {
+        "convert": "Guqula Ubuciko Bakho",
+        "explore": "Bheka Ingcebo"
+      },
+      "features": {
+        "title": "Imali kufanele ibe ubuciko babantu futhi! Kodwa, kanjani?",
+        "validation": {
+          "title": "Ukuqinisekisa Okuphephile",
+          "description": "I-AI esezingeni eliphezulu kanye nokuqinisekiswa kwabantu kuqinisekisa ubuqiniso."
+        },
+        "growth": {
+          "title": "Ukukhuphuka Kwenani Kuphela!",
+          "description": "Inani lobuciko bakho lenyuka ngenxa yesistimu yethu yomphakathi! Uma uthanda, uthenga futhi uthengisa kakhulu, kukhona amasheya amaningi ku-tokens emisebenzini enamandla ekhulayo."
+        },
+        "distribution": {
+          "title": "Ukuhlukaniswa Okulungile Okumangalisayo!",
+          "description": "Ukuhlukaniswa okubhekeke kahle kwemali phakathi kwababhali, abatshalizimali kanye nabathengisi abanolungelo lokuba nomsebenzi ngokomzimba!"
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Zviditelněte své umění, přeměňte ho na cenné peníze, zlato a stříbro na dlouhou dobu!",
+      "description": "Přeměňte svá ručně vytvořená mistrovská díla nejprve na digitální zlato. Každé ověřené dílo se stává bezpečným a obchodovatelným aktivem s garantovaným zvýšením hodnoty."
+    },
+    "cta": {
+      "convert": "Přeměňte své umění",
+      "explore": "Prohlédněte si Pokladnici"
+    },
+    "features": {
+      "title": "Peníze by měly znovu stát se uměním lidí! Ale jak?",
+      "validation": {
+        "title": "Bezpečná Ověřování",
+        "description": "Pokročilá AI a lidská ověřování zaručují pravost."
+      },
+      "growth": {
+        "title": "Jen růst hodnoty!",
+        "description": "Hodnota vašeho umění se díky našemu komunitnímu systému neustále zvyšuje! Čím více lajkujete, nakupujete a prodáváte, tím více máte podílů v tokenech v dílech, která mají stále vyšší hodnotu."
+      },
+      "distribution": {
+        "title": "Impozantní Spravedlivá Distribuce!",
+        "description": "Transparentní a originální rozdělení hodnoty mezi tvůrce, investory a sběratele, kteří mají právo vlastnit díla materiálně!"
+      }
+    }
+  }
+}

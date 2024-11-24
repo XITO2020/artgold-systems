@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Fanya Sanaa Yako Kuwa Fedha Thamani, Dhahabu na Fedha kwa Muda Mrefu!",
+        "description": "Badilisha michoro yako ya mikono kuwa dhahabu ya kidijitali kwa hatua ya kwanza. Kazi yoyote inayothibitishwa inakuwa mali salama na inayoweza kubadilishana na uthibitisho wa kupanda kwa thamani."
+      },
+      "cta": {
+        "convert": "Badilisha Sanaa Yako",
+        "explore": "Angalia Hazina"
+      },
+      "features": {
+        "title": "Pesa Inapaswa Kurudi Kuwa Sanaa ya Watu! Lakini, Vipi?",
+        "validation": {
+          "title": "Uthibitisho Salama",
+          "description": "AI ya kisasa na uthibitisho wa kibinadamu unahakikisha uhalisi."
+        },
+        "growth": {
+          "title": "Tu Ukuaji wa Thamani!",
+          "description": "Thamani ya sanaa yako inazidi kukua kupitia mfumo wetu wa jamii! Kadri unavyolike, unavyonunua na kuuza, ndivyo unavyopata hisa zaidi katika kazi zinazoongezeka kwa thamani."
+        },
+        "distribution": {
+          "title": "Ugawaji wa Haki wa Kushangaza!",
+          "description": "Usambazaji wazi na wa kipekee wa thamani kati ya waumbaji, wawekezaji na wakusanyaji ambao watapata haki ya kumiliki kazi za sanaa kimwili!"
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Jadikan Seni Anda Dikenali, Ubahkannya menjadi Wang Berharga, Emas dan Perak untuk Jangka Panjang!",
+      "description": "Tukarkan karya agung buatan tangan anda terlebih dahulu kepada emas digital. Setiap karya yang disahkan menjadi aset selamat dan boleh didagangkan dengan peningkatan nilai yang terjamin."
+    },
+    "cta": {
+      "convert": "Tukarkan Seni Anda",
+      "explore": "Lihat Perbendaharaan"
+    },
+    "features": {
+      "title": "Wang harus kembali menjadi seni rakyat! Tetapi, bagaimana?",
+      "validation": {
+        "title": "Pengesahan Selamat",
+        "description": "AI canggih dan pengesahan manusia menjamin keaslian."
+      },
+      "growth": {
+        "title": "Hanya Peningkatan Nilai!",
+        "description": "Nilai seni anda hanya meningkat berkat sistem komuniti kami! Lebih banyak anda suka, beli dan jual, lebih banyak saham dalam token yang anda miliki dalam karya yang menjadi semakin berharga."
+      },
+      "distribution": {
+        "title": "Pembahagian Adil yang Mengagumkan!",
+        "description": "Pembahagian nilai yang telus dan asli antara pencipta, pelabur, dan pengumpul yang mempunyai hak untuk memiliki karya secara material!"
+      }
+    }
+  }
+}

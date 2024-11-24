@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Sanatınızı Tanıtın, Onu Değerli Para, Altın ve Gümüşe Dönüştürün!",
+      "description": "El yapımı şaheserlerinizi başlangıçta dijital altına dönüştürün. Her onaylanan eser, garantili değer artışıyla güvenli ve ticarete uygun bir varlık haline gelir."
+    },
+    "cta": {
+      "convert": "Sanatınızı Dönüştürün",
+      "explore": "Hazineyi Gör"
+    },
+    "features": {
+      "title": "Para, tekrar insanların sanatı olmalı! Ama nasıl?",
+      "validation": {
+        "title": "Güvenli Doğrulama",
+        "description": "Gelişmiş AI ve insan doğrulaması, orijinalliği garanti eder."
+      },
+      "growth": {
+        "title": "Sadece Değer Artışı!",
+        "description": "Sanatınızın değeri, topluluk sistemimiz sayesinde sadece artar! Ne kadar beğenir, satın alır ve satarsanız, giderek daha değerli hale gelen eserlerde o kadar fazla token hissesine sahip olursunuz."
+      },
+      "distribution": {
+        "title": "Etkileyici Adil Dağıtım!",
+        "description": "Yaratıcılar, yatırımcılar ve eserleri maddi olarak sahiplenme hakkına sahip koleksiyoncular arasında şeffaf ve orijinal bir değer paylaşımı!"
+      }
+    }
+  }
+}

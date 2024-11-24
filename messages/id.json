@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Jadikan Seni Anda Terkenal, Ubah Menjadi Uang Berharga, Emas dan Perak dalam Jangka Panjang!",
+      "description": "Ubah karya seni buatan tangan Anda menjadi emas digital sebagai langkah awal. Setiap karya yang tervalidasi menjadi aset yang aman dan dapat diperdagangkan dengan peningkatan nilai yang terjamin."
+    },
+    "cta": {
+      "convert": "Ubah Seni Anda",
+      "explore": "Lihat Harta Karun"
+    },
+    "features": {
+      "title": "Uang harus kembali menjadi seni rakyat! Tapi bagaimana?",
+      "validation": {
+        "title": "Validasi Aman",
+        "description": "AI canggih dan verifikasi manusia menjamin keaslian."
+      },
+      "growth": {
+        "title": "Hanya Peningkatan Nilai!",
+        "description": "Nilai seni Anda hanya meningkat berkat sistem komunitas kami! Semakin Anda menyukai, membeli, dan menjual, semakin banyak saham dalam token yang Anda miliki dalam karya yang semakin bernilai."
+      },
+      "distribution": {
+        "title": "Distribusi Adil yang Luar Biasa!",
+        "description": "Distribusi nilai yang transparan dan asli antara pencipta, investor, dan kolektor yang memiliki hak untuk memiliki karya secara material!"
+      }
+    }
+  }
+}

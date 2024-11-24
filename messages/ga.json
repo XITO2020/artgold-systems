@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Déan do Ealaín níos luachmhaire agus athraigh í go hairgead luachmhar, ór agus airgead fadtéarmach!",
+        "description": "Tiontaigh do shaothair lámhdhéanta go hór digiteach ar dtús. Éiríonn gach saothar a fhíorú ina shócmhainn shlán, thrádáilte le méadú luach ráthaithe."
+      },
+      "cta": {
+        "convert": "Tiontaigh d'Ealaín",
+        "explore": "Féach ar an gCiste"
+      },
+      "features": {
+        "title": "Ba chóir go mbeadh airgead arís mar ealaín na ndaoine! Ach, conas?",
+        "validation": {
+          "title": "Fíorú Slán",
+          "description": "Ár n-AI chun cinn agus fíorú daonna chun barántúlacht a ráthú."
+        },
+        "growth": {
+          "title": "Ní ach Fás ar Luach!",
+          "description": "Ní dhéanann luach d’ealaíne ach méadú lenár gcóras pobail! Dá mhéad is a thaitníonn leat, a cheannaíonn tú agus a dhíolann tú, is mó cion atá agat i saothair atá ag éirí níos luachmhaire."
+        },
+        "distribution": {
+          "title": "Dáileadh Cothrom Dochreidte!",
+          "description": "Roinnt trédhearcach agus bunaidh ar luach idir cruthaitheoirí, infheisteoirí, agus bailitheoirí a bheidh i dteideal na saothair a shealbhú go fisiciúil!"
+        }
+      }
+    }
+  }
+  

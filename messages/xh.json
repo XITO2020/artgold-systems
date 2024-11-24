@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Yenza Ubugcisa Bakho Bube Yixabiso Elingakumbi Kwaye Ubuyisele Kube Ngemali Efanelekileyo, Igolide, Kwaye Isilivere Kwixesha Elide!",
+        "description": "Guqula izandla zakho ezenziwe ngegolide yedijithali njenge nyathelo lokuqala. Umsebenzi ngamnye oqinisekisiweyo uba sisixhobo esikhuselekileyo nesithengiswayo ngesiqinisekiso sokunyuka kwexabiso."
+      },
+      "cta": {
+        "convert": "Guqula Ubugcisa Bakho",
+        "explore": "Jonga Ithamsanqa"
+      },
+      "features": {
+        "title": "Imali Kufuneka Ibe Luhlobo Lobugcisa Lwabantu Kwakhona! Kodwa, Njani?",
+        "validation": {
+          "title": "Ukuqinisekiswa Okukhuselekileyo",
+          "description": "I-AI ephezulu kunye nokuqinisekiswa komntu kuqinisekisa ukuhleleka."
+        },
+        "growth": {
+          "title": "Ukukhula Kuxabiso Kuphela!",
+          "description": "Ixabiso lobugcisa bakho lihlala likhuphuka ngenxa yenkqubo yethu yoluntu! Ngakumbi uthetha ngayo, uyathenga kwaye uthengisa, kokukhona ufumana izabelo kubugcisa obufumaneka ngakumbi."
+        },
+        "distribution": {
+          "title": "Ulwabiwo Olunobulungisa Olumangalisayo!",
+          "description": "Ulwabiwo olucacileyo nolungundoqo lwexabiso phakathi kwabadali, abatyalomali, kunye nabaqokeleli abanalo ilungelo lokuba nobugcisa ngokomzimba!"
+        }
+      }
+    }
+  }
+  

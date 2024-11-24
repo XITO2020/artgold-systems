@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Transformă-ți Arta în Monedă Valoroasă",
+      "description": "Convertește-ți capodoperele făcute manual în aur digital. Fiecare operă de artă validată devine un activ sigur și tranzacționabil cu apreciere garantată."
+    },
+    "cta": {
+      "convert": "Convertește Artă",
+      "explore": "Vezi Colecția"
+    },
+    "features": {
+      "title": "Cum Funcționează",
+      "validation": {
+        "title": "Validare Sigură",
+        "description": "AI avansat și verificare umană asigură autenticitatea"
+      },
+      "growth": {
+        "title": "Creșterea Valorii",
+        "description": "Valoarea artei tale crește doar prin sistemul nostru comunitar"
+      },
+      "distribution": {
+        "title": "Distribuție Echitabilă",
+        "description": "Împărțirea transparentă a valorii între creatori și investitori"
+      }
+    }
+  }
+}

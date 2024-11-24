@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./types"],  //  ./types est bien inclus, ça me regle un soucis coté negotiator donc localeDetection
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",   // Inclut le fichier Next.js
+    "**/*.ts",         // Inclut tous les fichiers .ts
+    "**/*.tsx",        // Inclut tous les fichiers .tsx
+    ".next/types/**/*.ts",  // Assurez-vous d'inclure les types générés par Next.js
+    "./types/**/*.d.ts",    // Inclut tous les fichiers .d.ts dans le dossier types/
+    "./app/**/*"        // Inclut tous les fichiers dans app/
+  ],
+  "exclude": [
+    "node_modules"    // Exclut le dossier node_modules
+  ]
+}

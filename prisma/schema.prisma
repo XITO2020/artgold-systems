@@ -1,0 +1,214 @@
+// Add to your schema.prisma file
+
+model AIDetectionLog {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  confidence  Float
+  patterns    String[]
+  warnings    String[]
+  scores      Json
+  userId      String?
+  artworkId   String?
+  status      String   @default("rejected")
+  user        User?    @relation(fields: [userId], references: [id])
+  artwork     Artwork? @relation(fields: [artworkId], references: [id])
+
+  @@index([userId])
+  @@index([artworkId])
+}
+
+
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User and Authentication
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                String         @id @default(cuid())
+  name              String?
+  email             String?        @unique
+  emailVerified     DateTime?
+  image             String?
+  accounts          Account[]
+  sessions          Session[]
+  balance           Float          @default(0)
+  artworkCount      Int            @default(0)
+  isAdmin           Boolean        @default(false)
+  status            String         @default("ACTIVE") // ACTIVE, FROZEN, BANNED
+  discordVerified   Boolean        @default(false)
+  discordRoles      String[]
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  tokens            Token[]
+  transactions      Transaction[]
+  exchanges         Exchange[]
+  fraudAttempts     FraudAttempt[]
+  artworkPurchases  ArtworkPurchase[]
+  aiDetections      AIDetectionLog[]
+  artworkValidations ArtworkValidation[]
+  
+  // Champs spécifiques à l'utilisateur acheteur/vendeur
+  isArtist          Boolean        @default(false) // manque peut etre une relation entre artist et user
+}
+
+model Artist {
+  id            String     @id @default(cuid())
+  userId        String     @unique  // Lien avec l'utilisateur
+  level         Int        @default(0)  // Le niveau de l'artiste
+  points        Int        @default(0)  // Points accumulés par l'artiste
+  artworks      Artwork[]
+  metadata      Json?      // Métadonnées spécifiques à l'artiste (ex : statistiques, badges, etc.)
+}
+
+
+
+// Artwork and Validation
+model Artwork {
+  id               String            @id @default(cuid())
+  title            String
+  description      String?
+  serialNumber     String            @unique
+  qrCode           String
+  category         String
+  imageUrl         String
+  location         Json              // { latitude: float, longitude: float, address: string }
+  dimensions       Json              // { width: int, height: int, unit: string }
+  weight           Json              // { value: float, unit: string }
+  materials        String[]
+  technique        String?
+  story            String?           @db.Text
+  creationDate     DateTime
+  artistId         String
+  artist           Artist              @relation(fields: [artistId], references: [id])
+  currentValue     Float
+  totalLikes       Int               @default(0)
+  status           String            @default("PENDING") // PENDING, VALIDATED, REJECTED
+  validations      ArtworkValidation[]
+  purchases        ArtworkPurchase[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  aiDetections      AIDetectionLog[]
+}
+
+model ArtworkValidation {
+  id            String   @id @default(cuid())
+  artworkId     String
+  artwork       Artwork  @relation(fields: [artworkId], references: [id])
+  aiScore       Float
+  patterns      String[]
+  status        String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  reviewerId    String?
+  reviewNotes   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User?    @relation(fields: [reviewerId], references: [id])
+}
+
+
+
+model ArtworkPurchase {
+  id            String   @id @default(cuid())
+  artworkId     String
+  artwork       Artwork  @relation(fields: [artworkId], references: [id])
+  buyerId       String
+  buyer         User     @relation(fields: [buyerId], references: [id])
+  amount        Float
+  sharePercent  Float    @default(0)
+  purchaseDate  DateTime @default(now())
+}
+
+// Tokens and Transactions
+model Token {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  type        String   // TABZ, AGT
+  amount      Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lockedUntil DateTime
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  type        String   // PURCHASE, SALE, EXCHANGE
+  amount      Float
+  status      String   // PENDING, COMPLETED, FAILED
+  paymentId   String?
+  orderId     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Exchange {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+  fromToken      String   // TABZ, AGT
+  toToken        String   // ETH, SOL
+  amount         Float
+  receivedAmount Float
+  walletAddress  String
+  status         String   // PENDING, COMPLETED, FAILED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// Security and Fraud Prevention
+model FraudAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  type        String   // AI_GENERATED, DUPLICATE, PRINT
+  confidence  Float
+  details     Json
+  createdAt   DateTime @default(now())
+}
+
+
+// Value Distribution
+model ValueDistribution {
+  id            String   @id @default(cuid())
+  artworkId     String   @unique
+  creatorShare  Float    @default(0.1)  // Always 10%
+  ownerShare    Float    @default(0.8)  // Always 80%
+  buyersShare   Float    @default(0.1)  // Always 10%
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

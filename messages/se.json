@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Gör din konst känd, omvandla den till värdefulla pengar, guld och silver på lång sikt!",
+      "description": "Omvandla dina handgjorda mästerverk till digitalt guld som ett första steg. Varje verifierat verk blir en säker och handelsbar tillgång med garanterad värdeökning."
+    },
+    "cta": {
+      "convert": "Omvandla Din Konst",
+      "explore": "Se Skattkammaren"
+    },
+    "features": {
+      "title": "Pengar måste återigen bli folkets konst! Men hur?",
+      "validation": {
+        "title": "Säker Verifiering",
+        "description": "Avancerad AI och mänsklig verifiering garanterar äkthet."
+      },
+      "growth": {
+        "title": "Endast värdeökning!",
+        "description": "Värdet på din konst ökar bara tack vare vårt gemenskapssystem! Ju mer du gillar, köper och säljer, desto fler andelar i tokens har du i verk som ständigt ökar i värde."
+      },
+      "distribution": {
+        "title": "Imponerande Rättvis Fördelning!",
+        "description": "Transparent och originell värdefördelning mellan skapare, investerare och samlare som har rätt att äga verken fysiskt!"
+      }
+    }
+  }
+}

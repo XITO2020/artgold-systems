@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Torne sua arte conhecida, transforme-a em dinheiro valioso, ouro e prata a longo prazo!",
+        "description": "Converta suas obras-primas feitas à mão primeiro em ouro digital. Cada obra validada torna-se um ativo seguro e negociável com valorização garantida."
+      },
+      "cta": {
+        "convert": "Converter Sua Arte",
+        "explore": "Ver o Tesouro"
+      },
+      "features": {
+        "title": "O dinheiro deve voltar a ser a arte do povo! Mas como?",
+        "validation": {
+          "title": "Validação Segura",
+          "description": "IA avançada e verificação humana garantem a autenticidade."
+        },
+        "growth": {
+          "title": "Apenas crescimento de valor!",
+          "description": "O valor da sua arte só aumenta graças ao nosso sistema comunitário! Quanto mais você curte, compra e vende, mais participações em tokens você tem em obras que se tornam cada vez mais valiosas."
+        },
+        "distribution": {
+          "title": "Distribuição Justa Impressionante!",
+          "description": "Distribuição transparente e original do valor entre criadores, investidores e colecionadores que têm o direito de possuir fisicamente as obras!"
+        }
+      }
+    }
+  }
+  

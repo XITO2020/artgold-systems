@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Tegye Ismertté Művészetét, Változtassa Értékes Pénzzé, Arannyá és Ezüstté Hosszú Távon!",
+        "description": "Kézzel készített remekműveit először digitális arannyá alakítsa át. Minden érvényesített alkotás biztonságos és forgalmazható eszközzé válik, garantált értéknövekedéssel."
+      },
+      "cta": {
+        "convert": "Művészet Átalakítása",
+        "explore": "Kincstár Megtekintése"
+      },
+      "features": {
+        "title": "A pénznek újra az emberek művészetévé kell válnia! De hogyan?",
+        "validation": {
+          "title": "Biztonságos Érvényesítés",
+          "description": "A fejlett mesterséges intelligencia és az emberi ellenőrzés garantálja a hitelességet."
+        },
+        "growth": {
+          "title": "Csak Értéknövekedés!",
+          "description": "Művészetének értéke csak nő a közösségi rendszerünknek köszönhetően! Minél többet tetszik, vásárol és ad el, annál több részvényre tesz szert egyre értékesebb művekben."
+        },
+        "distribution": {
+          "title": "Lenyűgözően Méltányos Elosztás!",
+          "description": "Átlátható és eredeti értékmegosztás az alkotók, befektetők és gyűjtők között, akiknek joguk van a művek anyagi birtoklásához!"
+        }
+      }
+    }
+  }
+  

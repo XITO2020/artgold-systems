@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Uczyń Swoją Sztukę Znana, Zamień ją w Cenną Walutę, Złoto i Srebro na Dłuższą Metę!",
+        "description": "Przekształć swoje ręcznie wykonane arcydzieła najpierw w cyfrowe złoto. Każde zatwierdzone dzieło staje się bezpiecznym i wymiennym aktywem z gwarantowanym wzrostem wartości."
+      },
+      "cta": {
+        "convert": "Przekształć Swoją Sztukę",
+        "explore": "Zobacz Skarbiec"
+      },
+      "features": {
+        "title": "Pieniądze powinny znów stać się sztuką dla ludzi! Ale jak?",
+        "validation": {
+          "title": "Bezpieczna Weryfikacja",
+          "description": "Zaawansowana sztuczna inteligencja i weryfikacja przez człowieka zapewniają autentyczność."
+        },
+        "growth": {
+          "title": "Tylko Wzrost Wartości!",
+          "description": "Wartość Twojej sztuki rośnie dzięki naszemu systemowi społecznościowemu! Im więcej polubisz, kupujesz i sprzedajesz, tym więcej masz udziałów w tokenach w dziełach, które zyskują na wartości."
+        },
+        "distribution": {
+          "title": "Imponująca Sprawiedliwa Dystrybucja!",
+          "description": "Przejrzysty i oryginalny podział wartości między twórcami, inwestorami i kolekcjonerami, którzy mają prawo do posiadania dzieł materialnie!"
+        }
+      }
+    }
+  }
+  

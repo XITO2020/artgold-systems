@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Faites connaitre Transformez Votre Art en Monnaie Précieuse, Or et Argent sur le long terme !",
+      "description": "Convertissez vos chefs-d'œuvre faits main en or numérique dans un premier temps. Chaque œuvre validée devient un actif sécurisé et négociable avec une appréciation garantie."
+    },
+    "cta": {
+      "convert": "Convertir Votre Art",
+      "explore": "Voir la Trésorerie"
+    },
+    "features": {
+      "title": "L'argent doit redevenir l'art des gens ! Mais, comment ?",
+      "validation": {
+        "title": "Validation Sécurisée",
+        "description": "L'IA avancée et la vérification humaine garantissent l'authenticité"
+      },
+      "growth": {
+        "title": "Uniquement de la croissance de valeur ! ",
+        "description": "La valeur de votre art ne fait qu'augmenter grâce à notre système communautaire ! Plus vous likez, plus vous achetez et vendez, plus vous avez de part en tokens dans des oeuvres qui ont de plus en plus de valeur"
+      },
+      "distribution": {
+        "title": "Impressionante distribution Équitable ! ",
+        "description": "Partage transparent et original de la valeur entre créateurs, investisseurs et collectionneurs qui auront le droit de posséder matériellement les oeuvres ! "
+      }
+    }
+  }
+}

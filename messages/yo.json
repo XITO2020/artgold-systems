@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Ṣe ki iṣẹ́ ọnà rẹ di olokiki, yí padà rẹ si owo tí o láye, wúrà àti fadákà fún àkókò pípẹ́!",
+        "description": "Yí àwọn iṣẹ́ ọnà ọwọ́ rẹ padà sí wúrà àtẹ̀gbà ni ìgbésẹ̀ àkọ́kọ́. Ìṣẹ́ kọọkan tí a fìdí rẹ̀ múlẹ̀ di ohun ìní tí o dáàbò bò fúnra rẹ̀ tí ó ní ìlàwọ́ ní ìdíje pẹlu ìtẹ̀wọ́ gba ti iye rẹ."
+      },
+      "cta": {
+        "convert": "Yí Iṣẹ́ Ọnà Rẹ̀ Padà",
+        "explore": "Wo Ìṣúra"
+      },
+      "features": {
+        "title": "Owo gbọ́dọ̀ di iṣẹ́ ọnà àwọn ènìyàn padà! Ṣùgbọ́n, báwo?",
+        "validation": {
+          "title": "Ìfìdí Múlẹ̀ Tí Ó Dáàbò Bo",
+          "description": "AI tó gíga àti ìdánilójú àwọn ènìyàn dájú pé ohun àtọ̀."
+        },
+        "growth": {
+          "title": "Ìdàgbàsókè Nìkan Ní Iye!",
+          "description": "Ìye iṣẹ́ ọnà rẹ pọ̀ sí i nítorí èto àwùjọ wa! Jú mọ́ ibi tí o fẹ́ràn, ra àti tà, ibi yìí ni o ní iye diẹ ẹ sii nínú àwọn tókénì lórí àwọn iṣẹ́ tó pọ̀ sí iye."
+        },
+        "distribution": {
+          "title": "Ìtòlẹ́sẹ̀ Ìpín Ọ̀tùntùntù!",
+          "description": "Ìpinfín ìmúran àkọkọ àti ìmúlẹ̀ nínú iye àwọn olùdá, olùgbéèjì àti àwọn agbàtàlá tí o ní òpò iṣẹ́ lọ́kọ kán àwọn ìní."
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Make Your Art Known, Turn It into Valuable Money, Gold, and Silver in the Long Term!",
+      "description": "Convert your handmade masterpieces into digital gold initially. Each validated piece becomes a secure and tradable asset with guaranteed appreciation."
+    },
+    "cta": {
+      "convert": "Convert Your Art",
+      "explore": "View the Treasury"
+    },
+    "features": {
+      "title": "Money should become the art of the people again! But, how?",
+      "validation": {
+        "title": "Secure Validation",
+        "description": "Advanced AI and human verification ensure authenticity."
+      },
+      "growth": {
+        "title": "Only Value Growth!",
+        "description": "The value of your art only increases thanks to our community system! The more you like, buy, and sell, the more shares you have in tokens for works that are increasingly valuable."
+      },
+      "distribution": {
+        "title": "Impressive Fair Distribution!",
+        "description": "Transparent and original sharing of value between creators, investors, and collectors who have the right to own the artworks materially!"
+      }
+    }
+  }
+}

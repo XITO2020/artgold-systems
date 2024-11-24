@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Gerðu listina þína verðmætari og breyttu henni í dýrmætt fé, gull og silfur til langs tíma!",
+        "description": "Breyttu handgerðri list þinni í stafrænt gull sem fyrsta skref. Hvert staðfest verk verður að öruggu og viðskiptanlegu eign með tryggðri verðmætaaukningu."
+      },
+      "cta": {
+        "convert": "Breyta List Þinni",
+        "explore": "Skoða Sjóðinn"
+      },
+      "features": {
+        "title": "Peningar ættu aftur að vera list fólksins! En hvernig?",
+        "validation": {
+          "title": "Örugg Staðfesting",
+          "description": "Framúrskarandi gervigreind og mannleg staðfesting tryggja áreiðanleika."
+        },
+        "growth": {
+          "title": "Aðeins aukning á verðmæti!",
+          "description": "Verðmæti listarinnar þinnar hækkar stöðugt með samfélagskerfi okkar! Því meira sem þú lækar, kaupir og selur, því meira eignarhlut færðu í verkum sem verða sífellt verðmætari."
+        },
+        "distribution": {
+          "title": "Ótrúlega Sanngjörn Dreifing!",
+          "description": "Gagnsæ og frumleg dreifing á verðmæti milli skapara, fjárfesta og safnara sem hafa rétt til að eiga listaverkin líkamlega!"
+        }
+      }
+    }
+  }
+  

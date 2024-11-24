@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Machen Sie Ihre Kunst bekannt, verwandeln Sie sie langfristig in wertvolles Geld, Gold und Silber!",
+      "description": "Verwandeln Sie Ihre handgefertigten Meisterwerke zunächst in digitales Gold. Jedes validierte Werk wird zu einem sicheren und handelbaren Vermögenswert mit garantierter Wertsteigerung."
+    },
+    "cta": {
+      "convert": "Konvertieren Sie Ihre Kunst",
+      "explore": "Schatzkammer ansehen"
+    },
+    "features": {
+      "title": "Geld sollte wieder die Kunst der Menschen sein! Aber wie?",
+      "validation": {
+        "title": "Sichere Validierung",
+        "description": "Fortschrittliche KI und menschliche Überprüfung gewährleisten die Authentizität."
+      },
+      "growth": {
+        "title": "Nur Wertsteigerung!",
+        "description": "Der Wert Ihrer Kunst steigt dank unseres Gemeinschaftssystems nur an! Je mehr Sie mögen, kaufen und verkaufen, desto mehr Anteile in Tokens haben Sie an Werken, die immer wertvoller werden."
+      },
+      "distribution": {
+        "title": "Beeindruckend Faire Verteilung!",
+        "description": "Transparente und originelle Wertverteilung zwischen Künstlern, Investoren und Sammlern, die das Recht haben, die Werke materiell zu besitzen!"
+      }
+    }
+  }
+}

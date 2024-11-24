@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Defal sa art lu bari xel, te soppi ko ci xaliss bu am solo, xaalis tangoor ak xaalis ndox ci jamono yu gën yàgg!",
+        "description": "Soppi sa njàngale bu ñu def ci loxo ci xaalis digitaal ci këram. Benn njàngale bu am solo, gënal ko, te mu am solo ak dalal gi ëpp solo."
+      },
+      "cta": {
+        "convert": "Soppi Sa Art",
+        "explore": "Wut Alxuraan"
+      },
+      "features": {
+        "title": "Xaalis soxna bu nu nangu ci gëstu gi! Waaye, naka la nu koy def?",
+        "validation": {
+          "title": "Dencitlu Bu Am Solo",
+          "description": "AI bu tar ak gis-gis bu nit ñu mën xam nga mënees nañu ame."
+        },
+        "growth": {
+          "title": "Noppalul Degg Kat Lu Gëna Am Solo!",
+          "description": "Xaalis bi ci sa njàngale ñi jàpp ci ay artu ñooy am solo ci diir bi. Dina ñuy sell mën nel ci diggante noon ñooy gis dëgg-dëgg gi."
+        },
+        "distribution": {
+          "title": "Jekké Bu Dëgg!",
+          "description": "Jëflante bu jub ak bu dëgg ci njariñ ci diggante katti, jëmmak dawal ñi ñooy yegg nga ñi."
+        }
+      }
+    }
+  }
+  

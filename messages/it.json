@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Fai Conoscere la Tua Arte, Trasformala in Denaro Prezioso, Oro e Argento a Lungo Termine!",
+        "description": "Converti i tuoi capolavori fatti a mano in oro digitale inizialmente. Ogni opera validata diventa un bene sicuro e negoziabile con una crescita di valore garantita."
+      },
+      "cta": {
+        "convert": "Converti la Tua Arte",
+        "explore": "Visualizza il Tesoro"
+      },
+      "features": {
+        "title": "Il denaro deve tornare ad essere l'arte del popolo! Ma come?",
+        "validation": {
+          "title": "Validazione Sicura",
+          "description": "L'IA avanzata e la verifica umana garantiscono l'autenticità."
+        },
+        "growth": {
+          "title": "Solo Crescita di Valore!",
+          "description": "Il valore della tua arte aumenta solo grazie al nostro sistema comunitario! Più metti mi piace, compri e vendi, più possiedi quote in token in opere che acquisiscono sempre più valore."
+        },
+        "distribution": {
+          "title": "Distribuzione Equa Impressionante!",
+          "description": "Condivisione trasparente e originale del valore tra creatori, investitori e collezionisti che avranno il diritto di possedere materialmente le opere!"
+        }
+      }
+    }
+  }
+  

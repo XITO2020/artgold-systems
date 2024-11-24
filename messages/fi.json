@@ -1,0 +1,28 @@
+{
+    "home": {
+      "hero": {
+        "title": "Tee taiteesi tunnetuksi, muuta se arvokkaaksi rahaksi, kullaksi ja hopeaksi pitkällä aikavälillä!",
+        "description": "Muuta käsintehdyt mestariteoksesi ensin digitaaliseksi kullaksi. Jokaisesta vahvistetusta teoksesta tulee turvallinen ja kaupattavissa oleva omaisuus, jonka arvonnousu on taattu."
+      },
+      "cta": {
+        "convert": "Muunna Taiteesi",
+        "explore": "Katso Aarrearkku"
+      },
+      "features": {
+        "title": "Rahan täytyy jälleen olla ihmisten taidetta! Mutta miten?",
+        "validation": {
+          "title": "Turvallinen Vahvistus",
+          "description": "Edistynyt AI ja ihmisen tekemä tarkistus takaavat aitouden."
+        },
+        "growth": {
+          "title": "Vain Arvon Nousu!",
+          "description": "Taiteesi arvo nousee vain yhteisöjärjestelmämme ansiosta! Mitä enemmän tykkäät, ostat ja myyt, sitä enemmän sinulla on osuuksia tokeneissa teoksissa, joiden arvo kasvaa jatkuvasti."
+        },
+        "distribution": {
+          "title": "Vaikuttava Oikeudenmukainen Jakelu!",
+          "description": "Läpinäkyvä ja alkuperäinen arvon jakautuminen tekijöiden, sijoittajien ja keräilijöiden kesken, joilla on oikeus omistaa teokset fyysisesti!"
+        }
+      }
+    }
+  }
+  
