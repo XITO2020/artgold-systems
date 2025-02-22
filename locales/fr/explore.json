@@ -1,0 +1,15 @@
+{
+  "explore" : {
+    "treasury": {
+      "title": "Tresorerie",
+      "crumb1": "Tendances",
+      "crumb2": "Nouvelles Oeuvres",
+      "crumb3": "Haut du classement",
+      "browze": "40 Categories"
+    },
+    "thumbnails": {
+      "details":"details",
+      "money":"TABZ (Tab-as-coin)"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "당신의 예술을 가치 있는 화폐로 변환하세요",
+      "description": "수작업으로 만든 걸작을 디지털 골드로 전환하세요. 검증된 모든 예술 작품은 가치 상승이 보장된 안전한 거래 가능 자산이 됩니다."
+    },
+    "cta": {
+      "convert": "예술 작품 변환",
+      "explore": "컬렉션 보기"
+    },
+    "features": {
+      "title": "작동 방식",
+      "validation": {
+        "title": "안전한 검증",
+        "description": "고급 AI와 인간의 검증으로 진위성 보장"
+      },
+      "growth": {
+        "title": "가치 성장",
+        "description": "커뮤니티 시스템을 통해 예술 작품의 가치는 계속 상승"
+      },
+      "distribution": {
+        "title": "공정한 분배",
+        "description": "창작자와 투자자 간의 투명한 가치 공유"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Ubah Seni Anda Menjadi Mata Uang Berharga",
+      "description": "Konversikan karya agung buatan tangan Anda menjadi emas digital. Setiap karya seni yang divalidasi menjadi aset yang aman dan dapat diperdagangkan dengan apresiasi yang dijamin."
+    },
+    "cta": {
+      "convert": "Konversi Seni",
+      "explore": "Lihat Koleksi"
+    },
+    "features": {
+      "title": "Cara Kerja",
+      "validation": {
+        "title": "Validasi Aman",
+        "description": "AI canggih dan verifikasi manusia menjamin keaslian"
+      },
+      "growth": {
+        "title": "Pertumbuhan Nilai",
+        "description": "Nilai seni Anda hanya meningkat melalui sistem komunitas kami"
+      },
+      "distribution": {
+        "title": "Distribusi Adil",
+        "description": "Pembagian nilai yang transparan antara kreator dan investor"
+      }
+    }
+  }
+}

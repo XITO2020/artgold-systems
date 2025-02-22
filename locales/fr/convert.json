@@ -1,0 +1,22 @@
+{
+    "convert": {
+      "hero": {
+        "title": "Convertissez vos oeuvres",
+        "warning": "Note importante",
+        "detail": "Vous pouvez télécharger jusqu'à 12 œuvres. Lorsque vous téléchargez une 13e œuvre, vous devrez d'abord supprimer l'une de vos œuvres existantes.",
+        "greenspan":"( Ou alors gagnez de nouveaux emplacements grace à votre celebrite ! )"
+      },
+      "form": {
+        "arttitle": "titre de votre masterpiece",
+        "artinput": "Entrez un titre original pour votre oeuvre",
+        "Descr": "Description",
+        "Descrinput": "Ce texte s'affichera pour présenter votre oeuvre dans votre profil détaillé",
+        "upload": "Charger l'image de votre masterpiece",
+        "select": "Vous pouvez glisser et déposer, ou bien cliquer sur ce bouton pour parcourir vos fichiers",
+        "selectdetails": "Selectionner un de vos fichiers",
+        "location":"Localisation pour les metadonnées de l'oeuvres",
+        "setloc":"choisissez un endroit d'origine sans geolocalisation",
+        "valid":"Soumettez pour validation"
+      }  
+    } 
+  }

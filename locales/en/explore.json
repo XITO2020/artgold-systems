@@ -1,0 +1,114 @@
+{
+    "home": {
+      "hero": {
+        "title": "Transform Your Art into Valuable Currency",
+        "description": "Convert your handmade masterpieces into digital gold. Each validated artwork becomes a secure, tradeable asset with guaranteed appreciation."
+      },
+      "cta": {
+        "convert": "Convert Your Art",
+        "explore": "View Treasury"
+      },
+      "features": {
+        "title": "How It Works",
+        "validation": {
+          "title": "Secure Validation",
+          "description": "Advanced AI and human verification ensure authenticity"
+        },
+        "growth": {
+            "title": "Value Growth",
+            "description": "The value of your art only increases through our community system",
+            "description2": "With a wealth distribution that encourages buy-sell"
+          },
+        "distribution": {
+            "title": "Fair Distribution",
+            "description": "Transparent value sharing between creators and investors.",
+            "description2": "The artist keeps a share of each artwork for life!"
+          },
+        "details": {
+            "title": "Post your drawings, subtitles or double our videos, and make all your content exchangeable crypto",
+            "exp1": "In over 40 categories, post any style of creation and receive 40 Tabascoin as a bonus!",
+            "exp2": "As a new artist, you have 12 slots (space for your masterpieces)",
+            "exp3": "Your masterpieces will gain value in cryptocurrencies with every 100 likes!",
+            "exp4": "And above all, they will gain value in buy-sell, knowing that you will always keep 10%! 10% of 1 million x12, how much is that?? Wow, wow!"
+          },
+        "financing": {
+            "title": "The Shop",
+            "exp1": "Choose your unique T-shirts and cryptos here",
+            "exp2": "This will finance our ethical and transparent projects with detailed costs and finances",
+            "exp3": "This will open a wallet for you that will be indexed to gold and silver within 3 years",
+            "exp4": "After 3 months of staking, each purchase participates between 20 and 80% in followed, sourced, reliable, clear humanitarian aid operations!"
+          },
+        "industries": {
+            "title": "The Manga Factory",
+            "exp1": "Post storyboards, scripts, sketches",
+            "exp2": "Win a community, collaborations, and cryptos",
+            "exp3": "Discover Shonen Dump and its creatives",
+            "exp4": "Bring out new talents and win with them!"
+          },
+        "introducing": {
+            "catchphrase1": "Tabascocity, born from the desert where we had nothing, the first anti-system bank created a paradise against the Terminators.",
+            "catchphrase2": "The Tab-as-Coin is going to tabas the market!",
+            "title": "It's serious, and we don't care about your pompous protocols!"
+          }
+        },
+      "validation" : {
+        "token":{
+          "title":"Token System",
+          "h4-1":"TABZ Token (Gold-Backed)",
+          "p-intro":"Tab-as-Coin (TABZ): the free auctioneers' currency, from art to gold.",
+          "li-1":"1 TABZ = 0.0001g of Gold",
+          "li-2":"Minimum value guaranteed by gold backing",
+          "li-3":"Additional value from artwork appreciation",
+          "li-4":"Tradeable after 1-year lockup period",
+          "h4-2":"AGT Token (Silver-Backed)",
+          "p-intro2":"Avec AGT Art Gens Token, l'argent redevient l'art des gens !",
+          "li-5":"1 AGT = 0.001g of Silver",
+          "li-6":"Community governance token",
+          "li-7":"Used for platform decisions",
+          "li-8":"Tradeable after 1-year lockup period",
+          "h4-3":"1 to 3 -Years Lockup Period",
+          "p-intro3":"Pour mettre à bien ce projet d'ici 2028, il faut qu'en tant qu'utilisateurs nous soyons tous actifs!",
+          "li-9":"Initial 1-year accumulation period of masterpieces",
+          "li-10":"Exchange listing into gold and silver after lockup period",
+          "li-11":"Convertible to ETH/SOL after 1 year listings",
+          "li-12":"Continuous price discovery phased"
+        },
+        "market":{
+          "entry":"Market Entry Timeline",
+          "ph1":"Phase 1: Accumulation",
+          "duration":"1 Year",
+          "ph2":"Phase 2: Ethereum and Solana Exchange Listing",
+          "echeance1":"Q2 2026",
+          "ph3":"Phase 3: Gold and Silver Exchange Listing",
+          "echeance2":"Q1 2028"  
+        } 
+      }
+    },
+    "ai":{
+      "title":"AI Content Validation",
+      "parag":"Our advanced AI system screens all submissions for:",
+      "exp1":"AI-generated content",
+      "exp2":"Duplicate artworks",
+      "exp3":"+18 imagery",
+      "exp4":"Violent imagery",
+      "exp5":"Unacceptable Advertisement"
+      
+    },
+    "human":{
+      "title":"Human Review",
+      "parag":"Our team personally reviews each submission to ensure:",
+      "exp1":"Artistic merit",
+      "exp2":"Originality verification",
+      "exp3":"Community guidelines compliance",
+      "exp5":"Mainstream or NWO shitty promotion"
+    },
+    "fraudd":{
+      "title":"Fraud Protection & Consequences",
+      "parag":"Submitting fraudulent artworks (AI-generated, copies, or prints) will result in severe consequences:",
+      "exp1":"Immediate forfeiture of all assets and investments",
+      "exp2":"Permanent ban from the platform",
+      "exp3":"Public disclosure of fraudulent activity",
+      "exp4": "special punishement, some of your datas will be shared on the dark",
+      "exp5":"By submitting artwork, you acknowledge these terms and accept full legal responsibility for authenticity."
+    }
+  }

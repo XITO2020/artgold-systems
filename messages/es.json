@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Transforma Tu Arte en Moneda Valiosa",
+      "description": "Convierte tus obras maestras hechas a mano en oro digital. Cada obra de arte validada se convierte en un activo seguro y negociable con apreciación garantizada."
+    },
+    "cta": {
+      "convert": "Convertir Tu Arte",
+      "explore": "Ver Tesorería"
+    },
+    "features": {
+      "title": "Cómo Funciona",
+      "validation": {
+        "title": "Validación Segura",
+        "description": "La IA avanzada y la verificación humana garantizan la autenticidad"
+      },
+      "growth": {
+        "title": "Crecimiento del Valor",
+        "description": "El valor de tu arte solo aumenta a través de nuestro sistema comunitario"
+      },
+      "distribution": {
+        "title": "Distribución Justa",
+        "description": "Reparto transparente del valor entre creadores e inversores"
+      }
+    }
+  }
+}

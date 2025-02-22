@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gold Bullion
+* source:	https://sketchfab.com/3d-models/gold-bullion-5e2578544a924db8b1fc580d79e5ef98
+* author:	hessamghani (https://sketchfab.com/hessamghanizadeh)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gold Bullion" (https://sketchfab.com/3d-models/gold-bullion-5e2578544a924db8b1fc580d79e5ef98) by hessamghani (https://sketchfab.com/hessamghanizadeh) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

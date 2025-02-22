@@ -1,0 +1,290 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.036728519946336746,
+        0.02751382812857628,
+        0.03529608994722366
+      ],
+      "min": [
+        -0.034218329936265945,
+        -0.014793873764574528,
+        -0.06947337090969086
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 355704,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999924302101135,
+        0.9999669194221497,
+        0.9999966025352478
+      ],
+      "min": [
+        -0.9999958276748657,
+        -0.9998661875724792,
+        -0.9998255968093872
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999907612800598,
+        0.9988747835159302
+      ],
+      "min": [
+        0.0006835586973465979,
+        1.747350142977666e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 237136,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999907612800598,
+        0.9988747835159302
+      ],
+      "min": [
+        0.0006835586973465979,
+        1.747350142977666e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 474272,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999907612800598,
+        0.9988747835159302
+      ],
+      "min": [
+        0.0006835586973465979,
+        1.747350142977666e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 711408,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999907612800598,
+        0.9988747835159302
+      ],
+      "min": [
+        0.0006835586973465979,
+        1.747350142977666e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 948544,
+      "componentType": 5126,
+      "count": 29642,
+      "max": [
+        0.9999907612800598,
+        0.9988747835159302
+      ],
+      "min": [
+        0.0006835586973465979,
+        1.747350142977666e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 145527,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "alban (https://sketchfab.com/alban)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/slice-of-strawberry-and-raspberry-pie-9963bb7eeaf346288aed83203174211d",
+      "title": "Slice of strawberry and raspberry pie"
+    },
+    "generator": "Sketchfab-13.35.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 582108,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1185680,
+      "byteOffset": 582108,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 711408,
+      "byteOffset": 1767788,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 2479196,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_unlit"
+  ],
+  "images": [
+    {
+      "uri": "textures/material_0_baseColor.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "material_0",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Object_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2,
+            "TEXCOORD_1": 3,
+            "TEXCOORD_2": 4,
+            "TEXCOORD_3": 5,
+            "TEXCOORD_4": 6
+          },
+          "indices": 7,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.5788846015930176,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.5058280758293705e-16,
+        -1.5788846015930176,
+        0.0,
+        0.0,
+        1.5788846015930176,
+        3.5058280758293705e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "root"
+    },
+    {
+      "children": [
+        3
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "GLTF_SceneRootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "name": "_0"
+    },
+    {
+      "mesh": 0,
+      "name": "Object_4"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}

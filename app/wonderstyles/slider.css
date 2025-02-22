@@ -1,0 +1,199 @@
+
+.slider-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    position: relative;
+  }
+  
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 52vh;
+    background-size: cover;
+    background-position: center;
+    background-position-y: -100px;
+    border-radius: 20px;
+  }
+  
+  .links-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    width: 25%;
+    height: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+  
+  .left-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .left-links .link {
+    width: 240px !important;
+    padding: 10px auto;
+  }
+  
+  .right-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 15px;
+    position: relative;
+    top: 82%;
+    left: 239%;
+    width: 727px;
+    z-index: 30;
+    padding: 0;
+  }
+  
+  .link:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+  .central-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 0.6;
+  }
+  
+  .central-button:hover {
+    background-color: var(--accentOne-hover);
+  }
+  .slick-slide {
+    height: auto;
+  }
+  .slick-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+  
+  .transition-button {
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  }
+  
+  .smoothButton {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .smoothButton::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    pointer-events: none;
+  }
+  
+  .smoothButton:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  
+  .smoothButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    pointer-events: none;
+    transition-delay: 0.2s;
+  }
+  
+  .smoothButton:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  
+  .smoothButton:hover {
+    transform: scale(1.08);
+  }
+  
+  /* Mobile styles */
+  .mobile-slider-container {
+    width: 444px;
+    height: 888px;
+    margin: 0 auto;
+  }
+  
+  
+  .hero-title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .central-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .left-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .left-links .link {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .right-links {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: auto;
+  }
+  
+  .right-links a {
+    margin-left: 0.5rem;
+  }
+  
+  /*fin du slider */

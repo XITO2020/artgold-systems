@@ -1,0 +1,79 @@
+import nodemailer from 'nodemailer';
+import { formatCurrency } from './utils';
+
+export const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_SERVER_HOST,
+  port: Number(process.env.EMAIL_SERVER_PORT),
+  auth: {
+    user: process.env.EMAIL_SERVER_USER,
+    pass: process.env.EMAIL_SERVER_PASSWORD,
+  },
+});
+
+export async function sendPaymentConfirmation(
+  to: string,
+  { orderId, amount, artworkTitle, paymentMethod }: {
+    orderId: string;
+    amount: number;
+    artworkTitle: string;
+    paymentMethod: 'stripe' | 'paypal';
+  }
+) {
+  await transporter.sendMail({
+    from: process.env.EMAIL_FROM,
+    to,
+    subject: `Payment Confirmation - Order #${orderId}`,
+    html: `
+      <h1>Payment Confirmation</h1>
+      <p>Thank you for your purchase!</p>
+      <h2>Order Details</h2>
+      <ul>
+        <li>Order ID: ${orderId}</li>
+        <li>Artwork: ${artworkTitle}</li>
+        <li>Amount: ${formatCurrency(amount)}</li>
+        <li>Payment Method: ${paymentMethod}</li>
+      </ul>
+      <p>Your invoice is attached to this email.</p>
+    `,
+    attachments: [{
+      filename: `invoice-${orderId}.pdf`,
+      path: `/tmp/invoices/${orderId}.pdf`,
+    }],
+  });
+}
+
+export async function sendExchangeConfirmation(
+  to: string,
+  { txHash, fromToken, toToken, amount, receivedAmount }: {
+    txHash: string;
+    fromToken: 'TABZ' | 'AGT';
+    toToken: 'ETH' | 'SOL';
+    amount: number;
+    receivedAmount: number;
+  }
+) {
+  await transporter.sendMail({
+    from: process.env.EMAIL_FROM,
+    to,
+    subject: `Exchange Confirmation - ${fromToken} to ${toToken}`,
+    html: `
+      <h1>Exchange Confirmation</h1>
+      <p>Your token exchange has been completed successfully!</p>
+      <h2>Transaction Details</h2>
+      <ul>
+        <li>Transaction Hash: ${txHash}</li>
+        <li>From: ${amount} ${fromToken}</li>
+        <li>To: ${receivedAmount} ${toToken}</li>
+      </ul>
+      <p>You can view the transaction on the blockchain explorer:</p>
+      <p><a href="${getExplorerUrl(txHash, toToken)}">${txHash}</a></p>
+    `,
+  });
+}
+
+function getExplorerUrl(txHash: string, token: string): string {
+  if (token === 'ETH') {
+    return `https://etherscan.io/tx/${txHash}`;
+  }
+  return `https://solscan.io/tx/${txHash}`;
+}
