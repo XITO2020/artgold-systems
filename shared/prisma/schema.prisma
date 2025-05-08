@@ -1,0 +1,748 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Add IPFS CID type
+enum IPFSStatus {
+  PENDING
+  UPLOADED
+  FAILED
+}
+
+model IPFSMedia {
+  id        String     @id @default(cuid())
+  cid       String     @unique
+  filename  String
+  mimeType  String
+  size      Int
+  status    IPFSStatus @default(PENDING)
+  url       String? // Backup URL if IPFS is not available
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relations for different content types
+  artworks          Artwork[]
+  portfolioItems    PortfolioItem[]
+  articles          Article[]
+  tshirts           TShirt[]
+  chapterThumbnails Chapter[]       @relation("ChapterThumbnail")
+  chapterVideos     Chapter[]       @relation("ChapterVideo")
+
+  @@index([cid])
+  @@index([status])
+}
+
+//personnal super admin addings :
+model Article {
+  id        String     @id @default(cuid())
+  title     String
+  slug      String
+  content   String     @db.Text
+  imageId   String?
+  image     IPFSMedia? @relation(fields: [imageId], references: [id])
+  authorId  String
+  published Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  chapters  Chapter[]
+  tags      Tag[]
+  author    User       @relation(fields: [authorId], references: [id])
+
+  @@index([authorId])
+  @@index([published])
+}
+
+model Chapter {
+  id          String     @id @default(cuid())
+  title       String
+  content     String     @db.Text
+  thumbnailId String?
+  thumbnail   IPFSMedia? @relation("ChapterThumbnail", fields: [thumbnailId], references: [id])
+  videoId     String?
+  video       IPFSMedia? @relation("ChapterVideo", fields: [videoId], references: [id])
+  duration    Int? // Video duration in seconds
+  order       Int
+  articleId   String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId])
+}
+
+model Tag {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  articles Article[]
+}
+
+// User and Authentication
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum UserStatus {
+  ACTIVE
+  FROZEN
+  BANNED
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  image           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  loginCount      Int       @default(0)
+  discordVerified Boolean   @default(false)
+  discordRoles    String[]  @default([])
+  isAdmin         Boolean   @default(false)
+  status          String    @default("PENDING")
+  balance         Decimal   @default(0) @db.Decimal(20, 8)
+  artworkCount    Int       @default(0)
+  fontColor       String?
+  fontFamily      String?
+  
+  accounts        Account[]
+  sessions        Session[]
+  articles        Article[]
+  artworks                  Artwork[]
+  artworkOffers             ArtworkOffer[]
+  memeralUploads            MemeralReserve[]
+  portfolioItems            PortfolioItem[]
+  portfolioComments         PortfolioComment[]
+  portfolioLikes            PortfolioLike[]
+  metrics                   UserMetrics?
+  notifications             Notification[]
+  tokens                    Token[]
+  transactions              BankTransaction[]
+  exchanges                 Exchange[]
+  fraudAttempts             FraudAttempt[]
+  artworkPurchases          ArtworkPurchase[]
+  artistCategorySubmissions ArtistCategorySubmission[]
+  contentValidations        ContentValidation[]
+  content                   Content[]
+  purchases                 Purchase[]
+  bonusSlotsList            BonusSlot[]
+  bonusSlotTransfersFrom    BonusSlotTransfer[]        @relation("FromUser")
+  bonusSlotTransfersTo      BonusSlotTransfer[]        @relation("ToUser")
+  tshirtPurchases           TShirtPurchase[]
+  Transaction               Transaction[]
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+  UNLISTED
+}
+
+// Artwork and Content
+model Artwork {
+  id            String     @id @default(cuid())
+  title         String
+  description   String?
+  serialNumber  String     @unique
+  qrCode        String
+  category      String
+  imageId       String
+  image         IPFSMedia  @relation(fields: [imageId], references: [id])
+  location      Json
+  dimensions    Json
+  weight        Json?
+  materials     String[]
+  technique     String?
+  story         String?    @db.Text
+  creationDate  DateTime   @default(now())
+  artistId      String
+  currentValue  Decimal    @db.Decimal(20, 8)
+  price         Decimal?   @db.Decimal(20, 8)
+  royaltyRate   Decimal    @default(0.1) @db.Decimal(5, 4) // For percentage rates
+  totalLikes    Int        @default(0)
+  status        String     @default("PENDING") // PENDING, APPROVED, REJECTED
+  points        Int        @default(0)
+  isFirst       Boolean    @default(false)
+  canDelete     Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  views         Int        @default(0)
+  featuredUntil DateTime? // For promoted artworks
+  tags          String[] // For better searchability
+  visibility    Visibility @default(PUBLIC)
+
+  artist             User                @relation(fields: [artistId], references: [id])
+  validations        ArtworkValidation[]
+  purchases          ArtworkPurchase[]
+  valueDistributions ValueDistribution[]
+  bonusSlots         BonusSlot[]
+  offers             ArtworkOffer[]
+  bankTransactions   BankTransaction[]
+}
+
+model ArtworkValidation {
+  id          String   @id @default(cuid())
+  artworkId   String
+  reviewerId  String?
+  aiScore     Decimal  @db.Decimal(5, 4) // For AI confidence scores
+  patterns    String[]
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  reviewNotes String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  artwork Artwork @relation(fields: [artworkId], references: [id])
+}
+
+model ArtworkPurchase {
+  id           String   @id @default(cuid())
+  artworkId    String
+  buyerId      String
+  amount       Decimal  @db.Decimal(20, 8)
+  sharePercent Decimal  @db.Decimal(5, 4)
+  createdAt    DateTime @default(now())
+
+  artwork Artwork @relation(fields: [artworkId], references: [id])
+  buyer   User    @relation(fields: [buyerId], references: [id])
+}
+
+model ArtworkOffer {
+  id        String      @id @default(cuid())
+  artworkId String
+  buyerId   String
+  amount    Decimal     @db.Decimal(20, 8)
+  status    OfferStatus
+  expiresAt DateTime
+  createdAt DateTime    @default(now())
+
+  artwork Artwork @relation(fields: [artworkId], references: [id])
+  buyer   User    @relation(fields: [buyerId], references: [id])
+
+  @@index([artworkId])
+  @@index([buyerId])
+  @@index([status])
+}
+
+enum OfferStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+model ValueDistribution {
+  id            String   @id @default(cuid())
+  artworkId     String
+  previousValue Decimal  @db.Decimal(20, 8)
+  newValue      Decimal  @db.Decimal(20, 8)
+  creatorShare  Decimal  @db.Decimal(20, 8)
+  ownerShare    Decimal  @db.Decimal(20, 8)
+  buyersShare   Decimal  @db.Decimal(20, 8)
+  reason        String // SALE, LIKES, ADMIN
+  createdAt     DateTime @default(now())
+
+  artwork Artwork @relation(fields: [artworkId], references: [id])
+}
+
+// Metrics
+model UserMetrics {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  totalSales     Decimal  @default(0) @db.Decimal(20, 8)
+  totalPurchases Decimal  @default(0) @db.Decimal(20, 8)
+  avgRating      Decimal? @db.Decimal(3, 2)
+  reviewCount    Int      @default(0)
+  lastActive     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model MarketMetrics {
+  id           String   @id @default(cuid())
+  date         DateTime @unique
+  totalVolume  Decimal  @db.Decimal(20, 8)
+  activeUsers  Int
+  newUsers     Int
+  transactions Int
+  avgPrice     Decimal  @db.Decimal(20, 8)
+}
+
+// Tokens and Transactions
+// 1 Definition des Enums
+enum TokenType {
+  TABZ
+  AGT
+}
+
+enum TransactionType {
+  PURCHASE
+  SALE
+  EXCHANGE
+  CONVERSION
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum ExchangeStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+// 2 Models concernant les transactions: Token, Transaction, Exchange
+model Token {
+  id          String    @id @default(cuid())
+  userId      String
+  type        TokenType // Utilisation d'enum pour les types de token
+  symbol      String // Symbol pour les token "TABZ", "AGT"
+  amount      Decimal   @db.Decimal(20, 8) // More precise for financial data
+  lockedUntil DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id        String            @id @default(cuid())
+  userId    String
+  type      TransactionType // Use enum for transaction types
+  amount    Decimal           @db.Decimal(20, 8)
+  status    TransactionStatus // Enum for transaction status
+  paymentId String?
+  orderId   String?
+  provider  String?
+  metadata  Json?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Exchange {
+  id             String         @id @default(cuid())
+  userId         String
+  fromToken      TokenType // Enum for the token type being converted
+  toToken        String // Use a string for flexibility (e.g., ETH, SOL)
+  amount         Decimal        @db.Decimal(20, 8)
+  receivedAmount Decimal        @db.Decimal(20, 8)
+  walletAddress  String
+  status         ExchangeStatus // Enum for exchange status
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model MemeralReserve {
+  id           String            @id @default(cuid())
+  memeHash     String            @unique
+  title        String
+  url          String
+  addedBy      String
+  tabzValue    Int               @default(1000)
+  createdAt    DateTime          @default(now())
+  //Relations
+  user         User              @relation(fields: [addedBy], references: [id])
+  transactions BankTransaction[]
+
+  @@map("memeral_reserve")
+}
+
+model BankTransaction {
+  id          String          @id @default(cuid())
+  userId      String
+  type        String
+  tokenType   String          @map("token_type")
+  amount      Decimal
+  fromAddress String          @map("from_address")
+  toAddress   String          @map("to_address")
+  artworkId   String?         @map("artwork_id")
+  memeHash    String?         @map("meme_hash")
+  metadata    Json?
+  createdAt   DateTime        @default(now())
+  //Relations
+  user        User            @relation(fields: [userId], references: [id])
+  artwork     Artwork?        @relation(fields: [artworkId], references: [id])
+  meme        MemeralReserve? @relation(fields: [memeHash], references: [memeHash])
+
+  @@map("bank_transactions")
+}
+
+model BankReserve {
+  id            String   @id @default(cuid())
+  tokenType     String   @unique @map("token_type")
+  currentAmount Decimal  @map("current_amount")
+  minReserve    Decimal  @map("min_reserve")
+  lastUpdated   DateTime @default(now()) @map("last_updated")
+
+  @@map("bank_reserves")
+}
+
+// Categories and Submissions
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  submissions ArtistCategorySubmission[]
+}
+
+model ArtistCategorySubmission {
+  id         Int      @id @default(autoincrement())
+  userId     String
+  categoryId Int
+  points     Int      @default(0)
+  isFirst    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  imageUrl   String
+  user       User     @relation(fields: [userId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+}
+
+// Security and Monitoring
+model FraudAttempt {
+  id         String   @id @default(cuid())
+  userId     String
+  type       String // AI_GENERATED, DUPLICATE, PRINT
+  confidence Decimal  @db.Decimal(5, 4) // For percentage/confidence scores
+  details    Json
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model ContentValidation {
+  id         String   @id @default(cuid())
+  contentId  String
+  reviewerId String
+  status     String
+  confidence Decimal  @db.Decimal(5, 4) // For percentage/confidence scores
+  details    Json
+  createdAt  DateTime @default(now())
+
+  reviewer User @relation(fields: [reviewerId], references: [id])
+}
+
+model Content {
+  id            String           @id @default(cuid())
+  title         String
+  description   String?
+  category      String
+  status        String           @default("PENDING")
+  likes         Int              @default(0)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  archivedAt    DateTime?
+  archiveReason String?
+  artistId      String
+  artist        User             @relation(fields: [artistId], references: [id])
+  purchases     Purchase[]
+  cleanups      ContentCleanup[]
+
+  @@index([status])
+  @@index([category])
+  @@index([createdAt])
+}
+
+model ContentCleanup {
+  id        String   @id @default(cuid())
+  contentId String
+  content   Content  @relation(fields: [contentId], references: [id])
+  reason    String
+  details   Json
+  createdAt DateTime @default(now())
+
+  @@index([contentId])
+}
+
+model CleanupLog {
+  id        String   @id @default(cuid())
+  type      String
+  result    Json
+  dryRun    Boolean  @default(false)
+  timestamp DateTime @default(now())
+
+  @@index([type])
+  @@index([timestamp])
+}
+
+model Purchase {
+  id        String   @id @default(cuid())
+  contentId String
+  content   Content  @relation(fields: [contentId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  amount    Decimal  @db.Decimal(20, 8)
+  createdAt DateTime @default(now())
+
+  @@index([contentId])
+  @@index([userId])
+}
+
+model BonusSlot {
+  id          String   @id @default(cuid())
+  userId      String
+  isUsed      Boolean  @default(false)
+  artworkId   String? // The artwork using this slot
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  canTransfer Boolean  @default(true)
+  price       Decimal? @db.Decimal(20, 8)
+
+  user    User     @relation(fields: [userId], references: [id])
+  artwork Artwork? @relation(fields: [artworkId], references: [id])
+}
+
+model BonusSlotTransfer {
+  id         String   @id @default(cuid())
+  fromUserId String
+  toUserId   String
+  amount     Int
+  price      Decimal? @db.Decimal(20, 8)
+  status     String   @default("PENDING") // PENDING, COMPLETED, FAILED
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  fromUser User @relation("FromUser", fields: [fromUserId], references: [id])
+  toUser   User @relation("ToUser", fields: [toUserId], references: [id])
+}
+
+// Webhook Management
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  provider  String
+  eventType String
+  payload   Json
+  processed Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model WebhookError {
+  id        String   @id @default(cuid())
+  eventId   String?
+  eventType String?
+  message   String
+  stack     String?
+  timestamp DateTime @default(now())
+}
+
+model WebhookRetry {
+  id          String   @id @default(cuid())
+  eventId     String
+  attempts    Int      @default(0)
+  maxAttempts Int      @default(3)
+  nextAttempt DateTime
+  createdAt   DateTime @default(now())
+}
+
+//  Add notification system:
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  message   String
+  read      Boolean          @default(false)
+  data      Json?
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+enum NotificationType {
+  SALE
+  PURCHASE
+  OFFER
+  PRICE_CHANGE
+  LIKE
+  SYSTEM
+}
+
+enum ArtCategory {
+  african
+  pacifikian
+  oriental
+  indian
+  amerindian
+  slavic
+  calligraphy
+  inked
+  sketches
+  manga
+  comics
+  abstract
+  realisticXIX
+  realisticXX
+  realisticXXI
+  paper
+  textil
+  onwood
+  oil
+  acrylic
+  pencil
+  watercolor
+  sculpture
+  photography
+  portrait
+  landscape
+  objects
+  creatures
+  architecture
+  technology
+  map
+  characterdesign
+  meca
+  fantaisy
+  medieval
+  schoolsketch
+  poster
+  emblem_coat_of_arms
+  Memes
+  Animated_Gif
+  Motion_Design
+  Illustrator_Ai
+  Pixel_Art
+  Photoshop_PSD
+  invention
+  ecologicalplan
+  vehicles_concept
+  visual_effect
+  labyrinth_game
+  other
+}
+
+//shop tshirts 
+model TShirt {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.Text
+  price       Float
+  imageId     String
+  image       IPFSMedia @relation(fields: [imageId], references: [id])
+  category    String
+  inStock     Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  purchases TShirtPurchase[]
+
+  @@index([category])
+  @@index([inStock])
+}
+
+model TShirtPurchase {
+  id        String   @id @default(cuid())
+  tshirtId  String
+  userId    String?
+  size      String
+  color     String
+  quantity  Int
+  amount    Decimal  @db.Decimal(10, 2)
+  status    String // PENDING, COMPLETED, SHIPPED
+  createdAt DateTime @default(now())
+
+  tshirt TShirt @relation(fields: [tshirtId], references: [id])
+  user   User?  @relation(fields: [userId], references: [id])
+
+  @@index([tshirtId])
+  @@index([userId])
+}
+
+model PortfolioItem {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.Text
+  category    String // 'illustrations', 'comics', 'videos', 'graphics', '3d'
+  type        String // 'image', 'video', '3d'
+  mediaId     String
+  media       IPFSMedia @relation(fields: [mediaId], references: [id])
+  thumbnail   String? // Thumbnail for videos and 3D models
+  series      String? // For grouping items in a series/title
+  order       Int? // For ordering items within a series
+  duration    Int? // For videos (in seconds)
+  modelFormat String? // For 3D models (e.g., 'gltf', 'obj')
+  views       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  comments PortfolioComment[]
+  likes    PortfolioLike[]
+  userId   String
+  user     User               @relation(fields: [userId], references: [id])
+
+  @@index([category])
+  @@index([series])
+  @@index([userId])
+}
+
+model PortfolioComment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userId String
+  user   User          @relation(fields: [userId], references: [id])
+  itemId String
+  item   PortfolioItem @relation(fields: [itemId], references: [id])
+
+  @@index([userId])
+  @@index([itemId])
+}
+
+model PortfolioLike {
+  userId    String
+  itemId    String
+  createdAt DateTime      @default(now())
+  // Relations
+  user      User          @relation(fields: [userId], references: [id])
+  item      PortfolioItem @relation(fields: [itemId], references: [id])
+
+  @@id([userId, itemId])
+  @@index([userId])
+  @@index([itemId])
+}

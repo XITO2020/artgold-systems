@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "buildCommand": "prisma generate && next build",
+    "installCommand": "npm install",
+    "framework": "nextjs",
+    "regions": ["cdg1"],
+    "env": {
+      "POSTGRES_PRISMA_URL": "DATABASE_URL",
+      "POSTGRES_URL_NON_POOLING": "DATABASE_URL_NON_POOLING"
+    }
+  }

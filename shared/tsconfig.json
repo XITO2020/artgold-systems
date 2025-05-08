@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "lib": ["esnext"],
+      "skipLibCheck": true,
+      "strict": true,
+      "noEmit": false,
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "baseUrl": ".",
+      "paths": {
+        "@shared/*": ["./*"],
+        "@types/*": ["./types/*"]
+      }
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", "dist", "build", "out"]
+  }
+  

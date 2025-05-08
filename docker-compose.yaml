@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # E-commerce Next.js + WooCommerce
+  ecommerce:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./ecommerce-app:/app
+    ports:
+      - "3000:3000"
+    command: npm run start
+    environment:
+      DATABASE_URL: postgresql://ecommerce_user:ecommerce_pass@ecommerce-db:5432/ecommerce_db
+
+  # PostgreSQL for E-commerce
+  ecommerce-db:
+    image: postgres:15
+    volumes:
+      - ./ecommerce-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ecommerce_user
+      POSTGRES_PASSWORD: ecommerce_pass
+      POSTGRES_DB: ecommerce_db
+
+  # Streaming Next.js
+  streaming:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./streaming-app:/app
+    ports:
+      - "3001:3000"
+    command: npm run start
+    environment:
+      DATABASE_URL: postgresql://streaming_user:streaming_pass@streaming-db:5432/streaming_db
+
+  # PostgreSQL for Streaming
+  streaming-db:
+    image: postgres:15
+    volumes:
+      - ./streaming-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: streaming_user
+      POSTGRES_PASSWORD: streaming_pass
+      POSTGRES_DB: streaming_db
+
+  # Portfolio Marketplace - Frontend
+  marketplace-frontend:
+    image: node:20
+    working_dir: /app/frontend
+    volumes:
+      - ./marketplace-frontend:/app/frontend
+    ports:
+      - "3002:3000"
+    command: npm run dev
+    environment:
+      DATABASE_URL: postgresql://marketplace_user:marketplace_pass@marketplace-db:5432/marketplace_db
+
+  # Portfolio Marketplace - Shared
+  marketplace-shared:
+    image: node:20
+    working_dir: /app/shared
+    volumes:
+      - ./marketplace-shared:/app/shared
+    command: npm run build
+
+  # Portfolio Marketplace - Blockchain
+  marketplace-blockchain:
+    image: node:20
+    working_dir: /app/blockchain
+    volumes:
+      - ./marketplace-blockchain:/app/blockchain
+    command: npm run compile
+
+  # PostgreSQL for Marketplace
+  marketplace-db:
+    image: postgres:15
+    volumes:
+      - ./marketplace-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: marketplace_user
+      POSTGRES_PASSWORD: marketplace_pass
+      POSTGRES_DB: marketplace_db
+
+  # Nginx Proxy for all projects
+  proxy:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot-webroot:/var/www/certbot
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - ecommerce
+      - streaming
+      - marketplace-frontend
+      - marketplace-shared
+      - marketplace-blockchain
+
+  # Hetzner Storage Box for Video Storage (S3 alternative)
+  storage-box:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./storage-data:/data
+    environment:
+      MINIO_ROOT_USER: storage_user
+      MINIO_ROOT_PASSWORD: storage_pass
+    command: server /data
+
+  # IPFS Node for NFT Images
+  ipfs-node:
+    image: ipfs/go-ipfs:latest
+    ports:
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ./ipfs-data:/data/ipfs
+    environment:
+      IPFS_PATH: /data/ipfs
+
+  # Marketplace Backend (Shared + Blockchain)
+  marketplace-backend:
+    image: node:20
+    working_dir: /app/backend
+    volumes:
+      - ./marketplace-backend:/app/backend
+    command: npm run build

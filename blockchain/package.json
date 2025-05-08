@@ -1,0 +1,24 @@
+{
+  "name": "tbcity-artgold-blockchain",
+  "version": "9.1.2",
+  "private": true,
+  "scripts": {
+    "compile": "cd .. && npx hardhat compile",
+    "test": "cd .. && npx hardhat test",
+    "deploy": "cd .. && npx hardhat run scripts/deploy.js",
+    "node": "cd .. && npx hardhat node"
+  },
+  "dependencies": {
+    "ethers": "^6.9.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.0",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.87.6",
+    "@solana/wallet-adapter-base": "^0.9.23",
+    "@solana/wallet-adapter-react": "^0.15.35",
+    "@solana/wallet-adapter-react-ui": "^0.9.34",
+    "@solana/wallet-adapter-wallets": "^0.19.23",
+    "@solana/web3.js": "^1.87.6"
+}
+
+}

@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "name": "tab_token",
+  "instructions": [
+    {
+      "name": "createToken",
+      "accounts": [
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
