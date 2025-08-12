@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useTheme } from 'ç/theme/ThemeContext';
+import { useTheme } from '@comp/theme/ThemeContext';
 import { useMediaQuery } from '#/use-media-query';
 import Link from 'next/link';
 

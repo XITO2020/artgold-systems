@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
-import { reviewContent } from '~/content-validation';
-import { ArtCategory } from 'T/artwork';
+import { prisma } from '@lib/db';
+import { reviewContent } from '@lib/content-validation';
+import { ArtCategory } from '@t/artwork';
 
 interface ArtworkData {
   id: string;

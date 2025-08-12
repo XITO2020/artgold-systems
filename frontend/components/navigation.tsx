@@ -9,7 +9,7 @@ import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
 import { useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { useTheme } from 'ç/theme/ThemeContext';
+import { useTheme } from '@comp/theme/ThemeContext';
 import { useMediaQuery } from "#/use-media-query";
 
 export default function Navigation() {

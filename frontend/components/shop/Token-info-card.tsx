@@ -2,7 +2,7 @@
 
 import { Card } from "ù/card";
 import { Info } from "lucide-react";
-import { TOKEN_CONFIG } from '~/token-config';
+import { TOKEN_CONFIG } from '@LIB/token-config';
 
 interface TokenInfoCardProps {
   token: 'TABZ' | 'AGT';

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
+import { prisma } from '@lib/db';
 
 /*
 api/admin/articles/[id]/route.ts

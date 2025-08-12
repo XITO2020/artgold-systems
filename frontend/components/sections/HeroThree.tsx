@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
-import { useTheme } from 'ç/theme/ThemeContext';
+import { useTheme } from '@comp/theme/ThemeContext';
 
 const RotatingModel: React.FC<{ url: string }> = ({ url }) => {
   const { scene } = useGLTF(url);

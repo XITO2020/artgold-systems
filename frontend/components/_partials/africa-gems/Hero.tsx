@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from "ù/button";
 import Link from 'next/link';
-import { useTheme } from "ç/theme/ThemeContext";
+import { useTheme } from "@comp/theme/ThemeContext";
 import "./africa.module.scss";
 
 interface HeroProps {

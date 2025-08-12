@@ -1,8 +1,8 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { prisma } from '~/db';
-import { distributeValue } from '~/value-distribution';
+import { prisma } from '@LIB/db';
+import { distributeValue } from '@LIB/value-distribution';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',

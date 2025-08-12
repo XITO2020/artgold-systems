@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
-import { BONUS_SLOTS_CONFIG } from '~/constants';
+import { prisma } from '@lib/db';
+import { BONUS_SLOTS_CONFIG } from '@lib/constants';
 
 export async function POST(req: Request) {
   const session = await getServerSession();

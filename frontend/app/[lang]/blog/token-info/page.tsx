@@ -3,7 +3,7 @@
 import { Card } from "ù/card";
 import { Button } from "ù/button";
 import Image from "next/image";
-import { TOKEN_CONFIG } from "~/token-config";
+import { TOKEN_CONFIG } from "@LIB/token-config";
 import { useTranslations } from 'next-intl';
 
 export default function TokenInfoPage({ 

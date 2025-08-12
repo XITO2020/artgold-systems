@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '~/utils';
+import { cn } from '@LIB/utils';
 
 
 const Card = React.forwardRef<

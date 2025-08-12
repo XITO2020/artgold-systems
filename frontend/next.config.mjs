@@ -10,9 +10,12 @@ const nextConfig = {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       "@": path.resolve(__dirname),
-      "@ui": path.resolve(__dirname, "components", "ui")
-      // si tu veux garder l’alias "ù":
-      // "ù": path.resolve(__dirname, "components", "ui")
+      "@ui": path.resolve(__dirname, "components", "ui"),
+      "@t": path.resolve(__dirname, "types"),
+      "@comp": path.resolve(__dirname, "components"),
+      "@lib": path.resolve(__dirname, "lib"),
+      "@hooks": path.resolve(__dirname, "hooks"),
+      "@sections": path.resolve(__dirname, "components", "sections")
     };
     config.resolve.fallback = {
       ...config.resolve.fallback,

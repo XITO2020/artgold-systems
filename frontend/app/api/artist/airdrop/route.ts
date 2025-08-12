@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { getArtistLevel } from '~/db/queries';
-import { processAirdrop } from '~/db/mutations';
-import { isAirdropEligible, calculateAirdropAmount } from '~/artist-level';
+import { getArtistLevel } from '@lib/db/queries';
+import { processAirdrop } from '@lib/db/mutations';
+import { isAirdropEligible, calculateAirdropAmount } from '@lib/artist-level';
 
 export async function POST(req: Request) {
   const session = await getServerSession();

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
-import { CONVERSION_RATES, TOKEN_CONFIG } from '~/token-config';
+import { prisma } from '@lib/db';
+import { CONVERSION_RATES, TOKEN_CONFIG } from '@lib/token-config';
 
 type TokenType = 'TABZ' | 'AGT';
 

@@ -1,8 +1,8 @@
 // app/[lang]/submit/route.ts
 import { NextResponse } from 'next/server';
-import { prisma } from '~/db'; // Import du client Prisma
+import { prisma } from '@LIB/db'; // Import du client Prisma
 import { getServerSession } from 'next-auth'; // Pour récupérer la session de NextAuth
-import { authOptions } from '~/auth'; // Import des options de NextAuth
+import { authOptions } from '@LIB/auth'; // Import des options de NextAuth
 import { createArtistCategorySubmission, getExistingSubmission } from 'T/artistCategorySubmission'; // Import des fonctions de création et vérification
 
 export async function POST(request: Request) {

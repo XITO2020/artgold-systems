@@ -1,8 +1,8 @@
 // api/admin/content/review/route.ts
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { reviewContent } from '~/content-validation';
-import { pinFileToIPFS } from '$/services/pinataServices';
+import { reviewContent } from '@lib/content-validation';
+import { pinFileToIPFS } from '@/../services/pinataServices';
 
 /*
 api/admin/content/review/route.ts

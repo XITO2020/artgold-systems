@@ -1,7 +1,7 @@
 "use client";
 
-import { ThemeGrid } from "ç/blog/ThemeGrid";
-import { BlogSidebar } from "ç/blog/BlogSidebar";
+import { ThemeGrid } from "@comp/blog/ThemeGrid";
+import { BlogSidebar } from "@comp/blog/BlogSidebar";
 
 interface BlogClientProps {
   initialDict: any;

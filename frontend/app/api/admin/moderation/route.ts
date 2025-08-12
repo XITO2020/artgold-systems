@@ -1,5 +1,5 @@
-import { prisma } from '~/db';
-import { detectAIArtwork } from '~/ai-detection';
+import { prisma } from '@lib/db';
+import { detectAIArtwork } from '@lib/ai-detection';
 
 export async function validateArtwork(
   artworkId: string,

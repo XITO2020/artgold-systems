@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
 import { Plus, Edit, Trash, Search } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useToast } from '#/use-toast';
-import { getIPFSUrl } from '$/services/pinataServices';
-import type { PortfolioItem } from 'T/portfolio';
+import { useToast } from '@hooks/use-toast';
+import { getIPFSUrl } from '@/../services/pinataServices';
+import type { PortfolioItem } from '@t/portfolio';
 
 export default function AdminArtworksPage() {
   const [artworks, setArtworks] = useState<PortfolioItem[]>([]);

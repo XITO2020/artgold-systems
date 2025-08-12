@@ -1,7 +1,7 @@
 "use client";
 import "@/wonderstyles/slider.css";
 import React, { useEffect, useState } from 'react';
-import { useTheme } from 'ç/theme/ThemeContext';
+import { useTheme } from '@comp/theme/ThemeContext';
 import dynamic from 'next/dynamic';
 import LoadingScreen from './LoadingScreen';
 import VideoPlayer from "./VideoPlayer";

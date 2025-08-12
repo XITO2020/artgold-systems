@@ -1,17 +1,17 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { Card } from "ç/ui/card";
-import { Button } from "ç/ui/button";
+import { Card } from "@comp/ui/card";
+import { Button } from "@comp/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaTwitter, FaTiktok, FaInstagram } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 import { useState } from "react";
-import { Input } from "ç/ui/input";
+import { Input } from "@comp/ui/input";
 import { useToast } from "#/use-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Tabs, TabsList, TabsTrigger } from "ç/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@comp/ui/tabs";
 
 const providers = [
   {

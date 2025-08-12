@@ -6,7 +6,7 @@ import { Button } from "ù/button";
 import { Input } from "ù/input";
 import { Label } from "ù/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "ù/select";
-import { CONVERSION_FEES } from "~/constants";
+import { CONVERSION_FEES } from "@LIB/constants";
 
 interface ConversionPanelProps {
   maxTabzValue: number;

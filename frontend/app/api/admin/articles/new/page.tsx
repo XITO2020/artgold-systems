@@ -8,7 +8,7 @@ import { Button } from "ù/button";
 import { Input } from "ù/input";
 import { Textarea } from "ù/textarea";
 import { Label } from "ù/label";
-import { VideoChapterEditor } from "ç/admin/video-chapter-editor";
+import { VideoChapterEditor } from "@comp/admin/video-chapter-editor";
 import { Switch } from "ù/switch";
 import { Video, FileText, Image as ImageIcon } from "lucide-react";
 import { useToast } from "#//use-toast";

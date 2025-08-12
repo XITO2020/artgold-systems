@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
-import { validateArtworkContent } from '~/admin';
-import { generateQRCode, generateSerialNumber } from '~/artwork';
+import { prisma } from '@LIB/db';
+import { validateArtworkContent } from '@LIB/admin';
+import { generateQRCode, generateSerialNumber } from '@LIB/artwork';
 import { pinFileToIPFS } from '$/services/pinataServices';
 
 export async function POST(req: Request) {

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
+import { prisma } from '@LIB/db';
 import { pinFileToIPFS } from '$/services/pinataServices';
 
 export async function POST(req: Request) {
