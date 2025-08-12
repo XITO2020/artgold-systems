@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import { prisma } from '~/db';
-import { sendPaymentConfirmation } from '~/mail';
-import { generateInvoice } from '~/invoice';
+import { prisma } from '@LIB/db';
+import { sendPaymentConfirmation } from '@LIB/mail';
+import { generateInvoice } from '@LIB/invoice';
 
 export async function POST(req: Request) {
   const paypalHeaders = headers();

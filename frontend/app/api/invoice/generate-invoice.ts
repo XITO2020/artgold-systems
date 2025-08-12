@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createInvoicePDF } from '~/pdf-generator';
-import type { InvoiceData } from '~/invoice';
+import { createInvoicePDF } from '@LIB/pdf-generator';
+import type { InvoiceData } from '@LIB/invoice';
 
 export async function POST(req: Request) {
   try {

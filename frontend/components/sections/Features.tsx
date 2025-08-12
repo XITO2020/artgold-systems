@@ -11,7 +11,7 @@ import {
   Factory
 } from 'lucide-react';
 import Link from 'next/link';
-import { useTheme } from 'ç/theme/ThemeContext';
+import { useTheme } from '@comp/theme/ThemeContext';
 import { ThemeName } from 'T/theme/types';
 
 interface FeaturesProps {

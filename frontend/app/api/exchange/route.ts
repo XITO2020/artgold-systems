@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
-import { CONVERSION_RATES, LIMITS } from '~/token-config';
-import { isTokenLocked } from '~/exchange';
+import { prisma } from '@LIB/db';
+import { CONVERSION_RATES, LIMITS } from '@LIB/token-config';
+import { isTokenLocked } from '@LIB/exchange';
 
 export async function POST(req: Request) {
   try {

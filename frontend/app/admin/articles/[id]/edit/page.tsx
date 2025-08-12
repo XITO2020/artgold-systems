@@ -8,9 +8,9 @@ import { Input } from "@ui/input";
 import { Textarea } from "@ui/textarea";
 import { Label } from "@ui/label";
 import { VideoChapterEditor } from "@comp/admin/video-chapter-editor";
-import { Switch } from "ù/switch";
+import { Switch } from "@ui/switch";
 import { Video, FileText } from "lucide-react";
-import type { Article, VideoChapter } from "T/article";
+import type { Article, VideoChapter } from "@t/article";
 
 export default function EditArticlePage({ params }: { params: { id: string } }) {
   const [viewMode, setViewMode] = useState<"video" | "text">("video");
@@ -55,7 +55,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
             <Video className={`h-5 w-5 ${viewMode === "video" ? "text-primary" : "text-muted-foreground"}`} />
             <Switch
               checked={viewMode === "text"}
-              onCheckedChange={(checked) => setViewMode(checked ? "text" : "video")}
+              onCheckedChange={(checked: boolean) => setViewMode(checked ? "text" : "video")}
             />
             <FileText className={`h-5 w-5 ${viewMode === "text" ? "text-primary" : "text-muted-foreground"}`} />
           </div>
@@ -99,7 +99,7 @@ export default function EditArticlePage({ params }: { params: { id: string } }) 
               key={chapter.id}
               chapter={chapter}
               viewMode={viewMode}
-              onChange={(updated) => updateChapter(index, updated)}
+              onChange={(updated: VideoChapter) => updateChapter(index, updated)}
               onRemove={() => removeChapter(index)}
             />
           ))}

@@ -9,7 +9,7 @@ import { Label } from "ù/label"; // Assurez-vous d'importer le composant Label
 import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaTiktok, FaInstagram } from "react-icons/fa";
 import { useToast } from "#//use-toast";
-import { ParticlesBackground } from "ç/particles-background";
+import { ParticlesBackground } from "@comp/particles-background";
 import { useRouter } from "next/navigation";
 
 export default function SignInPage() {

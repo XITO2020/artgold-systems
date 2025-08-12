@@ -19,13 +19,20 @@ interface MemeralItem {
   createdAt: Date;
 }
 
+type UserLike = {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  isAdmin?: boolean;   // ← on l’ajoute ici
+};
+
 export default function MemeralReservePage() {
   const [memes, setMemes] = useState<MemeralItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const { data: session } = useSession();
   const { toast } = useToast();
-  const isAdmin = session?.user?.isAdmin;
+  const isAdmin = Boolean((session?.user as UserLike)?.isAdmin);
 
   // Admin upload state
   const [newMeme, setNewMeme] = useState({

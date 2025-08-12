@@ -7,7 +7,7 @@ import { Input } from "ù/input";
 import { Label } from "ù/label";
 import { Textarea } from "ù/textarea";
 import { Upload, MapPin, AlertTriangle } from "lucide-react";
-import { LocationPicker } from "ç/location-picker";
+import { LocationPicker } from "@comp/location-picker";
 import { useToast } from "#//use-toast";
 import { useSession } from "next-auth/react";
 import { Alert, AlertTitle, AlertDescription } from "ù/alert";

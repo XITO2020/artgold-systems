@@ -7,7 +7,7 @@ import { Input } from "ù/input";
 import { Label } from "ù/label";
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { useToast } from '#/use-toast';
-import { TOKEN_CONFIG } from '~/token-config';
+import { TOKEN_CONFIG } from '@LIB/token-config';
 
 interface TokenPurchaseProps {
   tokenType: 'TABZ' | 'AGT';

@@ -1,6 +1,6 @@
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Badge } from "ù/badge";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Badge } from "@ui/badge";
 import { AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 import Image from "next/image";
 

@@ -1,21 +1,13 @@
 // components/admin/video-chapter-editor.tsx
 import React, { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Textarea } from "ù/textarea";
-import { Label } from "ù/label";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Textarea } from "@ui/textarea";
+import { Label } from "@ui/label";
 import { Trash, Upload } from "lucide-react";
+import type { VideoChapter } from "@t/article";
 
-interface VideoChapter {
-  id?: string;
-  title: string;
-  content: string;
-  videoUrl?: string;
-  thumbnail?: string;
-  duration?: number;
-  textContent?: string;
-}
 
 interface VideoChapterEditorProps {
   chapter: VideoChapter;

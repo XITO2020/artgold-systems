@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { prisma } from '~/db';
+import { prisma } from '@lib/db';
 import bcrypt from 'bcrypt';
 
 export async function POST(req: Request) {

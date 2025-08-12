@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
+import { prisma } from '@lib/db';
 
 const DISCORD_API_URL = 'https://discord.com/api/v10';
 

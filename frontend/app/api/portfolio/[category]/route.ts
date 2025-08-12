@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '~/db';
+import { prisma } from '@LIB/db';
 import type { PortfolioCategory } from 'T/portfolio';
 
 export async function GET(

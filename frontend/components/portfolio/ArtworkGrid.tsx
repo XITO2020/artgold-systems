@@ -5,7 +5,7 @@ import { Card } from "ù/card";
 import { Button } from "ù/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
 import Image from 'next/image';
-import { EnhancedImageModal } from 'ç/modals/portfolio/EnhancedImageModal';
+import { EnhancedImageModal } from '@comp/modals/portfolio/EnhancedImageModal';
 import { getIPFSUrl } from '$/services/pinataServices';
 
 interface Artwork {

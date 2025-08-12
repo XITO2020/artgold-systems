@@ -7,7 +7,7 @@ import { Input } from "ù/input";
 import { Label } from "ù/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "ù/select";
 import { useToast } from '#//use-toast';
-import { TOKEN_CONFIG, CONVERSION_RATES } from '~/token-config';
+import { TOKEN_CONFIG, CONVERSION_RATES } from '@LIB/token-config';
 import { ethers } from 'ethers';
 
 interface TokenExchangeProps {

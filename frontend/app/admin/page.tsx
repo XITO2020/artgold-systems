@@ -1,5 +1,5 @@
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { AlertTriangle, FileText, Users } from "lucide-react";
 import Link from "next/link";
 

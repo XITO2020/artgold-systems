@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { likeContent } from '~/content-validation';
+import { likeContent } from '@lib/content-validation';
 
 export async function POST(req: Request) {
   const session = await getServerSession();

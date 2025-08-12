@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { addUncannyStamp } from '~/ai-detection';
+import { addUncannyStamp } from '@lib/ai-detection';
 
 export async function POST(req: Request) {
   try {

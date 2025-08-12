@@ -1,7 +1,7 @@
 // api/admin/articles/create/route.ts
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
+import { prisma } from '@lib/db';
 import slugify from 'slugify';
 
 /**

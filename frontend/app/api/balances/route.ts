@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { getServerSession } from 'next-auth';
-import { prisma } from '~/db';
+import { prisma } from '@LIB/db';
 
 export async function POST(req: Request) {
   try {

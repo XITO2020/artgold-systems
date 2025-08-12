@@ -1,5 +1,5 @@
-import { getDictionary } from '~/dictionary';
-import BlogClient from 'ç/sections/BlogClient';
+import { getDictionary } from '@LIB/dictionary';
+import BlogClient from '@comp/sections/BlogClient';
 
 export default async function BlogPage({ params: { lang } }: { params: { lang: string } }) {
   const dict = await getDictionary(lang, 'blog');

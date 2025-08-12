@@ -5,8 +5,8 @@ import DiscordProvider from "next-auth/providers/discord";
 import TwitterProvider from "next-auth/providers/twitter";
 import EmailProvider from "next-auth/providers/email";
 import InstagramProvider from "next-auth/providers/instagram";
-import TikTokProvider from "~/providers/tiktok-provider";
-import { prisma } from "~/db";
+import TikTokProvider from "@LIB/providers/tiktok-provider";
+import { prisma } from "@LIB/db";
 import { sendVerificationRequest } from "./email";
 
 export const authOptions: NextAuthOptions = {

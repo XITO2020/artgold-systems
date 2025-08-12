@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { Connection, PublicKey, Transaction } from '@solana/web3.js';
-import { TOKEN_CONFIG, CONVERSION_RATES, LIMITS } from '~/token-config';
-import { sendExchangeConfirmation } from '~/mail';
+import { TOKEN_CONFIG, CONVERSION_RATES, LIMITS } from '@LIB/token-config';
+import { sendExchangeConfirmation } from '@LIB/mail';
 
 export async function exchangeToEth(
   amount: number,

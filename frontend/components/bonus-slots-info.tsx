@@ -5,7 +5,7 @@ import { Progress } from "ù/progress";
 import { Button } from "ù/button";
 import { Badge } from "ù/badge";
 import { Gift, Lock, Unlock, ArrowRight } from "lucide-react";
-import { BONUS_SLOTS_CONFIG } from "~/constants";
+import { BONUS_SLOTS_CONFIG } from "@LIB/constants";
 import { useToast } from "#/use-toast";
 
 interface BonusSlotsInfoProps {
