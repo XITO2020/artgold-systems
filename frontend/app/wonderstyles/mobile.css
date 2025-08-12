@@ -1,0 +1,275 @@
+/* Mobile-specific styles */
+@media screen and (max-width: 768px) {
+  .hero{
+    margin:50px auto;
+    padding:15px;
+    width:90%;
+  }
+  .hero button{
+    padding:5px !important;
+    font-size:1em !important;
+  }
+
+  #footer{
+    margin-top:200px;
+    position:relative;
+    top:200px;
+  }  
+  /* Slider backgrounds for mobile */
+  .bg-tb1 {
+    background: url("https://gateway.pinata.cloud/ipfs/bafybeibbcdmsa562za6jjwhrqmmtovkfvs42l6ehsfo32cs2cpleyu4yui");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .bg-tb2 {
+    background: url("/backgrounds/mobile/image3-mobile.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .bg-tb3 {
+    background: url("/backgrounds/mobile/image1-mobile.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .bg-tb4 {
+    background: url("/backgrounds/mobile/image4-mobile.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .bg-tb5 {
+    background: url("/backgrounds/mobile/image6-mobile.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Neon theme mobile backgrounds */
+  .neon1 {
+    background: url("/backgrounds/mobile/heisen-mobile.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .neon2 {
+    background: url("/backgrounds/mobile/de-mobile.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .neon3 {
+    background: url("/backgrounds/mobile/neon-pinkpanthere-mobile.gif");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .neon4 {
+    background: url("/backgrounds/mobile/neon-banana-mobile.gif");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .neon5 {
+    background: url("/backgrounds/mobile/cyber-mobile.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Slider container adjustments */
+  .mobile-slider-container {
+    width: 90% !important;
+    height: 85vh !important;
+    margin: 50px auto !important;
+    overflow: hidden;
+  }
+
+  /* Slide content adjustments */
+  .slide {
+    height: 85vh !important;
+    background-position: center;
+    margin-bottom:50px;
+  }
+
+  /* Links container adjustments */
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width:100%;
+    position:relative;
+    left:calc(50%-150px) !important;
+  }
+
+  /* Left links adjustments */
+  .left-links {
+    position:absolute !important;
+    left:0% !important;
+    top:50%;
+    width:300px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    
+  }
+
+  .left-links .link {
+    font-size: 0.875rem;
+    padding: 8px;
+    margin-bottom: 4px;
+    width:100%;
+  }
+
+  /* Right links adjustments */
+  .right-links {
+    display: flex;
+    justify-content: space-around;
+    flex-direction:row !important;
+    width: 100%;
+    margin-bottom: auto;
+    position:relative;
+    top:0 !important;
+    right:0 !important;
+    background:yellow;
+    z-index:12;
+  }
+
+  .right-links a {
+    margin-left: 0.5rem;
+  }
+
+  /* Hero title adjustments */
+  .hero-title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title h1 {
+    font-size: 1.5rem;
+    
+  }
+
+  /* Central button adjustments */
+  .central-button {
+    font-size: 0.875rem;
+    padding: 8px 16px;
+    position:absolute;
+  }
+
+  /* Slick dots adjustments */
+  .slick-dots {
+    bottom: 10px;
+    list-style: none;
+    display: flex !important;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .slick-dots li {
+    margin: 0 5px;
+  }
+
+  .slick-dots li button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .slick-dots li.slick-active button {
+    background-color: #fff;
+  }
+
+  /* Slick arrows adjustments */
+  .slick-prev, .slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+
+  .slick-prev {
+    left: 10px;
+  }
+
+  .slick-next {
+    right: 10px;
+  }
+
+  .slick-prev:hover, .slick-next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  /* Section spacing */
+  .sliding {
+    margin-bottom: 20px;
+  }
+
+  .homing {
+    position:relative;
+    top:270px;
+  }
+  .mode{
+    text-align:center;
+    font-size:0.6rem !important;
+  }
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .slider-container {
+    height: 80vh !important;
+    width: 70% !important;
+    margin: 0 auto 60px;
+  }
+
+  .slide {
+    height: 80vh !important;
+    background-position-y:0 !important;
+    margin-bottom:0;
+  }
+
+  .links-container {
+    width: 43% !important;
+    left: 10% !important;
+  }
+
+  .right-links {
+    top: -220px !important;
+    width: 300px !important;
+    flex-direction: column !important;
+    position:absolute;
+    left:199% !important;
+    z-index:100;
+  }
+
+  .left-links{
+    position:absolute;
+    top:35% !important;
+    left:42% !important;
+  }
+
+  .hero-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    position:absolute !important;
+    top:75px !important;
+    left:calc(50%-150px) !important;
+  }
+
+  
+}

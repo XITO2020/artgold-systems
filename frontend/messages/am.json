@@ -1,0 +1,48 @@
+{
+  "home": {
+    "hero": {
+      "title": "የእርስዎን ስነ-ጥበብ ወደ ዋጋ ያለው ገንዘብ ይቀይሩ",
+      "description": "በእጅ የተሰሩ 걸작ዎችን ወደ ዲጂታል ወርቅ ይቀይሩ። እያንዳንዱ የተረጋገጠ የስነ-ጥበብ ስራ ዋጋው እየጨመረ የሚሄድ፣ ደህንነቱ የተጠበቀ እና ሊነገድ የሚችል ሀብት ይሆናል።"
+    },
+    "cta": {
+      "convert": "ስነ-ጥበብዎን ይቀይሩ",
+      "explore": "ግንዛቤ ያግኙ"
+    },
+    "features": {
+      "title": "እንዴት እንደሚሰራ",
+      "validation": {
+        "title": "ደህንነቱ የተጠበቀ ማረጋገጫ",
+        "description": "የላቀ AI እና የሰው ማረጋገጫ እውነተኝነትን ያረጋግጣሉ"
+      },
+      "growth": {
+        "title": "የዋጋ እድገት",
+        "description": "የእርስዎ ስነ-ጥበብ ዋጋ በማህበረሰብ ስርዓታችን በኩል ብቻ ይጨምራል"
+      },
+      "distribution": {
+        "title": "ፍትሃዊ ስርጭት",
+        "description": "በፈጣሪዎች እና በኢንቨስተሮች መካከል ግልጽ የሆነ የዋጋ ክፍፍል"
+      },
+      "details": {
+          "title": "Poste tes dessins, sous-titre ou double nos videos, et fais de tous tes contenus de la crypto échangeable",
+          "exp1": "Sur plus de 40 catégories, poste tout style de création et reçoit 40 Tabascoin en bonus!",
+          "exp2": "En tant que nouvel artistes tu as 12 slots (emplacement pour tes masterpieces)",
+          "exp3": "Tes masterpieces prendront de la valeur en cryptomonnaies tous les 100 likes!",
+          "exp4": "Et surtout elles en prendront à l'achat revente, sachant que tu en garderas toujours 10% ! 10% d'1 million x12 ça fait combien ??? oué, oué!"
+        },
+        "financing": {
+          "title": "Le Shop",
+          "exp1": "Choisis ici tes Tshirts uniques et tes cryptos",
+          "exp2": "Cela financera nos projets éthiques et transparents au niveau des coûts et finances détaillées",
+          "exp3": "Cela T'ouvrira un portefeuille qui sera indexé sur l'or et l'argent d'ici 3ans",
+          "exp4": "Apres 3mois de staking, chaque achat participe entre 20 et 80% à des opérations d'aides humanitaires suivies, sourcées, fiables, claires !"
+        }
+      },
+      "introducing":{
+        "catchphrase1": "Tabascocity, née du désert où nous n'avions rien, la première banque antisystème crééra un paradis contre les Terminators.",
+        "catchphrase2": " Le Tab-as-Coin va tabasser le marché !",
+        "title":"C'est sérieux, et on s'en balek de vos protocoles pompeux !"
+      }   
+    }
+  }
+    
+  

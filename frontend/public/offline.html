@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabAsCoin - Offline</title>
+  <style>
+    :root {
+      --primary: #EAB308;
+      --primary-dark: #CA8A04;
+      --background: #f8fafc;
+      --text: #1f2937;
+      --muted: #6b7280;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #1f2937;
+        --text: #f8fafc;
+        --muted: #9ca3af;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 90%;
+      width: 400px;
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .message {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .button {
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .button:hover {
+      background: var(--primary-dark);
+    }
+
+    .cached-resources {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--muted);
+      text-align: left;
+    }
+
+    .cached-resources h3 {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .cached-list {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/icons/icon-64x64.png" alt="TabAsCoin" class="icon">
+    <h1 class="title">You're Offline</h1>
+    <p class="message">
+      Don't worry! You can still view your cached artworks and even prepare uploads 
+      that will sync automatically when you're back online.
+    </p>
+    <a href="/" class="button">Try Again</a>
+    
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>Waiting for connection...</span>
+    </div>
+
+    <div class="cached-resources">
+      <h3>Available Offline:</h3>
+      <ul class="cached-list">
+        <li>Your artwork gallery</li>
+        <li>Token balances</li>
+        <li>Profile information</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Check connection status
+    function updateOnlineStatus() {
+      if (navigator.onLine) {
+        window.location.reload();
+      }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+  </script>
+</body>
+</html>

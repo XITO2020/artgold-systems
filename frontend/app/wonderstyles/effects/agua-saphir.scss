@@ -1,0 +1,66 @@
+// Import des variables globales pour les thèmes
+@import '@/globals.css';
+
+// Variables pour ce thème
+$laser-color-1: rgba(0, 100, 200, 0.7);
+$laser-color-2: rgba(180, 255, 240, 0.9);
+
+// Keyframes pour l'animation de rotation
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Mixin pour l'animation de gradient
+@mixin laser-gradient($delay: 0s) {
+  content: '';
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  background-image: conic-gradient(transparent, transparent, transparent, $laser-color-1);
+  animation: rotate 4s linear infinite;
+  animation-delay: $delay;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+// Container principal (fausse bordure autour de la box)
+.laserbox-container {
+  position: relative;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  background: transparent;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  z-index: 4;
+
+  &::before {
+    @include laser-gradient(0s);
+  }
+
+  &::after {
+    @include laser-gradient(-2s);
+  }
+}
+
+// Contenu de la box
+.laserbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: var(--background);  // Peut être défini dans d'autres fichiers SCSS si nécessaire
+  box-shadow: var(--standard) -5px 3px 5px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+}

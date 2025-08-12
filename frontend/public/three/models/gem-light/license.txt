@@ -1,0 +1,11 @@
+Model Information:
+* title:	Red Chili Pepper
+* source:	https://sketchfab.com/3d-models/red-chili-pepper-220d80c0d9a9402aabfe945982251ad6
+* author:	kabage (https://sketchfab.com/kabage)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Red Chili Pepper" (https://sketchfab.com/3d-models/red-chili-pepper-220d80c0d9a9402aabfe945982251ad6) by kabage (https://sketchfab.com/kabage) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

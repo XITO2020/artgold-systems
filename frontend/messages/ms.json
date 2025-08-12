@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hero": {
+      "title": "Tukar Seni Anda Menjadi Mata Wang Berharga",
+      "description": "Tukar karya agung buatan tangan anda kepada emas digital. Setiap karya seni yang disahkan menjadi aset yang selamat dan boleh didagangkan dengan peningkatan nilai yang dijamin."
+    },
+    "cta": {
+      "convert": "Tukar Seni",
+      "explore": "Lihat Koleksi"
+    },
+    "features": {
+      "title": "Bagaimana Ia Berfungsi",
+      "validation": {
+        "title": "Pengesahan Selamat",
+        "description": "AI termaju dan pengesahan manusia memastikan keaslian"
+      },
+      "growth": {
+        "title": "Peningkatan Nilai",
+        "description": "Nilai seni anda hanya meningkat melalui sistem komuniti kami"
+      },
+      "distribution": {
+        "title": "Pengagihan Adil",
+        "description": "Perkongsian nilai yang telus antara pencipta dan pelabur"
+      }
+    }
+  }
+}

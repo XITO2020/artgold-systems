@@ -1,0 +1,125 @@
+{
+    "home": {
+      "hero": {
+        "title": "Transformez Votre Art en Monnaies Precieuses",
+        "description": "BANQUE LIBRE DU WEB3: Convertissez vos chefs-d'œuvre faits main en or numérique.",
+        "detail": "Chaque œuvre validée devient un actif sécurisé et négociable avec une appréciation garantie."
+      },
+      "cta": {
+        "convert": "Convertir Votre Art",
+        "explore": "Voir la Tresorerie"
+      },
+      "features": {
+        "title": "Faire de vos créations visuelles des NFT SUPERIEURS. Comment Ça Marche ???",
+        "validation": {
+          "title": "Validation Securisee",
+          "description": "L'IA avancée et la vérification humaine garantissent l'authenticité des oeuvres que vous uploadez",
+          "description2": "Vos propriétés sont protégées par passwords en plus du systeme NFT basic!"
+        },
+        "growth": {
+          "title": "Croissance de la Valeur SANS BAISSE",
+          "description": "La valeur de votre art ne fait qu'augmenter grâce à notre système unique et clair",
+          "description2": "Avec une répartition des richesses qui suscitent l'achat-revente"
+        },
+        "distribution": {
+          "title": "Distribution Équitable",
+          "description": "Partage transparent de la valeur entre créateurs et investisseurs.",
+          "description2": "L'artiste garde une part de chaque oeuvre à vie ! Tous les ex-propriétaires en conserve des actions !"
+        },
+        "details": {
+          "title": "Postez esquisses, dessins, sous-titre ou doublages...",
+          "exp1": "Sur plus de 40 catégories, postez tout style de créations et recevez 40 Tabascoin en bonus!",
+          "exp2": "En tant que nouvel artiste: 12 slots sont alloués(emplacement pour tes masterpieces)",
+          "exp3": "Vos masterpieces prendront de la valeur en cryptomonnaies tous les 100 likes donc choisissez bien!",
+          "exp4": "Et surtout elles en prendront à l'achat-revente, entrainant vos royalties "
+        },
+        "financing": {
+          "title": "Le Shop",
+          "exp1": "Choisissez ici vos Tshirts uniques et vos cryptos sur nos sites suivants :",
+          "exp2": "Financez ainsi nos projets éthiques et transparents et détaillés",
+          "exp3": "Objectif pour chacun: votre portefeuille sera indexé sur l'or et l'argent d'ici 3ans",
+          "exp4": "Apres 3mois, chaque achat participe entre 20 et 80% à des opérations vitales (aide humanitaire...)"
+        },
+        "industries":{
+          "title": "L'usine à Manga",
+          "exp1": "Postez planches, scenarii, esquisses, arts",
+          "exp2": "gagnez 1 communauté, des collabs et des cryptos",
+          "exp3": "Découvrez Le Shonen Dump, la poubelle niveau dessin mais le top en scenario avec ses créatifs",
+          "exp4": "Faites émerger de nouveaux talents et gagnez avec eux !"
+        }
+      },
+      "nogen":"Pas de generation d'image aleatoire acceptee, de la creation ethique, censee et recompensee pour sa pertinence!",
+      "introducing":{
+        "catchphrase1": "Tabascocity, née dans le désert: une banque antiNWO pour créer un paradis contre les Terminators.",
+        "catchphrase2": " Le Tab-as-Coin va tabasser le marché ",
+        "title":"Et c'est sérieux."
+      },
+      "value": {
+        "title":"Value Distribution System",
+        "royalties":"Creator's royalties",
+        "exp1":"Original artist always retains 10% of artwork value",
+        "own":"Current Owner",
+        "exp2":"Current owner holds 80% of the artwork value",
+        "shares":"Community Buyers",
+        "exp3":"Shared among unique buyers (one share per buyer), for instance : 10 former owners = each ones have 1%"
+      },
+    "validation": {
+        "token": {
+          "title": "Système de Tokens",
+          "h4-1": "Token TABZ (Adossé à l'Or)",
+          "p-intro": "Tab-as-Coin (TABZ) : la monnaie des commissaires-priseurs libres, de l'art à l'or.",
+          "li-1": "1 TABZ = 0,0001g d'Or",
+          "li-2": "Valeur minimale garantie par l'adossement à l'or",
+          "li-3": "Valeur additionnelle provenant de l'appréciation des œuvres d'art",
+          "li-4": "Négociable après une période de blocage de 1 an",
+          "h4-2": "Token AGT (Adossé à l'Argent)",
+          "p-intro2": "Avec le Token AGT: Art Gen(erated) Token, l'argent redevient l'art des gens !",
+          "li-5": "1 AGT = 0,001g d'Argent",
+          "li-6": "Token de gouvernance communautaire",
+          "li-7": "Utilisé pour les décisions de la plateforme",
+          "li-8": "Négociable après une période de blocage de 1 an",
+          "h4-3": "Période de Blocage de 1 à 3 Ans",
+          "p-intro3": "Pour mener à bien ce projet d'ici 2028, il faut qu'en tant qu'utilisateurs nous soyons tous actifs !",
+          "li-9": "Période initiale d'accumulation de 1 an des chefs-d'œuvre",
+          "li-10": "Listing sur les bourses d'or et d'argent après la période de blocage",
+          "li-11": "Convertible en ETH/SOL après 1 an de listing",
+          "li-12": "Découverte continue des prix en phases"
+        },
+        "market": {
+          "entry": "Chronologie d'Entrée sur le Marché",
+          "ph1": "Phase 1 : Accumulation",
+          "duration": "1 An",
+          "ph2": "Phase 2 : Listing sur les Bourses Ethereum et Solana",
+          "echeance1": "T2 2026",
+          "ph3": "Phase 3 : Listing sur les Bourses d'Or et d'Argent",
+          "echeance2": "T1 2028"
+        }
+      },
+      "ai": {
+          "title": "Validation de Contenu par IA",
+          "parag": "Notre système d'IA avancé filtre toutes les soumissions pour :",
+          "exp1": "Contenu généré par IA",
+          "exp2": "Œuvres d'art dupliquées",
+          "exp3": "+18 imagerie",
+          "exp4": "Imagerie violente",
+          "exp5": "Publicité inacceptable"
+        },
+        "human": {
+          "title": "Révision Humaine",
+          "parag": "Notre équipe examine personnellement chaque soumission pour s'assurer :",
+          "exp1": "Mérite artistique",
+          "exp2": "Vérification de l'originalité",
+          "exp3": "Conformité aux directives de la communauté",
+          "exp5": "Promotion mainstream ou NWO merdique"
+        },
+        "fraud": {
+          "title": "Protection contre la Fraude et Conséquences",
+          "parag": "La soumission d'œuvres d'art frauduleuses (générées par IA, copies ou impressions) entraînera des conséquences graves :",
+          "exp1": "Confiscation immédiate de tous les actifs et investissements",
+          "exp2": "Interdiction permanente de la plateforme",
+          "exp3": "Divulgation publique de l'activité frauduleuse",
+          "exp4": "Punition spéciale: certaines de vos données passées sur le dark",
+          "exp5": "En soumettant une œuvre d'art, vous reconnaissez ces termes et acceptez l'entière responsabilité légale pour l'authenticité."
+        }
+      }    
+    }

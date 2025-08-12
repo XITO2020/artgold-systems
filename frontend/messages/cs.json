@@ -1,0 +1,46 @@
+{
+  "home": {
+    "hero": {
+      "title": "Přeměňte Své Umění na Cennou Měnu",
+      "description": "Převeďte svá ručně vytvořená mistrovská díla na digitální zlato. Každé ověřené umělecké dílo se stává bezpečným, obchodovatelným aktivem s garantovaným zhodnocením."
+    },
+    "cta": {
+      "convert": "Převést Umění",
+      "explore": "Zobrazit Sbírku"
+    },
+    "features": {
+      "title": "Jak To Funguje",
+      "validation": {
+        "title": "Bezpečné Ověření",
+        "description": "Pokročilá AI a lidská verifikace zajišťují autenticitu"
+      },
+      "growth": {
+        "title": "Růst Hodnoty",
+        "description": "Hodnota vašeho umění pouze roste díky našemu komunitnímu systému"
+      },
+      "distribution": {
+        "title": "Spravedlivá Distribuce",
+        "description": "Transparentní sdílení hodnoty mezi tvůrci a investory"
+      },
+      "details": {
+          "title": "Poste tes dessins, sous-titre ou double nos videos, et fais de tous tes contenus de la crypto échangeable",
+          "exp1": "Sur plus de 40 catégories, poste tout style de création et reçoit 40 Tabascoin en bonus!",
+          "exp2": "En tant que nouvel artistes tu as 12 slots (emplacement pour tes masterpieces)",
+          "exp3": "Tes masterpieces prendront de la valeur en cryptomonnaies tous les 100 likes!",
+          "exp4": "Et surtout elles en prendront à l'achat revente, sachant que tu en garderas toujours 10% ! 10% d'1 million x12 ça fait combien ??? oué, oué!"
+        },
+        "financing": {
+          "title": "Le Shop",
+          "exp1": "Choisis ici tes Tshirts uniques et tes cryptos",
+          "exp2": "Cela financera nos projets éthiques et transparents au niveau des coûts et finances détaillées",
+          "exp3": "Cela T'ouvrira un portefeuille qui sera indexé sur l'or et l'argent d'ici 3ans",
+          "exp4": "Apres 3mois de staking, chaque achat participe entre 20 et 80% à des opérations d'aides humanitaires suivies, sourcées, fiables, claires !"
+        }
+      },
+      "introducing":{
+        "catchphrase1": "Tabascocity, née du désert où nous n'avions rien, la première banque antisystème crééra un paradis contre les Terminators.",
+        "catchphrase2": " Le Tab-as-Coin va tabasser le marché !",
+        "title":"C'est sérieux, et on s'en balek de vos protocoles pompeux !"
+    }
+  }
+}

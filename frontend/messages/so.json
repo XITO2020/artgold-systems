@@ -1,0 +1,47 @@
+{
+    "home": {
+      "hero": {
+        "title": "Beddel Farshaxankaaga una Badal Lacag Qaaliga",
+        "description": "U beddel farshaxankaaga gacanta lagu sameeyay dahab dijitaal ah. Wax kasta oo la xaqiijiyay waxay noqonayaan hantida la sugo oo la ganacsan karo iyadoo qiimaha la xaqiijiyay."
+      },
+      "cta": {
+        "convert": "Beddel Farshaxankaaga",
+        "explore": "Eeg Kharashka"
+      },
+      "features": {
+        "title": "Sidee Ayey U Shaqeysaa???",
+        "validation": {
+          "title": "Xaqiijinta Amniga",
+          "description": "AI horumarsan iyo xaqiijinta aadanaha ayaa xaqiijinaya saxnaanta"
+        },
+        "growth": {
+          "title": "Kordhinta Qiimaha",
+          "description": "Qiimaha farshaxankaaga wuu kordhaya iyadoo la adeegsanayo nidaamkeena bulshada"
+        },
+        "distribution": {
+          "title": "Qaybinta Caddaaladda",
+          "description": "Qaybinta hufan ee qiimaha u dhexeeya hal-abuurayaasha iyo maal-gashadayaasha"
+        },
+        "details": {
+          "title": "Ku soo gudbi sawiradaada, hoos-u-tilmaam ama laba-gees ka dhig muuqaaladaada, kuna beddel dhammaan waxyaabahaaga crypto la is-weydaarsan karo",
+          "exp1": "Ku soo gudbi noocyo kala duwan farshaxankaaga oo ka mid ah 40 qayb, waxaana ku helaysaa 40 Tabascoin oo dheeri ah!",
+          "exp2": "Farshaxan cusub ahaan waxaad leedahay 12 meelood (meelaha farshaxankaaga)",
+          "exp3": "Farshaxankaaga wuxuu qaadan doonaa qiimo dhanka crypto ah marka 100 jeer la jeclaan doono!",
+          "exp4": "Waxaa kale oo qiimo ku kordhaya iibka iyo iibinta, iyadoo aad haysato 10% marwalba! 10% x 1 milyan x 12, imisa ayaa ah??? Haa, haa!"
+        },
+        "financing": {
+          "title": "Dukaanka",
+          "exp1": "Halkaan ka dooro tishirt-yo gaarka ah iyo cryptocurrencies",
+          "exp2": "Tani waxay maalgelin doontaa mashaariicda anshaxa leh iyo kuwa hufan ee ku saabsan kharashaadka iyo maaliyadda faahfaahsan",
+          "exp3": "Tani waxay kuu abuuri doontaa boorso lacagta ah oo ku xiran dahabka iyo lacagta 3 sano gudahood",
+          "exp4": "Ka dib 3 bilood oo staking ah, iib kastaa wuxuu ka qayb qaadan doonaa hawlgallada gargaar bini'aadamnimada ee la raadiyo, la soo saaro, la isku halleyn karo, oo cad!"
+        }
+      },
+      "introducing": {
+        "catchphrase1": "Tabascocity, oo kasoo baxday saxaraha halkaas oo aan waxba haysannay, bangiga ugu horreeya ee ka dhanka ah nidaamka ayaa abuuri doona jannada ka dhanka ah Terminators.",
+        "catchphrase2": "Tab-as-Coin ayaa suuqa garaaci doona!",
+        "title": "Waa dhab, oo waxaan ka dharagsanahay protocols-kaaga waaweyn!"
+      }
+    }
+  }
+  

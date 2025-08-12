@@ -1,0 +1,62 @@
+{
+    "slider" : {
+        "neon": {
+          "one": {
+            "link1":"Top 100 series special",
+            "link2":"Tops 100 mangas",
+            "link3":"Top 100 icones",
+            "link4":"Top 100 wallpapers",
+            "link5":"Top 100 T-shirts",
+            "central":"Blog & Vlog",
+            "social1":"conspix",
+            "social2":"Insta",
+            "social3":"Pasteque"
+          },
+          "two": {
+            "link1":"Crypto News",
+            "link2":"Nouvelle Doxa",
+            "link3":"AVC NEWS",
+            "link4":"Derniers Sorties",
+            "link5":"Stackez de l'info !",
+            "central":"",
+            "social1":"Tiktok",
+            "social2":"Fb",
+            "social3":"X"
+          },
+            "three": {
+            "link1":"Des soustitres à la crypto",
+            "link2":"Sous-titrez !",
+            "link3":"Doublez !",
+            "link4":"Vendez !",
+            "link5":"Collectionnez !",
+            "central":"",
+            "social1":"11labs",
+            "social2":"Lipdub",
+            "social3":""
+          },
+            "four": {
+            "link1":"Masterpieces, comment ça marche ?",
+            "link2":"Uploades en 12 !",
+            "link3":"Vends et conserve !",
+            "link4":"Achetes et partages !",
+            "link5":"Toutes les catégories",
+            "central":"Upload !",
+            "social1":"FB",
+            "social2":"In",
+            "social3":"CoinGecko"
+          },
+            "five": {
+            "link1":"Derniers T-shirts",
+            "link2":"Qui aide quoi ?",
+            "link3":"Catégories",
+            "link4":"Meilleures ventes",
+            "link5":"Soumettre 1 modèle",
+            "central":"",
+            "social1":"Deviant",
+            "social2":"Pinterest",
+            "social3":"Leonardo"
+          }
+      }
+    }
+
+}
