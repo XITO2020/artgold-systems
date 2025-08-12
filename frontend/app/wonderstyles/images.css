@@ -1,0 +1,187 @@
+.bg-tb {
+    background: url("/backgrounds/pimients.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .bg-tb1 {
+    background: url("/backgrounds/image2.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position-y:-150px;
+    background-position-x: 150px;
+  }
+  .bg-tb2 {
+    background: url("/backgrounds/image3.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .bg-tb3 {
+    background: url("/backgrounds/image1.png");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .bg-tb4 {
+    background: url("/backgrounds/image4.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position-y:-250px;
+  }
+  .bg-tb5 {
+    background: url("/backgrounds/image6.png");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .neon1 {
+    background: url("/backgrounds/heisen.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position-y:-150px;
+    background-position-x: 150px;
+  }
+  .neon2 {
+    background: url("/backgrounds/de.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .neon3 {
+    background: url("/backgrounds/neon-pinkpanthere.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .neon4 {
+    background: url("/backgrounds/neon-banana.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .neon5 {
+    background: url("/backgrounds/cyber.png");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+
+  .emerald1 {
+    background: url("/backgrounds/matrix-writer.gif");
+    background-size: cover;
+    background-position-y:-55px;
+  }
+  .emerald2 {
+    background: url("/backgrounds/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .emerald3 {
+    background: url("/backgrounds/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .emerald4 {
+    background: url("/backgrounds/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+  .emerald5 {
+    background: url("/backgrounds/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+
+  .chili-footer{
+    background-image: var(--sombre);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+  }
+
+  /*Mobile responsive selection*/
+
+
+  .neon1.mobile-bg {
+    background: url("/backgrounds/mobile/heisen-mobile.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .neon2.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .neon3.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .neon4.mobile-bg {
+    background: url("/backgrounds/mobile/door.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .neon5.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .emerald1.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .emerald2.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .emerald3.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .emerald4.mobile-bg {
+    background: url("/backgrounds/mobile/matrix-writer.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .emerald5.mobile-bg {
+    background: url("/backgrounds/mobile/5goupas.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  
+.africa1.mobile-bg {
+  background: url("/backgrounds/mobile/matrix-writer.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.africa2.mobile-bg {
+  background: url("/backgrounds/mobile/matrix-writer.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.africa3.mobile-bg {
+  background: url("/backgrounds/mobile/matrix-writer.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.africa4.mobile-bg {
+  background: url("/backgrounds/mobile/matrix-writer.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.africa5.mobile-bg {
+  background: url("/backgrounds/mobile/matrix-writer.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,212 @@
+@font-face {
+    font-family: 'safir-title';
+    src: url('/fonts/surfbreaks/Surfbreaks.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'safir-extra';
+    src: url('/fonts/Surfbars/Surfbars.otf') format('opentype');
+    letter-spacing:0.2em;
+    font-weight: normal;
+    font-style: normal;
+  } 
+@font-face {
+    font-family: 'safir-plus';
+    src: url('/fonts/virust/virust.ttf') format('truetype');
+    letter-spacing:0.2em;
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'safir-text';
+    src: url('/fonts/quicksand/Quicksand-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'ruby-title';
+    src: url('/fonts/good_matcha/matcha.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'ruby-text';
+    src: url('/fonts/amble/Amble-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'ruby-plus';
+    src: url('/fonts/amble/Amble-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'diamond-title';
+    src: url('/fonts/january_night/Jan.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-size:24px;
+  }
+@font-face {
+    font-family: 'diamond-text';
+    src: url('/fonts/roboto/Moboto-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'diamond-plus';
+    src: url('/fonts/sherlock_press/sher.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'emerald-title';
+    src: url('/fonts/futured/Futured.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'emerald-text';
+    src: url('/fonts/muli/Muli.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'emerald-plus';
+    src: url('/fonts/future_mood/mood.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'classic-title';
+    src: url('/fonts/good_matcha/matcha.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'classic-plus';
+    src: url('/fonts/luxerie/Luxerie.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'classic-text';
+    src: url('/fonts/akaposse/akaposse.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'neon-title';
+    src: url('/fonts/f25_bank_printer/F25_Bank_Printer.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-size:1.4em;
+  }
+@font-face {
+    font-family: 'neon-text';
+    src: url('/fonts/rob/rob.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'neon-plus';
+    src: url('/fonts/futured/Futured.TTF') format('truetype');
+    
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'taco-title';
+    src: url('/fonts/f25_bank_printer/F25_Bank_Printer.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'taco-text';
+    src: url('/fonts/cooper-hewitt/CooperHewitt-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'taco-plus';
+    src: url('/fonts/almendra/Almendra-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'berry-plus';
+    src: url('/fonts/luxerie/Luxerie.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'berry-title';
+    src: url('/fonts/sweet_chili/Sw.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }
+  @font-face {
+    font-family: 'berry-text';
+    src: url('/fonts/bebas/bebas.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'berry-extra';
+    src: url('/fonts/january_night/jan.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }
+  @font-face {
+    font-family: 'africa-plus';
+    src: url('/fonts/luxerie/Luxerie.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'africa-title';
+    src: url('/fonts/sweet_chili/Sw.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }
+  @font-face {
+    font-family: 'africa-text';
+    src: url('/fonts/bebas/bebas.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'africa-extra';
+    src: url('/fonts/january_night/jan.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }
+  @font-face {
+    font-family: 'metal-plus';
+    src: url('/fonts/luxerie/Luxerie.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'metal-title';
+    src: url('/fonts/sweet_chili/Sw.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }
+  @font-face {
+    font-family: 'metal-text';
+    src: url('/fonts/bebas/bebas.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'metal-extra';
+    src: url('/fonts/january_night/jan.ttf') format('truetype');
+    font-weight: normal;
+    font-size: 1.4rem;
+  }

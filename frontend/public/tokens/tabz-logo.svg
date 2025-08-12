@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" fill="#FFB703"/>
+    <path d="M60,60 L140,60 L140,80 L110,80 L110,140 L90,140 L90,80 L60,80 Z" fill="white"/>
+    <text x="100" y="110" font-family="Arial" font-size="24" fill="#FFB703" text-anchor="middle">TABZ</text>
+</svg>

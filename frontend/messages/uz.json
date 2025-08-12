@@ -1,0 +1,47 @@
+{
+    "home": {
+      "hero": {
+        "title": "San’atingizni qimmatbaho pulga aylantiring",
+        "description": "Qo‘lda yasalgan durdonalaringizni raqamli oltin qiling. Har bir tasdiqlangan asar kafolatlangan qiymat oshish bilan xavfsiz va savdo qila oladigan aktivga aylanadi."
+      },
+      "cta": {
+        "convert": "San’atingizni aylantiring",
+        "explore": "Xazina bilan tanishing"
+      },
+      "features": {
+        "title": "Bu qanday ishlaydi?",
+        "validation": {
+          "title": "Xavfsiz tasdiq",
+          "description": "Ilg‘or sun’iy intellekt va inson tasdig‘i haqiqiylikni kafolatlaydi"
+        },
+        "growth": {
+          "title": "Qiymat o‘sishi",
+          "description": "San’atingiz qiymati faqat jamoamiz tizimi orqali oshib boradi"
+        },
+        "distribution": {
+          "title": "Adolatli taqsimlash",
+          "description": "Ijodkorlar va investorlar o‘rtasida qiymatning shaffof taqsimoti"
+        },
+        "details": {
+          "title": "Rasmlaringizni joylashtiring, subtitr qiling yoki videolarni ovozlang va barcha kontentingizni almashtiriladigan kriptoga aylantiring",
+          "exp1": "40 dan ortiq kategoriyada har qanday ijodiy ishni joylashtiring va 40 Tabascoin mukofotini oling!",
+          "exp2": "Yangi rassom sifatida sizda 12 ta joy mavjud (durdonalaringiz uchun)",
+          "exp3": "Durdonalaringiz har 100 ta layk bilan kriptovalyuta qiymatini oshiradi!",
+          "exp4": "Va, eng muhimi, ular sotib olish va sotish orqali ham qiymatga ega bo‘ladi, chunki siz har doim 10% ni saqlab qolasiz! 1 milliondan 10% x12 qancha bo‘ladi??? Ha, ha!"
+        },
+        "financing": {
+          "title": "Do‘kon",
+          "exp1": "Bu yerdan noyob futbolkalar va kriptolarni tanlang",
+          "exp2": "Bu bizning axloqiy va shaffof loyihalarimizni moliyalashtirishga yordam beradi, xarajatlar va moliyaviy ma’lumotlar bilan",
+          "exp3": "Bu sizga 3 yil ichida oltin va kumush bilan bog‘langan hamyon yaratadi",
+          "exp4": "3 oylik stakingdan so‘ng, har bir xarid 20 dan 80% gacha ishonchli, aniq va kuzatiladigan insonparvarlik yordam operatsiyalariga hissa qo‘shadi!"
+        }
+      },
+      "introducing": {
+        "catchphrase1": "Tabascocity, hech narsaga ega bo‘lmagan cho‘ldan tug‘ilgan, birinchi anti-tizim banki terminatorlarga qarshi jannat yaratadi.",
+        "catchphrase2": "Tab-as-Coin bozorni larzaga soladi!",
+        "title": "Bu jiddiy, va biz sizning befoyda protokollaringiz haqida qayg‘urmaymiz!"
+      }
+    }
+  }
+  

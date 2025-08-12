@@ -1,0 +1,333 @@
+/* Aside base styles */
+.theme-aside {
+    position: fixed;
+    top: 7rem;
+    left: 0;
+    height: calc(100vh - 4rem);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-top-right-radius:6px;
+  }
+  
+  .theme-aside.open {
+    transform: translateX(0);
+  }
+  
+  /* Aside widths */
+  @media (min-width: 640px) {
+    .theme-aside {
+      width: 33.333333%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .theme-aside {
+      width: 25%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .theme-aside {
+      width: 20%;
+    }
+  }
+  
+  /* Theme-specific styles */
+  .theme-aside.theme-dark {
+    background:  url('/backgrounds/cafe.jpg');
+    background-size:contain;
+    mix-blend-mode:hard-light;
+    border-top: aqua 1px solid;
+    border-right: cyan 1px solid;
+    border-top-right-radius: 12px;
+  }
+  
+  .theme-aside.theme-emerald {
+    background: linear-gradient(to bottom,#001004, #00292D, black);
+  }
+  
+  .theme-aside.theme-chili-ruby {
+    background: url('/backgrounds/rubys.jpg');
+  }
+  
+  .theme-aside.theme-agua-saphir {
+    background: url('/backgrounds/waves.jpg');
+    background-size:cover;
+    background-repeat:repeat-y-mirror;
+    width:57%;
+    top:12rem;
+    
+  }
+  
+  .theme-aside.theme-golden-tacos {
+    background: url('/backgrounds/golden.jpg');
+    border-top-right-radius:15px;
+  }
+  
+  .theme-aside.theme-silver-berry {
+    background: url('/backgrounds/silverberry.jpg');
+    background-size:contain;
+    border-top-right-radius:7px;
+  }
+  
+  .theme-aside.theme-diamond-pastel {
+    background: url('/backgrounds/opals.jpg');
+    font-size:24px;
+  }
+  .theme-aside.theme-light {
+    background: url('/backgrounds/classiclime.jpg');
+    font-size:24px;
+  }
+  
+  /* Navigation styles */
+  .aside-nav {
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .aside-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  
+  .aside-nav-parts {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Theme-specific link styles */
+  .theme-dark .aside-nav-link {
+    color: #ffffb9;
+  }
+  .theme-dark .aside-nav-link :hover {
+    color: #ff44ce;
+  }
+  
+  .theme-emerald .aside-nav-link {
+    color: #6ee7b7;
+    transition:ease-in 1s;
+  }
+  .theme-emerald .aside-nav-link :hover {
+    color: white;
+    font-weight:300;
+  }
+  .theme-chili-ruby .aside-nav-link {
+    color: white;
+    
+  }
+  .theme-chili-ruby .aside-nav-link:hover {
+    color: #1e1c1c;
+  }
+  
+  .theme-agua-saphir .aside-nav-link {
+    color: #449dd1;
+  }
+  .theme-agua-saphir .aside-nav-link:hover {
+    color: #2248AE;
+  }
+  
+  .theme-golden-tacos .aside-nav-link {
+    text-shadow: #D2B48C;
+    text-shadow:black 2px 3px 1px;
+    font-size:21px;
+  }
+  .theme-golden-tacos .aside-nav-link:hover {
+    color:#FCD700;
+    text-shadow:black 2px 3px 1px;
+  }
+  
+  .theme-silver-berry .aside-nav-link {
+    color: #831843;
+    font-size:24px !important;
+  }
+  .theme-silver-berry .aside-nav-link:hover {
+    color: black;
+  }
+  .theme-light .aside-nav-link {
+    color: springgreen;
+    font-size:24px !important;
+    text-shadow:black 2px 0px 2px;
+  }
+  .theme-light .aside-nav-link:hover {
+    color: limegreen;
+  }
+  
+  .theme-diamond-pastel .aside-nav-link {
+    color: white;
+    text-shadow: 2px 2px 2px #c4b5fd;
+    font-size:22px;
+  }
+  .theme-diamond-pastel .aside-nav-link :hover {
+    color: #6ee7b7;
+  }
+  
+  /* Menu button styles */
+  .menu-button {
+    position: fixed;
+    left: 1rem;
+    top: 6rem;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    z-index: 40;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  /* Close button styles */
+  .close-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Theme-specific button styles */
+  .theme-dark .menu-icon {    
+    color: hotpink;
+    transition: ease-in-out 0.4s;
+  }
+  .theme-dark .menu-icon:hover {    
+    color: cyan;
+  }
+  .theme-dark .menu-button,
+  .theme-dark .close-button {
+    background-color: #2d1b69;
+    opacity:0.6;
+    transition: ease-in-out 0.4s;
+    color: #ffff87;
+  }
+  .theme-dark .close-button :hover {
+    color: #93c5fd;
+  }
+  
+  
+  .theme-emerald .menu-button,
+  .theme-emerald .close-button {
+    background-color: #065f46;
+    color: #6ee7b7;
+  }
+  .theme-chili-ruby .menu-icon {
+  color:#92044E
+  }
+  .theme-chili-ruby .menu-icon:hover {
+    color:#D41C5A
+    }
+  .theme-chili-ruby .menu-button,
+  .theme-chili-ruby .close-button {
+    background-color: #991b1b;
+    color: white;
+  }
+  
+  .theme-agua-saphir .menu-icon {
+    color:   #449dd1;
+  }
+
+  .theme-agua-saphir .menu-button,
+  .theme-agua-saphir .close-button {
+    background-color: #2248AE;
+    color:   #10A8EE;
+  }
+  .theme-agua-saphir .close-button:hover {
+    color:   #88d0fc;
+  }
+
+  .theme-golden-tacos .menu-icon {
+  color:#896400
+  }
+  .theme-golden-tacos .menu-icon:hover {
+    color:#27AB23;
+    }
+  .theme-golden-tacos .menu-button,
+  .theme-golden-tacos .close-button {
+    background: linear-gradient(222deg,hsl(12, 0%, 36%), hsl(210, 100%, 2%), hsl(12, 0%, 24%), hsl(47, 92%, 5%));
+    color: #D2B48C;
+    border-radius:8px;
+    opacity:0.6;
+  }
+  .theme-golden-tacos .close-button:hover {
+    color: #A5260A;
+  }
+
+  .theme-light .menu-icon {
+    color:lightcoral;
+    }
+  .theme-light .menu-icon:hover {
+    color:#27AB23;
+    }
+  .theme-light .menu-button,
+  .theme-light .close-button {
+    background:lightcoral;
+    color: white;
+    border-radius:8px;
+    opacity:0.8;
+  }
+  .theme-light .close-button:hover {
+    background: linear-gradient(135deg, white, #ffffbc, white );
+    color: springgreen;
+  }
+  
+  .theme-silver-berry .menu-icon{
+    color:#938383;
+  }
+  .theme-silver-berry .menu-button,
+  .theme-silver-berry .close-button {
+    background-color: #9d174d;
+    color: #f9a8d4;
+    border-radius:5px;
+    opacity:0.7;
+  }
+  .theme-silver-berry .close-button:hover {
+    background-color: #938383;
+    color: #ffff87;
+    opacity:0.5;
+  }
+  
+  .theme-diamond-pastel .menu-icon{
+    color:#5f3b71;
+  }
+  .theme-diamond-pastel .menu-button, 
+  .theme-diamond-pastel .close-button {
+    background-color: #6c5da5;
+    color: #c4b5fd;
+  }
+  
+  /* Hover effects */
+  .aside-nav-parts:hover {
+    transform: translateX(0.25rem);
+    opacity: 0.9;
+  }
+  
+  .menu-button:hover,
+  .close-button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  
+  /* Icon styles */
+  .aside-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .menu-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .close-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }

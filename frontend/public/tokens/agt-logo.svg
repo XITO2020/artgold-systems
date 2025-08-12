@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" fill="#2A9D8F"/>
+    <path d="M70,60 L130,60 L150,100 L130,140 L70,140 L50,100 Z" fill="white"/>
+    <text x="100" y="110" font-family="Arial" font-size="24" fill="#2A9D8F" text-anchor="middle">AGT</text>
+</svg>

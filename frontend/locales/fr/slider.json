@@ -1,0 +1,584 @@
+{
+  "slider" : {
+    "neon": {
+      "mode":"Mode neon dark : NFT ethiques, Pixel art, Streaming & geek life",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Icones introuvables ailleurs ! ",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },    
+    "berry": {
+      "mode":"Mode silver Berry: axé total pinterest: cuisine, illustrations, bd et belles images ",
+    "one": {
+      "link1":"Top 100 series special",
+      "link2":"Tops 100 mangas",
+      "link3":"Top 100 icones",
+      "link4":"Top 100 wallpapers",
+      "link5":"Top 100 T-shirts",
+      "central":"Blog & Vlog",
+      "social1":"conspix",
+      "social2":"Insta",
+      "social3":"Pasteque"
+    },
+    "two": {
+      "link1":"Crypto News",
+      "link2":"Nouvelle Doxa",
+      "link3":"AVC NEWS",
+      "link4":"Derniers Sorties",
+      "link5":"Stackez de l'info !",
+      "central":"",
+      "social1":"Tiktok",
+      "social2":"Fb",
+      "social3":"X"
+    },
+      "three": {
+      "link1":"Des soustitres à la crypto",
+      "link2":"Sous-titrez !",
+      "link3":"Doublez !",
+      "link4":"Vendez !",
+      "link5":"Collectionnez !",
+      "central":"",
+      "social1":"11labs",
+      "social2":"Lipdub",
+      "social3":""
+    },
+      "four": {
+      "link1":"Masterpieces, comment ça marche ?",
+      "link2":"Uploades en 12 !",
+      "link3":"Vends et conserve !",
+      "link4":"Achetes et partages !",
+      "link5":"Toutes les catégories",
+      "central":"Upload !",
+      "social1":"FB",
+      "social2":"In",
+      "social3":"CoinGecko"
+    },
+      "five": {
+      "link1":"Derniers T-shirts",
+      "link2":"Qui aide quoi ?",
+      "link3":"Catégories",
+      "link4":"Meilleures ventes",
+      "link5":"Soumettre 1 modèle",
+      "central":"",
+      "social1":"Deviant",
+      "social2":"Pinterest",
+      "social3":"Leonardo"
+      }
+    },
+    "light": {
+      "mode":"Mode Classico-Tabasco activé: axé art sur Tshirt et NFT Next Gen pour financer des projets éthiques",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "saphir": {
+      "mode":"Mode saphir activé: Voyages, littérature et développement personnel",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "ruby": {
+      "mode":"Mode chili-ruby activé: comment chill tout en créant de la richesse et des inventions",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "emerald": {
+      "mode":"Mode Emeraude activé: sortir de la matrice, s'organiser contre les terminators à venir, devancer le dangereux monde IA.",
+      "one": {
+        "link1":"BANQUE LIBRE DU WEB 3",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Crypto News !",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"LE WEB 4, Internet Dystopic et fermé des IA",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "diamond": {
+      "mode":"Mode diamant activé: les meilleures trouvailles pour le futur + tous les projets d'inventions de TabascoCity",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "tacos": {
+      "mode":"Mode Gold activé: l'aventure de passer du digital à faire de l'or concrètement",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "metal": {
+      "mode":"Mode Metal Lazuli activé: Pierre de justice, le lazuli et le metal évoquent l'indignation morale",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    },
+    "africa": {
+      "mode":"Mode Africa Gems activé: Toutes les pépites du contient, son développement, sa créativité, son actu.",
+      "one": {
+        "link1":"Top 100 series special",
+        "link2":"Tops 100 mangas",
+        "link3":"Top 100 icones",
+        "link4":"Top 100 wallpapers",
+        "link5":"Top 100 T-shirts",
+        "central":"Blog & Vlog",
+        "social1":"conspix",
+        "social2":"Insta",
+        "social3":"Pasteque"
+      },
+      "two": {
+        "link1":"Crypto News",
+        "link2":"Nouvelle Doxa",
+        "link3":"AVC NEWS",
+        "link4":"Derniers Sorties",
+        "link5":"Stackez de l'info !",
+        "central":"",
+        "social1":"Tiktok",
+        "social2":"Fb",
+        "social3":"X"
+      },
+        "three": {
+        "link1":"Des soustitres à la crypto",
+        "link2":"Sous-titrez !",
+        "link3":"Doublez !",
+        "link4":"Vendez !",
+        "link5":"Collectionnez !",
+        "central":"",
+        "social1":"11labs",
+        "social2":"Lipdub",
+        "social3":""
+      },
+        "four": {
+        "link1":"Masterpieces, comment ça marche ?",
+        "link2":"Uploades en 12 !",
+        "link3":"Vends et conserve !",
+        "link4":"Achetes et partages !",
+        "link5":"Toutes les catégories",
+        "central":"Upload !",
+        "social1":"FB",
+        "social2":"In",
+        "social3":"CoinGecko"
+      },
+        "five": {
+        "link1":"Derniers T-shirts",
+        "link2":"Qui aide quoi ?",
+        "link3":"Catégories",
+        "link4":"Meilleures ventes",
+        "link5":"Soumettre 1 modèle",
+        "central":"",
+        "social1":"Deviant",
+        "social2":"Pinterest",
+        "social3":"Leonardo"
+      }
+    }
+    }
+}

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chaos Emerald
+* source:	https://sketchfab.com/3d-models/chaos-emerald-3a9d89ec0d6642ee8a8fc42a1361c701
+* author:	Kelsey113 (https://sketchfab.com/caboose113)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chaos Emerald" (https://sketchfab.com/3d-models/chaos-emerald-3a9d89ec0d6642ee8a8fc42a1361c701) by Kelsey113 (https://sketchfab.com/caboose113) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

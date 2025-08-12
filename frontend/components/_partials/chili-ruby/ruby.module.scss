@@ -1,0 +1,40 @@
+/* Cibler les dots */
+.slick-dots {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    color:white;
+    background-color: white;
+}
+
+.slick-dots li button {
+    width: 25px; /* Taille des dots */
+    height: 25px; /* Taille des dots */
+    border-radius: 50%; /* Forme ronde */
+    background-color: crimson; /* Couleur des dots */
+    border: 2px solid #ffffff; /* Bordure des dots */
+   
+  }
+  
+  /* Cibler les dots actifs */
+  .slick-dots li.slick-active button {
+    background-color: #258503; /* Couleur des dots actifs */
+  }
+
+  /* Cibler les points gris à l'intérieur des dots inactifs */
+.slick-dots li button::before {
+    content: '';
+    display: block;
+    width: 9px; /* Taille des points gris */
+    height: 9px; /* Taille des points gris */
+    border-radius: 50%; /* Forme ronde */
+    background-color: transparent; /* Couleur des points gris */
+    margin: auto; /* Centrer les points gris */
+  }
+  
+  /* Cibler les points gris à l'intérieur des dots actifs */
+  .slick-dots li.slick-active button::before {
+    background-color: white; /* Couleur des points gris actifs */
+  }

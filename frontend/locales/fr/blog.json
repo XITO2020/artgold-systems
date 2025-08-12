@@ -1,0 +1,29 @@
+{
+  "title": "Dernières Actualités",
+  "readMore": "Lire la Suite",
+  "by": "Par",
+  "themes": {
+    "title": "Thèmes",
+    "artMarket": "Marché de l'Art",
+    "technology": "Technologie",
+    "community": "Communauté",
+    "tutorials": "Tutoriels",
+    "announcements": "Annonces",
+    "marketAnalysis": "Analyse de Marché",
+    "artistSpotlight": "Portrait d'Artiste",
+    "tokenUpdates": "Actualités des Tokens"
+  },
+  "categories": {
+    "title": "Catégories",
+    "news": "Actualités",
+    "guide": "Guides",
+    "analysis": "Analyses",
+    "interview": "Interviews",
+    "feature": "Articles de Fond",
+    "update": "Mises à Jour"
+  },
+  "archive": {
+    "title": "Archives",
+    "view": "Voir les Articles"
+  }
+}

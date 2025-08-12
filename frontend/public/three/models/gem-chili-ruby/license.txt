@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chili
+* source:	https://sketchfab.com/3d-models/chili-16773b673ec144adb10477c311575786
+* author:	digrafstudio (https://sketchfab.com/digrafstudio)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chili" (https://sketchfab.com/3d-models/chili-16773b673ec144adb10477c311575786) by digrafstudio (https://sketchfab.com/digrafstudio) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
