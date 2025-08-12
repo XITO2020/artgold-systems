@@ -10,6 +10,6 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
   const user = verifyJwt<{ userId: string; role: string }>(token);
   if (!user) return res.status(403).json({ error: 'Token invalide ou expiré' });
 
-  req.user = user; // injecte dans req
+  req.user = user as Express.AuthUser; // injecte dans req
   next();
 }
