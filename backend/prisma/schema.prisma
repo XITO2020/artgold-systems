@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  username      String   @unique
+  password      String
+  tokens        Int      @default(0)
+  role          Role     @default(USER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  nftsCreated   Nft[]    @relation("CreatedNfts")
+  nftsOwned     Nft[]    @relation("OwnedNfts")
+  likes         Like[]
+  walletAddress String?
+
+  // Compte crypto pour interactions blockchain
+  agtBalance     Float     @default(0)
+  tabascoBalance Float     @default(0)
+}
+
+model Nft {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  image        String
+  createdAt    DateTime @default(now())
+  price        Float
+  creatorId    String
+  ownerId      String
+  creator      User     @relation("CreatedNfts", fields: [creatorId], references: [id])
+  owner        User     @relation("OwnedNfts", fields: [ownerId], references: [id])
+  likes        Like[]
+  shares       NftShare[]
+
+  mediaUrl    String
+  mediaType   MediaType
+
+  resaleCount  Int      @default(0)
+  appreciation Float    @default(0) // valeur spéculative selon likes et reventes
+
+  category     Category @relation(fields: [categoryId], references: [id])
+  categoryId   String
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  nft       Nft      @relation(fields: [nftId], references: [id])
+  createdAt DateTime @default(now())
+  userId    String
+  nftId     String
+}
+
+model NftShare {
+  id         String   @id @default(cuid())
+  nft        Nft      @relation(fields: [nftId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  percentage Float
+  nftId      String
+  userId     String
+}
+
+
+model Category {
+  id        String  @id @default(cuid())
+  name      String  @unique
+  slug      String  @unique
+  nfts      Nft[]
+  language  String? // ex: 'fr', 'en', 'es'
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  MODEL3D
+}
+

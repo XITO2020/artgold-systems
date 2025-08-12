@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: artgold_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: artgolddb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: artgold_backend
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@database:5432/artgolddb
+      JWT_SECRET: super-secret-chaine-artgold
+    ports:
+      - "4000:4000"
+    depends_on:
+      - database
+    command: sh -c "npx prisma generate && npm run dev"
+
+volumes:
+  postgres-data:
