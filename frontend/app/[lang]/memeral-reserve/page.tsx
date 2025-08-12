@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Badge } from "ù/badge";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Badge } from "@ui/badge";
 import { useSession } from "next-auth/react";
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 import {  ImageIcon, Heart, Coins } from "lucide-react";
 
 interface MemeralItem {

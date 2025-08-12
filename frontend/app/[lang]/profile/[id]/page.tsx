@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
-import { LikeButton } from "ç/like-button";
+import { Card } from "@ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { LikeButton } from "@comp/like-button";
 import { Award, Video, FileText, Palette } from "lucide-react";
 
 interface UserProfile {

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from 'react';
-import { ArtworkSlideshow } from "ç/artwork-slideshow";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { ArtworkSlideshow } from "@comp/artwork-slideshow";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { TrendingUp, Clock, Award, ChevronDown } from "lucide-react";
-import { CategoriesGridModal } from "ç/modals/treasury/CategoriesGridModal";
-import DictionaryLoader from 'ç/DictionaryLoader';
+import { CategoriesGridModal } from "@comp/modals/treasury/CategoriesGridModal";
+import DictionaryLoader from '@comp/DictionaryLoader';
 import Image from 'next/image';
 
 const topSales = [

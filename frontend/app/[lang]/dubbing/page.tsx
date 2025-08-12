@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { ScriptEditor } from "ç/dubbing/ScriptEditor";
-import { DubbingGridModal } from "ç/modals/dubbing/DubbingGridModal";
-import { TopDubbingGrid } from "ç/dubbing/TopDubbingGrid";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
-import { useTheme } from 'ç/theme/ThemeContext';
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { ScriptEditor } from "@comp/dubbing/ScriptEditor";
+import { DubbingGridModal } from "@comp/modals/dubbing/DubbingGridModal";
+import { TopDubbingGrid } from "@comp/dubbing/TopDubbingGrid";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { useTheme } from '@comp/theme/ThemeContext';
 
 // Sample data with correct type
 const sampleContent: Array<{

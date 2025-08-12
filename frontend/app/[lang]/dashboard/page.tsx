@@ -1,13 +1,13 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
-import { ArtworkCollection } from "ç/dashboard/ArtworkCollection";
-import { DubbedVideos } from "ç/dashboard/DubbedVideos";
-import { CreatedArtworks } from "ç/dashboard/CreatedArtworks";
-import { CryptoWallet } from "ç/dashboard/CryptoWallet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { ArtworkCollection } from "@comp/dashboard/ArtworkCollection";
+import { DubbedVideos } from "@comp/dashboard/DubbedVideos";
+import { CreatedArtworks } from "@comp/dashboard/CreatedArtworks";
+import { CryptoWallet } from "@comp/dashboard/CryptoWallet";
 import { Coins, ArrowUpRight, Wallet } from "lucide-react";
-import { AuthForm } from "ç/auth/AuthForm";
+import { AuthForm } from "@comp/auth/AuthForm";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();

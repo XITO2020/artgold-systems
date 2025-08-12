@@ -1,5 +1,5 @@
-import { getDictionary } from '~/dictionary';
-import HomeClient from 'ç/sections/HomeClient';
+import { getDictionary } from '@lib/dictionary';
+import HomeClient from '@comp/sections/HomeClient';
 
 export default async function Home({ params: { lang } }: { params: { lang: string } }) {
   const dict = await getDictionary(lang, 'home');

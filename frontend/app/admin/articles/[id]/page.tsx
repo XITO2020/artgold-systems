@@ -1,11 +1,11 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Textarea } from "ù/textarea";
-import { Label } from "ù/label";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Textarea } from "@ui/textarea";
+import { Label } from "@ui/label";
 
 export default function EditArticlePage() {
   const { register, handleSubmit } = useForm();

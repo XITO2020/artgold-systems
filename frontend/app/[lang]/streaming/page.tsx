@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Input } from "ù/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Card } from "@ui/card";
+import { Input } from "@ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { Search, ExternalLink } from "lucide-react";
 
 interface StreamingLink {

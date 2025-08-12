@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
-import { Textarea } from "ù/textarea";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { Textarea } from "@ui/textarea";
 import { Upload, MapPin, AlertTriangle } from "lucide-react";
-import { LocationPicker } from "ç/location-picker";
+import { LocationPicker } from "@comp/location-picker";
 
 
 export default function ConvertPage() {

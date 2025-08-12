@@ -1,13 +1,13 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
-import { ArtworkGrid } from "ç/portfolio/ArtworkGrid";
-import { VideoShowcase } from "ç/portfolio/VideoShowcase";
-import { CategorySidebar } from "ç/portfolio/CategorySidebar";
-import { AdsSidebar } from "ç/portfolio/AdsSidebar";
-import { ThemeProvider, useTheme } from 'ç/theme/ThemeContext';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { ArtworkGrid } from "@comp/portfolio/ArtworkGrid";
+import { VideoShowcase } from "@comp/portfolio/VideoShowcase";
+import { CategorySidebar } from "@comp/portfolio/CategorySidebar";
+import { AdsSidebar } from "@comp/portfolio/AdsSidebar";
+import { ThemeProvider, useTheme } from '@comp/theme/ThemeContext';
 import Link from "next/link";
-import { Services } from "ç/portfolio/Services";
+import { Services } from "@comp/portfolio/Services";
 
 function PortfolioContent() {
   const { theme } = useTheme();

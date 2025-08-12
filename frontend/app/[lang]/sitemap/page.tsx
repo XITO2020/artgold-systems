@@ -7,7 +7,7 @@ import styles from '../../wonderstyles/sitemap.module.css';
 
 // Chargement dynamique avec SSR désactivé pour Three.js
 const PixelArtMap = dynamic(
-  () => import('ç/sitemap/PixelArtMap'),
+  () => import('@comp/sitemap/PixelArtMap'),
   { 
     ssr: false,
     loading: () => <div className={styles.loading}>Loading TabascoCity...</div>
