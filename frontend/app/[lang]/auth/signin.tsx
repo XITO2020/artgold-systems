@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Card } from "ù/card";
-import { Label } from "ù/label";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Card } from "@ui/card";
+import { Label } from "@ui/label";
 import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaTiktok, FaInstagram, FaTwitter } from "react-icons/fa";
-import { useToast } from "#//use-toast";
-import { ParticlesBackground } from "ç/particles-background";
+import { useToast } from "@hooks/use-toast";
+import { ParticlesBackground } from "@comp/particles-background";
 import Link from "next/link";
 
 export default function SignInPage() {

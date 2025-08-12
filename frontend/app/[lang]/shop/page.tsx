@@ -1,18 +1,18 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { Coins, Wallet, ArrowRightLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { TOKEN_CONFIG, CONVERSION_RATES } from '~/token-config';
-import { TokenPurchase } from 'ç/payment/token-purchase';
-import { TokenExchange } from 'ç/payment/token-exchange';
-import { useToast } from '#//use-toast';
-import { TShirtGrid } from 'ç/shop/TShirtGrid';
+import { TOKEN_CONFIG, CONVERSION_RATES } from '@lib/token-config';
+import { TokenPurchase } from '@comp/payment/token-purchase';
+import { TokenExchange } from '@comp/payment/token-exchange';
+import { useToast } from '@hooks/use-toast';
+import { TShirtGrid } from '@comp/shop/TShirtGrid';
 
 export default function ShopPage() {
   const { data: session } = useSession();

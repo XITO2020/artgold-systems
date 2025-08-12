@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
 import { Video, FileText, ArrowLeft } from "lucide-react";
-import { Switch } from "ù/switch";
+import { Switch } from "@ui/switch";
 import Link from "next/link";
-import type { Article } from "T/article";
+import type { Article } from "@t/article";
 
 export default function BlogArticlePage({ params }: { params: { id: string } }) {
   const [viewMode, setViewMode] = useState<"video" | "text">("video");

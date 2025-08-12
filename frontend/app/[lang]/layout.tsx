@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Providers } from '../providers';
-import Navigation from 'ç/navigation';
-import { Toaster } from 'ù/toaster';
-import InstallPWA from 'ç/install-pwa';
-import AnimeHeroStyle from 'ç/sections/AnimHeroStyle';
-import { ThemeProvider } from 'ç/theme/ThemeContext';
-import { ThemeAside } from 'ç/aside/ThemeAside';
-import Footer from 'ç/Footer';
+import Navigation from '@comp/navigation';
+import { Toaster } from '@ui/toaster';
+import InstallPWA from '@comp/install-pwa';
+import AnimeHeroStyle from '@comp/sections/AnimHeroStyle';
+import { ThemeProvider } from '@comp/theme/ThemeContext';
+import { ThemeAside } from '@comp/aside/ThemeAside';
+import Footer from '@comp/Footer';
 
 export default function LocaleLayout({
   children,

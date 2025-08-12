@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
-import { ColorFilter } from 'ç/color-filter';
-import { CategoryFilter } from 'ç/gallery/CategoryFilter';
-import { GalleryGrid } from 'ç/gallery/GalleryGrid';
-import { PriceRangeFilter } from 'ç/gallery/PriceRangeFilter';
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { ColorFilter } from '@comp/color-filter';
+import { CategoryFilter } from '@comp/gallery/CategoryFilter';
+import { GalleryGrid } from '@comp/gallery/GalleryGrid';
+import { PriceRangeFilter } from '@comp/gallery/PriceRangeFilter';
 import { Search, Filter, SlidersHorizontal } from 'lucide-react';
-import { GALLERY_CATEGORIES } from 'T/gallery';
+import { GALLERY_CATEGORIES } from '@t/gallery';
 
 export default function GalleryPage() {
   const [selectedColors, setSelectedColors] = useState<string[]>([]);

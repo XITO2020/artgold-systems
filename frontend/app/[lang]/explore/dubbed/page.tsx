@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { LikeButton } from "ç/like-button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { LikeButton } from "@comp/like-button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { Play, Award } from "lucide-react";
 
 interface DubbedContent {

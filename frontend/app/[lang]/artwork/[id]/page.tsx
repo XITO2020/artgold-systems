@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { useSession } from "next-auth/react";
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 import { Building2, Users, ArrowRightLeft } from "lucide-react";
 
 export default function ArtworkPage({ params } : { params: { id: string } }) {

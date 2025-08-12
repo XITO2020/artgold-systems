@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import dynamic from 'next/dynamic';
 
 const WalletContextProvider = dynamic(
-  () => import('$/components/wallet-provider').then(mod => mod.WalletContextProvider),
+  () => import('@components/wallet-provider').then(mod => mod.WalletContextProvider),
   { ssr: false }
 );
 
