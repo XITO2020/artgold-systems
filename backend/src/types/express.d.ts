@@ -1,14 +1,8 @@
-// src/types/express.d.ts
-import 'express';
-import { JwtPayload } from 'jsonwebtoken';
+import "express";
+import type { AuthUser } from "../auth/types";
 
 declare global {
   namespace Express {
-    interface AuthUser extends JwtPayload {
-      userId: string;
-      email?: string;
-      role?: string;
-    }
     interface Request {
       user?: AuthUser;
     }

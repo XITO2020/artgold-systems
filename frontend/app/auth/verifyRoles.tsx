@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-import { Button } from "ù/button";
-import { Card } from "ù/card";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
-import { useToast } from "#//use-toast";
+import { Button } from "@ui/button";
+import { Card } from "@ui/card";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { useToast } from "@hooks/use-toast";
 import { Shield, AlertCircle } from "lucide-react";
 
 export default function VerifyRoles() {

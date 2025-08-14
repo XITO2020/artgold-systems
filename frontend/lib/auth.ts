@@ -1,12 +1,13 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import TwitterProvider from "next-auth/providers/twitter";
 import EmailProvider from "next-auth/providers/email";
 import InstagramProvider from "next-auth/providers/instagram";
-import TikTokProvider from "@LIB/providers/tiktok-provider";
-import { prisma } from "@LIB/db";
+import TikTokProvider from "@lib/providers/tiktok-provider";
+import { prisma } from "@lib/db";
 import { sendVerificationRequest } from "./email";
 
 export const authOptions: NextAuthOptions = {
@@ -23,6 +24,23 @@ export const authOptions: NextAuthOptions = {
     verifyRequest: '/auth/verify-request',
   },
   providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials.password) return null;
+    
+        // TODO: remplace par ton backend JWT plus tard
+        if (credentials.email === "admin@naim.com" && credentials.password === "7654321") {
+          return { id: "admin", email: credentials.email, name: "Admin" };
+        }
+        // minimal pour dev :
+        return { id: "user-"+Date.now(), email: credentials.email, name: "User" };
+      }
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID!,
       clientSecret: process.env.GOOGLE_SECRET!,

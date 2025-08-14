@@ -1,30 +1,42 @@
-import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
+
+export async function createUserWithPassword(data: {
+  email: string;
+  password: string;
+  name?: string;
+}) {
+  const existing = await prisma.user.findUnique({ where: { email: data.email } });
+  if (existing) throw new Error('email_taken');
+
+  const hash = await bcrypt.hash(data.password, 12);
+
+  return prisma.user.create({
+    data: {
+      email: data.email,
+      name: data.name ?? null,
+      passwordHash: hash,
+      status: 'ACTIVE',
+    },
+  });
+}
+
+export async function validatePasswordLogin(email: string, password: string) {
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user || !user.passwordHash) return null;
+  const ok = await bcrypt.compare(password, user.passwordHash);
+  return ok ? user : null;
+}
 
 export async function getUserByEmail(email: string) {
   return prisma.user.findUnique({ where: { email } });
 }
 
-export async function createUser(data: { email: string; username: string; password: string }) {
-  const hashedPassword = await bcrypt.hash(data.password, 10);
-  return prisma.user.create({
-    data: {
-      email: data.email,
-      username: data.username,
-      password: hashedPassword,
-      role: 'user',
-    },
-  });
+export async function getUserById(id: string) {
+  return prisma.user.findUnique({ where: { id } });
 }
 
-export async function validateUser(email: string, password: string) {
-  const user = await getUserByEmail(email);
-  if (!user) return null;
-
-  const match = await bcrypt.compare(password, user.password);
-  if (!match) return null;
-
-  return user;
-}
+// Rétro-compat si ton controller attendait ces noms :
+export { createUserWithPassword as createUser, validatePasswordLogin as validateUser };

@@ -1,26 +1,74 @@
+
+import { PrismaClient } from '@prisma/client';
+//infra web
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
+//securité
+import { authenticate, requireAuth } from './auth/middleware';
+
+//routes "fonctionnelles"
 import userRoutes from './user/controller';
 import nftRoutes from './nft/controller';
 import agtokenRoutes from './token/agtoken';
-import tabascoRoutes from './token/tabasco';
+import tabascoRoutes from './token/tabascoin';
+// ➕ nouvelles routes
+import { authRouter } from './auth/routes';
+import { walletRouter } from './wallet/routes';
+// Dashboard
+import { collectMetrics, renderDashboardHtml } from './metrics';
 
-dotenv.config();
+dotenv.config(); // 1 charge .env: jwt_secret , database_url
 
-const app = express();
-app.use(cors());
+const prismaRoot = new PrismaClient();
+const app = express(); //2 crée serveur
+
+//3 infra web
+app.use(cors({
+  origin: process.env.FRONTEND_ORIGIN || 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
 app.use(express.json());
+app.use(cookieParser());
+app.use(helmet({ contentSecurityPolicy: false }));
 
-// Routes API principales
+//Debug depuis middleware
+app.get("/whoami", authenticate, (req, res) => res.json({ user: req.user ?? null }));
+
+//4 Montage des routes API existantes
 app.use('/api/user', userRoutes);
-app.use('/api/nft', nftRoutes);
-app.use('/api/token/agt', agtokenRoutes);
-app.use('/api/token/tabascoin', tabascoRoutes);
+app.use('/api/nft', authenticate, requireAuth, nftRoutes);
+app.use('/api/token/agt', authenticate, requireAuth, agtokenRoutes);
+app.use('/api/token/tabascoin', authenticate, requireAuth, tabascoRoutes);
 
-// Route de test
-app.get('/', (req, res) => res.send('API Artgold Backend OK'));
+// ➕ Nouvelles routes JWT & Wallet
+app.use('/auth', authRouter);
+app.use('/wallet',authenticate, requireAuth, walletRouter);
 
+
+// 5 endpoint JSON si je veux consommer depuis autre chose, par exemple ici mon dashboard
+app.get('/metrics.json', async (_req, res) => {
+  const m = await collectMetrics();
+  res.json(m);
+});
+
+app.get("/api/user/me", authenticate, requireAuth, (req, res) => {
+  const u = (req as import("./auth/middleware").AuthenticatedRequest).user;
+  res.json({ id: u.sub, email: u.email, roles: u.roles });
+});
+
+app.get('/', async (_req, res) => {
+  const m = await collectMetrics();
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(renderDashboardHtml(m));
+});
+
+
+//6 Lancement serveur
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🚀 Backend lancé sur http://localhost:${PORT}`);

@@ -1,30 +1,43 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { authenticateToken } from '../auth/middleware';
+import { authenticate } from '../auth/middleware';
 
-const router = Router();
 const prisma = new PrismaClient();
+const router = Router();
 
-// ✅ Obtenir le solde TabascoCoin d’un utilisateur
-router.get('/balance', authenticateToken, async (req, res) => {
-  const userId = (req.user as any).userId;
-  const user = await prisma.user.findUnique({ where: { id: userId } });
-  res.json({ tabascoBalance: user?.tabascoBalance ?? 0 });
+// GET /api/token/tabascoin/balance
+router.get('/balance', authenticate, async (req, res) => {
+  const userId = req.user!.sub;
+  const agg = await prisma.token.aggregate({
+    where: { userId, type: 'TABZ' },
+    _sum: { amount: true },
+  });
+  const tabascoBalance = agg._sum.amount ? Number(agg._sum.amount) : 0;
+  res.json({ tabascoBalance });
 });
 
-// ✅ Récompenser un like d’un NFT avec des tabascoCoins
-router.post('/reward-like/:nftId', authenticateToken, async (req, res) => {
-  const userId = (req.user as any).userId;
-  const nftId = req.params.nftId;
+// POST /api/token/tabascoin/reward-dev { amount: number }
+router.post('/reward-dev', authenticate, async (req, res) => {
+  const userId = req.user!.sub;
+  const rewardNum = Number(req.body?.amount || 0);
+  if (!Number.isFinite(rewardNum) || rewardNum <= 0) {
+    return res.status(400).json({ error: 'invalid_amount' });
+  }
 
-  const rewardAmount = 2; // à ajuster selon tes règles de scoring
-
-  const user = await prisma.user.update({
-    where: { id: userId },
-    data: { tabascoBalance: { increment: rewardAmount } },
+  await prisma.token.create({
+    data: {
+      userId,
+      type: 'TABZ',
+      symbol: 'TABZ',
+      amount: rewardNum, // number accepté pour Decimal,
+    },
   });
 
-  res.json({ success: true, tabascoBalance: user.tabascoBalance });
+  const agg = await prisma.token.aggregate({
+    where: { userId, type: 'TABZ' },
+    _sum: { amount: true },
+  });
+  res.json({ success: true, tabascoBalance: Number(agg._sum.amount ?? 0) });
 });
 
 export default router;

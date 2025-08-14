@@ -1,6 +1,14 @@
-import { signJwt } from './jwt';
+import { signToken } from './jwt';
 
-export function createSession(user: { id: string; role: string }) {
-  const token = signJwt({ userId: user.id, role: user.role });
-  return { token, expiresIn: '7d' };
+// On accepte soit 'role', soit 'isAdmin' (legacy-friendly)
+type CreateSessionInput = {
+  id: string;
+  role?: string;
+  isAdmin?: boolean;
+};
+
+export function createSession(input: CreateSessionInput) {
+  const role = input.role ?? (input.isAdmin ? 'admin' : 'user');
+  const accessToken = signToken({ sub: input.id, role }, '15m');
+  return { accessToken, role };
 }
