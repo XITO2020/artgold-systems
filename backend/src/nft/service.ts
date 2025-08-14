@@ -1,68 +1,104 @@
-import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function uploadNft(req: Request, res: Response) {
-  const { title, mediaUrl, mediaType, categoryId } = req.body;
-  const userId = (req.user as any).userId;
+export async function createNft(opts: {
+  userId: string;
+  title: string;
+  description?: string;
+  chain: "EVM" | "SOLANA";
+  artworkId?: string;
+  network: string;
+  // soit CID IPFS, soit URL (on supporte les deux)
+  cid?: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  size?: number;
+}) {
+  const {
+    userId,
+    title,
+    description,
+    chain,
+    network,
+    artworkId,
+    cid,
+    url,
+    filename = "nft-media",
+    mimeType = "application/octet-stream",
+    size = 0,
+  } = opts;
 
-  try {
-    const nft = await prisma.nft.create({
+  let mediaId: string;
+
+  // 1) crée/repère le media IPFS (si CID fourni), sinon stocke une URL fallback
+  if (artworkId) {
+    // 🔎 on réutilise l'image de l'œuvre (IPFSMedia)
+    const artwork = await prisma.artwork.findUnique({
+      where: { id: artworkId },
+      select: { imageId: true },
+    });
+    if (!artwork || !artwork.imageId) {
+      throw new Error("artwork_not_found_or_no_media");
+    }
+    mediaId = artwork.imageId;
+  } else {
+    const media = await prisma.iPFSMedia.create({
       data: {
-        title,
-        mediaUrl,
-        mediaType,
-        categoryId,
-        creatorId: userId,
-        ownerId: userId,
+        cid: cid ?? `${Date.now()}_${Math.random().toString(36).slice(2)}`,
+        filename,
+        mimeType,
+        size,
+        status: cid ? "UPLOADED" : "PENDING",
+        url: url ?? null,
       },
     });
-    res.json(nft);
-  } catch (err) {
-    res.status(400).json({ error: 'Erreur upload', detail: err });
+    mediaId = media.id;
   }
+
+  // 2) crée l’NFT : creator = user, owner = user (au départ)
+  const nft = await prisma.nft.create({
+    data: {
+      title,
+      description,
+      chain,
+      network,
+      mediaId,
+      creatorId: userId,
+      ownerId: userId,
+      status: "DRAFT",
+      artworkId: artworkId ?? null,
+    },
+    include: { media: true },
+  });
+
+  return nft;
 }
 
-export async function buyNft(req: Request, res: Response) {
-  const nftId = req.params.nftId;
-  const buyerId = (req.user as any).userId;
-
-  try {
-    const nft = await prisma.nft.findUnique({ where: { id: nftId } });
-    if (!nft) return res.status(404).json({ error: 'NFT introuvable' });
-
-    const updatedNft = await prisma.nft.update({
-      where: { id: nftId },
-      data: { ownerId: buyerId },
-    });
-
-    res.json(updatedNft);
-  } catch (err) {
-    res.status(400).json({ error: 'Achat échoué', detail: err });
-  }
+export async function getNft(id: string) {
+  return prisma.nft.findUnique({
+    where: { id },
+    include: { media: true, owner: true, creator: true },
+  });
 }
 
-export async function sellNft(req: Request, res: Response) {
-  const nftId = req.params.nftId;
-  try {
-    const updated = await prisma.nft.update({
-      where: { id: nftId },
-      data: { forSale: true },
-    });
-    res.json(updated);
-  } catch (err) {
-    res.status(400).json({ error: 'Mise en vente échouée', detail: err });
-  }
+export async function listMyNfts(userId: string) {
+  return prisma.nft.findMany({
+    where: { ownerId: userId },
+    orderBy: { createdAt: "desc" },
+    include: { media: true },
+  });
 }
 
-export async function getUserNfts(req: Request, res: Response) {
-  const userId = (req.user as any).userId;
+export async function transferNft(opts: { nftId: string; fromUserId: string; toUserId: string }) {
+  const { nftId, fromUserId, toUserId } = opts;
+  const nft = await prisma.nft.findUnique({ where: { id: nftId } });
+  if (!nft) throw new Error("nft_not_found");
+  if (nft.ownerId !== fromUserId) throw new Error("not_owner");
 
-  try {
-    const nfts = await prisma.nft.findMany({ where: { ownerId: userId } });
-    res.json(nfts);
-  } catch (err) {
-    res.status(400).json({ error: 'Erreur de récupération', detail: err });
-  }
+  return prisma.nft.update({
+    where: { id: nftId },
+    data: { ownerId: toUserId, status: "SOLD" },
+  });
 }

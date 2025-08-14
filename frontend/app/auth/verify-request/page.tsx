@@ -1,4 +1,4 @@
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import { Mail } from "lucide-react";
 
 export default function VerifyRequestPage() {

@@ -18,3 +18,6 @@ export function verifyToken(token: string): JwtPayload | null {
     return null;
   }
 }
+
+// Alias pour compat compat
+export const signJwt = signToken;

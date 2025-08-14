@@ -1,28 +1,43 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { authenticateToken } from '../auth/middleware';
+import { authenticate } from '../auth/middleware';
 
-const router = Router();
 const prisma = new PrismaClient();
+const router = Router();
 
-// ✅ Obtenir le solde AGT d'un utilisateur
-router.get('/balance', authenticateToken, async (req, res) => {
-  const userId = (req.user as any).userId;
-  const user = await prisma.user.findUnique({ where: { id: userId } });
-  res.json({ agtBalance: user?.agtBalance ?? 0 });
+// GET /api/token/agt/balance
+router.get('/balance', authenticate, async (req, res) => {
+  const userId = req.user!.sub;
+  const agg = await prisma.token.aggregate({
+    where: { userId, type: 'AGT' },
+    _sum: { amount: true },
+  });
+  const agtBalance = agg._sum.amount ? Number(agg._sum.amount) : 0;
+  res.json({ agtBalance });
 });
 
-// ✅ Créditer des AGT tokens (mint)
-router.post('/mint', authenticateToken, async (req, res) => {
-  const userId = (req.user as any).userId;
-  const { amount } = req.body;
+// POST /api/token/agt/mint-dev { amount: number }
+router.post('/mint-dev', authenticate, async (req, res) => {
+  const userId = req.user!.sub;
+  const amountNum = Number(req.body?.amount || 0);
+  if (!Number.isFinite(amountNum) || amountNum <= 0) {
+    return res.status(400).json({ error: 'invalid_amount' });
+  }
 
-  const user = await prisma.user.update({
-    where: { id: userId },
-    data: { agtBalance: { increment: amount } },
+  await prisma.token.create({
+    data: {
+      userId,
+      type: 'AGT',
+      symbol: 'AGT',
+      amount: amountNum, // number accepté pour Decimal
+    },
   });
 
-  res.json({ success: true, agtBalance: user.agtBalance });
+  const agg = await prisma.token.aggregate({
+    where: { userId, type: 'AGT' },
+    _sum: { amount: true },
+  });
+  res.json({ success: true, agtBalance: Number(agg._sum.amount ?? 0) });
 });
 
 export default router;
