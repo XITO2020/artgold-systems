@@ -1,7 +1,7 @@
 "use client";
 
-import { Dialog, DialogContent } from "ù/dialog";
-import { Button } from "ù/button";
+import { Dialog, DialogContent } from "@ui/dialog";
+import { Button } from "@ui/button";
 import { UserPlus } from 'lucide-react';
 import Link from 'next/link';
 

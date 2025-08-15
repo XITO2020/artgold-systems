@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { GOLD_PRICE_API, GOLD_PRICE_API_KEY } from '@LIB/constants';
-import { TOKEN_CONFIG } from '@LIB/token-config';
+import { GOLD_PRICE_API, GOLD_PRICE_API_KEY } from '@lib/constants';
+import { TOKEN_CONFIG } from '@lib/token-config';
 
 // Cache prices for 5 minutes
 const CACHE_DURATION = 5 * 60 * 1000;

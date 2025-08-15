@@ -1,16 +1,16 @@
 "use client";
 
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "ù/dialog";
+} from "@ui/dialog";
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { supabase } from '@LIB/supabase';
+import { supabase } from '@lib/supabase';
 
 export function AuthButton() {
   return (

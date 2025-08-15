@@ -1,10 +1,11 @@
 export type VideoChapter = {
-  id: string;
+  id?: string;
   title: string;
   videoUrl: string;
   thumbnail: string;
   duration: number; // in seconds
   textContent: string;
+  end?: number;
 };
 
 export type Article = {

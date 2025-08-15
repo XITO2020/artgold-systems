@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Button } from "ù/button";
-import { Card } from "ù/card";
-import { Badge } from "ù/badge";
+import { Button } from "@ui/button";
+import { Card } from "@ui/card";
+import { Badge } from "@ui/badge";
 import { ArrowUpRight, ArrowDownRight, RefreshCw } from "lucide-react";
 import { formatDistanceToNow } from 'date-fns';
 

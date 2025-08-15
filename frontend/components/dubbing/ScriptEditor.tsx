@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Textarea } from "ù/textarea";
-import { Label } from "ù/label";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Textarea } from "@ui/textarea";
+import { Label } from "@ui/label";
 import { VoiceRecorder } from "./VoiceRecorder";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "ù/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ui/select";
 import { Mic, Type, Save, Download, Share, Upload } from "lucide-react";
 import { useToast } from "#/use-toast";
 import { pinFileToIPFS } from '$/services/pinataServices';

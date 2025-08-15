@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "ù/select";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ui/select";
 import { CONVERSION_FEES } from "@LIB/constants";
 
 interface ConversionPanelProps {

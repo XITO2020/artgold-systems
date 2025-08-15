@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Keypair } from '@solana/web3.js';
-import { TabToken } from '@LIB/blockchains/solana/tab-token';
-import { fetchStoryFromShonendump } from '@LIB/blockchains/solana/story-fetcher';
+import { TabToken } from '@lib/blockchains/solana/tab-token';
+import { fetchStoryFromShonendump } from '@lib/blockchains/solana/story-fetcher';
 
 export async function POST(req: Request) {
   try {

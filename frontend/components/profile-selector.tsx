@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from 'react';
-import { Button } from "ù/button";
-import { Card } from "ù/card";
+import { Button } from "@ui/button";
+import { Card } from "@ui/card";
 import { 
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "ù/select";
+} from "@ui/select";
 import { Text } from 'lucide-react';
 
 const FONT_FAMILIES = {

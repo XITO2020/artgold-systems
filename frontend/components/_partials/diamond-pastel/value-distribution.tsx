@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Card } from "ù/card";
-import { Progress } from "ù/progress";
+import { Card } from "@ui/card";
+import { Progress } from "@ui/progress";
 import { Coins, Lock, TrendingUp } from "lucide-react";
 import { useTheme } from "../../theme/ThemeContext";
 

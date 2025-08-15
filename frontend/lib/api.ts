@@ -47,3 +47,34 @@ async function handleJson(res: Response) {
   }
   return data;
 }
+
+// Inscription (on garde ton endpoint actuel côté back)
+export function signupEmailPassword(data: { email: string; password: string; name?: string }) {
+  return api(`/api/user/signup`, {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
+
+// Login email+password via le BACKEND JWT (pose les cookies HttpOnly)
+export function loginEmailPassword(email: string, password: string) {
+  return api(`/auth/login`, {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+  });
+}
+
+// Déconnexion (révoque refresh et efface les cookies)
+export function logout() {
+  return api(`/auth/logout`, { method: "POST" });
+}
+
+// “Qui suis-je ?” (protégé) — grâce aux cookies + credentials: 'include'
+export function fetchMe() {
+  return api(`/api/user/me`, { auth: true }); // auth:true => retry auto via /auth/refresh si 401
+}
+
+// Exemple d’appel protégé
+export function fetchMyNfts() {
+  return api(`/api/nft/mine`, { auth: true });
+}

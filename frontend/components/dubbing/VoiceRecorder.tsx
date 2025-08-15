@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from 'react';
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 import { Mic, Square, Play, Pause } from "lucide-react";
 
 interface VoiceRecorderProps {

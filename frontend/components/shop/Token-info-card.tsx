@@ -1,8 +1,8 @@
 "use client";
 
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import { Info } from "lucide-react";
-import { TOKEN_CONFIG } from '@LIB/token-config';
+import { TOKEN_CONFIG } from '@lib/token-config';
 
 interface TokenInfoCardProps {
   token: 'TABZ' | 'AGT';

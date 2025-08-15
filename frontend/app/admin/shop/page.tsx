@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
 import { Plus, Search, Edit, Trash, Tag, Package } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useToast } from '#/use-toast';
-import { getIPFSUrl } from '$/services/pinataServices';
+import { useToast } from '@hooks/use-toast';
+import { getIPFSUrl } from '@/../services/pinataServices';
 
 interface TShirt {
   id: string;

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { useState, useRef } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "ù/dialog";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@ui/dialog";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
 import { Heart, Share, MessageSquare, Play, Pause } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useToast } from '#/use-toast';

@@ -1,7 +1,7 @@
 // components/ui/tab-button.tsx
 "use client";
 
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 import { ArrowLeftRight } from "lucide-react";
 
 interface TabButtonProps {

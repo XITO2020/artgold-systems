@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Card } from 'ù/card';
-import { Badge } from 'ù/badge';
-import { ArtworkMetadata } from 'T/artwork';
+import { Card } from "@ui/card";
+import { Badge } from "@ui/badge";
+import { ArtworkMetadata } from '@t/artwork';
 
 interface ArtworkDisplayProps {
   artwork: ArtworkMetadata;

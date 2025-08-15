@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import {
   Shield,
   TrendingUp,

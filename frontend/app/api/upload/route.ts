@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
-import { validateArtworkContent } from '@LIB/admin';
-import { generateQRCode, generateSerialNumber } from '@LIB/artwork';
-import { ArtCategory } from 'T/artwork';
-import { pinFileToIPFS } from '$/services/pinataServices';
+import { prisma } from '@lib/db';
+import { validateArtworkContent } from '@lib/admin';
+import { generateQRCode, generateSerialNumber } from '@lib/artwork';
+import { ArtCategory } from '@t/artwork';
+import { pinFileToIPFS } from '@/../services/pinataServices';
 
 export async function POST(req: Request) {
   try {

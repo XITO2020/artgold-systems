@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { Video, FileText, ArrowLeft } from "lucide-react";
-import { Switch } from "ù/switch";
+import { Switch } from "@ui/switch";
 import Link from "next/link";
-import type { Article } from "T/article";
+import type { Article } from "@t/article";
 
 export default function BlogArticlePage({ params }: { params: { id: string } }) {
   const [viewMode, setViewMode] = useState<"video" | "text">("video");
@@ -90,7 +90,7 @@ export default function BlogArticlePage({ params }: { params: { id: string } }) 
             <Video className={`h-5 w-5 ${viewMode === "video" ? "text-primary" : "text-muted-foreground"}`} />
             <Switch
               checked={viewMode === "text"}
-              onCheckedChange={(checked) => setViewMode(checked ? "text" : "video")}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setViewMode(e.target.checked ? "text" : "video")}
             />
             <FileText className={`h-5 w-5 ${viewMode === "text" ? "text-primary" : "text-muted-foreground"}`} />
           </div>

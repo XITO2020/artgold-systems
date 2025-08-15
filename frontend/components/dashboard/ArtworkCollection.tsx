@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import Image from "next/image";
 import type { ArtworkMetadata } from "T/artwork";
 

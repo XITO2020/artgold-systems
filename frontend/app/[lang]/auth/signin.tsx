@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+import { signIn } from "next-auth/react"; // OAuth providers (Google/Discord/TikTok/Instagram/Twitter)
+
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Card } from "@ui/card";
@@ -10,40 +14,44 @@ import { FcGoogle } from "react-icons/fc";
 import { FaDiscord, FaTiktok, FaInstagram, FaTwitter } from "react-icons/fa";
 import { useToast } from "@hooks/use-toast";
 import { ParticlesBackground } from "@comp/particles-background";
-import Link from "next/link";
+import { useAuth } from "@hooks/useAuth";
 
 export default function SignInPage() {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const { toast } = useToast();
 
-  const handleEmailSignIn = async (e: React.FormEvent) => {
+  // état pour le flux email/password
+  const [variant, setVariant] = useState<"login" | "register">("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");    // ← manquait
+  const [name, setName] = useState("");            // ← manquait (pour register)
+  const [isLoading, setIsLoading] = useState(false);
+
+  // ton hook côté backend JWT
+  const { login, signup, loading: authLoading } = useAuth();
+
+  const toggleVariant = useCallback(() => {
+    setVariant((v) => (v === "login" ? "register" : "login"));
+  }, []);
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-
     try {
-      const result = await signIn("email", {
-        email,
-        redirect: false,
-        callbackUrl: "/dashboard",
-      });
-
-      if (result?.error) {
-        toast({
-          title: "Error",
-          description: "Failed to send verification email",
-          variant: "destructive",
-        });
+      if (variant === "login") {
+        await login(email, password);
+        router.push("/profiles");
       } else {
-        toast({
-          title: "Success",
-          description: "Check your email for the login link",
-        });
+        // si ton hook expose signup(email, password, name)
+        await signup(email, password, name);
+        // tu peux soit rediriger direct, soit demander login derrière
+        router.push("/profiles");
       }
-    } catch (error) {
+    } catch (err: any) {
+      console.error(err);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: err?.message ?? "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -54,17 +62,22 @@ export default function SignInPage() {
   return (
     <>
       <ParticlesBackground />
+
       <div className="container max-w-md mx-auto py-16 relative z-10">
         <Card className="p-6 bg-white/80 backdrop-blur-sm">
           <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold">Sign In to TabAsCoin</h1>
+            <h1 className="text-2xl font-bold">
+              {variant === "login" ? "Sign In" : "Register"} to TabAsCoin
+            </h1>
             <p className="text-sm text-muted-foreground mt-2">
               Choose your preferred authentication method
             </p>
           </div>
 
+          {/* OAuth via NextAuth */}
           <div className="grid gap-3 mb-6">
             <Button
+              type="button"
               variant="outline"
               onClick={() => signIn("google")}
               className="flex items-center gap-2"
@@ -73,6 +86,7 @@ export default function SignInPage() {
               Continue with Google
             </Button>
             <Button
+              type="button"
               variant="outline"
               onClick={() => signIn("discord")}
               className="flex items-center gap-2"
@@ -81,6 +95,7 @@ export default function SignInPage() {
               Continue with Discord
             </Button>
             <Button
+              type="button"
               variant="outline"
               onClick={() => signIn("tiktok")}
               className="flex items-center gap-2"
@@ -89,6 +104,7 @@ export default function SignInPage() {
               Continue with TikTok
             </Button>
             <Button
+              type="button"
               variant="outline"
               onClick={() => signIn("instagram")}
               className="flex items-center gap-2"
@@ -97,6 +113,7 @@ export default function SignInPage() {
               Continue with Instagram
             </Button>
             <Button
+              type="button"
               variant="outline"
               onClick={() => signIn("twitter")}
               className="flex items-center gap-2"
@@ -106,6 +123,7 @@ export default function SignInPage() {
             </Button>
           </div>
 
+          {/* séparateur */}
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t"></div>
@@ -117,25 +135,70 @@ export default function SignInPage() {
             </div>
           </div>
 
-          <form onSubmit={handleEmailSignIn} className="space-y-4">
+          {/* Email + password via ton backend JWT */}
+          <form onSubmit={handleEmailSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                placeholder="name@domain.com"
                 required
               />
             </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Sending link..." : "Sign in with Email"}
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete={variant === "login" ? "current-password" : "new-password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            {variant === "register" && (
+              <div className="space-y-2">
+                <Label htmlFor="name">Username (optional)</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your display name"
+                />
+              </div>
+            )}
+
+            <Button type="submit" className="w-full" disabled={isLoading || authLoading}>
+              {isLoading
+                ? variant === "login" ? "Signing in..." : "Creating account..."
+                : variant === "login" ? "Sign in with Email" : "Create account"}
             </Button>
           </form>
 
-          <Link href="/auth/register" className="text-center block mt-4 w-full p-4 rounded-md transition ease-in duration-500 text-light mb-12 hover:bg-quadriary hover:text-quintary">
-            Don't have an account? Sign up
+          <button
+            type="button"
+            onClick={toggleVariant}
+            className="text-center block mt-4 w-full p-4 rounded-md transition ease-in duration-500 text-light mb-12 hover:bg-quadriary hover:text-quintary"
+          >
+            {variant === "login"
+              ? "Need an account? Register"
+              : "Already have an account? Log in"}
+          </button>
+
+          {/* Lien vers une page dédiée d’inscription si tu veux la garder */}
+          <Link
+            href="/auth/register"
+            className="text-center block mt-2 underline text-sm text-muted-foreground"
+          >
+            Prefer a dedicated signup page?
           </Link>
         </Card>
       </div>

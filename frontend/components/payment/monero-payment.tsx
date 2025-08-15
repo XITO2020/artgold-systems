@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { QRCodeSVG } from 'qrcode.react';
 import { Copy, Check, Loader2 } from 'lucide-react';
 import { useToast } from '#//use-toast';

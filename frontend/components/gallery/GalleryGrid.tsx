@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { Heart, Share } from 'lucide-react';
 import Image from 'next/image';
 import { useToast } from '#//use-toast';

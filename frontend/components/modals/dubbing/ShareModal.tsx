@@ -1,9 +1,9 @@
 "use client";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "ù/dialog";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@ui/dialog";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
 import { Facebook, Twitter, Instagram, Download, Image } from "lucide-react";
 
 interface ShareModalProps {

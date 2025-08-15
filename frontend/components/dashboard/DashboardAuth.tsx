@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
 import { FcGoogle } from "react-icons/fc";
 import { useToast } from "#//use-toast";
 

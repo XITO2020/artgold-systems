@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDictionary } from '@LIB/dictionary';
+import { getDictionary } from '@lib/dictionary';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

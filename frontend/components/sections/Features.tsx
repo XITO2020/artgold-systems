@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from 'react';
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import {
   Shield,
   TrendingUp,
@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from '@comp/theme/ThemeContext';
-import { ThemeName } from 'T/theme/types';
+import { ThemeName } from '@t/theme/types';
 
 interface FeaturesProps {
   dict: any;

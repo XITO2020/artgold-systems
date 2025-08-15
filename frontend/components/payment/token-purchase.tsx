@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { useToast } from '#/use-toast';
 import { TOKEN_CONFIG } from '@LIB/token-config';

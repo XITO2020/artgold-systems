@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { Button } from 'ù/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from 'ù/dialog';
-import { Input } from "ù/input";
+import { Button } from '@ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ui/dialog';
+import { Input } from "@ui/input";
 import { Heart, Share, MessageSquare, RotateCw } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useToast } from '#/use-toast';

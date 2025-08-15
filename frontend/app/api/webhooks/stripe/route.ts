@@ -1,11 +1,12 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { prisma } from '@LIB/db';
-import { distributeValue } from '@LIB/value-distribution';
+import { prisma } from '@lib/db';
+import type { Prisma } from '@prisma/client';
+import { distributeValue } from '@lib/value-distribution';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-07-30.basil' as Stripe.LatestApiVersion,
 });
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
         });
 
         if (transaction) {
-          await prisma.$transaction(async (tx) => {
+          await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
             // Update transaction status
             await tx.transaction.update({
               where: { id: transaction.id },

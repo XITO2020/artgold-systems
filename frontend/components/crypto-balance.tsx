@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import { Coins } from "lucide-react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useState } from "react";

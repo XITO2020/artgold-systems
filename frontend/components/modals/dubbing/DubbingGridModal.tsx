@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { Dialog, DialogContent } from "ù/dialog";
-import { Button } from "ù/button";
-import { Tabs, TabsList, TabsTrigger } from "ù/tabs";
+import { Dialog, DialogContent } from "@ui/dialog";
+import { Button } from "@ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@ui/tabs";
 import { Heart } from 'lucide-react';
 
 interface DubbingGridModalProps {

@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
-import { Textarea } from "ù/textarea";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { Textarea } from "@ui/textarea";
 import { Upload, MapPin, AlertTriangle } from "lucide-react";
 import { LocationPicker } from "@comp/location-picker";
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 import { useSession } from "next-auth/react";
-import { Alert, AlertTitle, AlertDescription } from "ù/alert";
+import { Alert, AlertTitle, AlertDescription } from "@ui/alert";
 
 export default function UploadPage() {
   const { data: session } = useSession();

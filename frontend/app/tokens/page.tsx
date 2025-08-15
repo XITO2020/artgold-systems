@@ -1,4 +1,4 @@
-import { TokenTransfer } from '../../components/tokens/TokenTransfer';
+import { TokenTransfer } from '@comp/tokens/TokenTransfer';
 
 export default function TokensPage() {
   return (

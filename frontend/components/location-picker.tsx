@@ -2,9 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { Card } from 'ù/card';
-import { Button } from 'ù/button';
-import { Input } from 'ù/input';
+import { Card } from '@ui/card';
+import { Button } from '@ui/button';
+import { Input } from '@ui/input';
 import { MapPin } from 'lucide-react';
 
 interface LocationPickerProps {

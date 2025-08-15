@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import Image from 'next/image';
 import { EnhancedImageModal } from '@comp/modals/portfolio/EnhancedImageModal';
 import { getIPFSUrl } from '$/services/pinataServices';

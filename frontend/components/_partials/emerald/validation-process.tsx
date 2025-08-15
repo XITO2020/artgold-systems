@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import { Shield, AlertTriangle, CheckCircle2, Ban, Scale } from "lucide-react";
 
 interface ValueDistributionProps {

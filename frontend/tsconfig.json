@@ -35,7 +35,8 @@
       ],
       "@t/*": [
         "../shared/types/*"
-      ]
+      ],
+      "@tfront/*": ["types/*"]
     },
     "plugins": [
       {
@@ -48,7 +49,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "../shared/types/**/*.ts"
+    "../shared/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "types/**/*"
   ],
   "exclude": [
     "node_modules",

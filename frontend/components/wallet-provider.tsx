@@ -1,32 +1,31 @@
 "use client";
 
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
+import { useMemo } from "react";
+import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
-import { useMemo } from "react";
+import { clusterApiUrl, type Cluster } from "@solana/web3.js";
 
-require("@solana/wallet-adapter-react-ui/styles.css");
+// CSS du modal
+import "@solana/wallet-adapter-react-ui/styles.css";
 
-export function WalletContextProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => 
-    process.env.NEXT_PUBLIC_SOLANA_RPC_URL || clusterApiUrl(network),
+type Props = { children: React.ReactNode };
+
+export function WalletContextProvider({ children }: Props) {
+  // "devnet" par défaut si pas de variable
+  const network: Cluster =
+    (process.env.NEXT_PUBLIC_SOLANA_CLUSTER as Cluster) || "devnet";
+
+  // Utilise un endpoint custom si fourni, sinon celui du cluster
+  const endpoint = useMemo(
+    () => process.env.NEXT_PUBLIC_SOLANA_RPC ?? clusterApiUrl(network),
     [network]
   );
-  
+
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),

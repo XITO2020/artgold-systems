@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "ù/dialog";
-import { Button } from "ù/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@ui/dialog";
+import { Button } from "@ui/button";
 import { 
   Share2, 
   MessageCircle,

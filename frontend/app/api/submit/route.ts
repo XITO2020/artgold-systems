@@ -1,27 +1,64 @@
-// app/[lang]/submit/route.ts
+// app/api/submit/route.ts
 import { NextResponse } from 'next/server';
-import { prisma } from '@LIB/db'; // Import du client Prisma
-import { getServerSession } from 'next-auth'; // Pour récupérer la session de NextAuth
-import { authOptions } from '@LIB/auth'; // Import des options de NextAuth
-import { createArtistCategorySubmission, getExistingSubmission } from 'T/artistCategorySubmission'; // Import des fonctions de création et vérification
+import { prisma } from '@lib/db';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@lib/auth';
+import {
+  createArtistCategorySubmission,
+  getExistingSubmission,
+} from '@t/artistCategorySubmission';
 
 export async function POST(request: Request) {
-  // Récupérer la session de l'utilisateur
-  const session = await getServerSession(authOptions);
+  try {
+    // 1) Auth
+    const session = await getServerSession(authOptions);
+    const user = session?.user as { id?: string } | undefined;
+    if (!user?.id) {
+      return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    }
+    const userId: string = user.id;
 
-  // Si la session n'est pas valide (pas d'utilisateur connecté), renvoyer une erreur 401
-  if (!session || !session.user) {
-    return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
+    // 2) Body + validations
+    const body = await request.json().catch(() => null as any);
+    const rawImageUrl = body?.imageUrl;
+    const rawCategoryId = body?.categoryId;
+
+    const imageUrl = typeof rawImageUrl === 'string' ? rawImageUrl.trim() : '';
+    // Les helpers attendent un number → on convertit proprement
+    const categoryIdNum =
+      typeof rawCategoryId === 'number'
+        ? rawCategoryId
+        : Number(typeof rawCategoryId === 'string' ? rawCategoryId.trim() : NaN);
+
+    if (!imageUrl) {
+      return NextResponse.json({ error: 'missing_imageUrl' }, { status: 400 });
+    }
+    if (!Number.isInteger(categoryIdNum) || categoryIdNum <= 0) {
+      return NextResponse.json({ error: 'invalid_categoryId' }, { status: 400 });
+    }
+
+    // 3) Doublon ?
+    const existing = await getExistingSubmission(prisma, userId, categoryIdNum);
+    if (existing) {
+      return NextResponse.json(
+        { error: 'already_submitted', submission: existing },
+        { status: 409 }
+      );
+    }
+
+    // 4) Création
+    const submission = await createArtistCategorySubmission(
+      prisma,
+      userId,
+      imageUrl,
+      categoryIdNum
+    );
+
+    return NextResponse.json({ submission }, { status: 201 });
+  } catch (e: any) {
+    return NextResponse.json(
+      { error: 'server_error', detail: e?.message ?? String(e) },
+      { status: 500 }
+    );
   }
-
-  const userId = session.user.id; // Récupérer l'ID de l'utilisateur connecté
-  const { imageUrl, categoryId } = await request.json(); // Récupérer l'URL de l'image et la catégorie
-
-  // Vérifier si une soumission existe déjà pour cette catégorie
-  const existingSubmission = await getExistingSubmission(prisma, userId, categoryId);
-
-  // Créer une nouvelle soumission
-  const submission = await createArtistCategorySubmission(prisma, userId, imageUrl, categoryId);
-
-  return NextResponse.json({ submission });
 }

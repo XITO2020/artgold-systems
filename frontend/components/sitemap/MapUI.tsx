@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from '@/app/wonderstyles/sitemap.module.css';
-import { MapLocation } from 'T/sitemap.ts';
+import { MapLocation } from '@t/sitemap.ts';
 
 interface MapUIProps {
   hoveredLocation: MapLocation | null;

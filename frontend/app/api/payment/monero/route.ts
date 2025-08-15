@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { MoneroService } from '@LIB/monero';
-import { prisma } from '@LIB/db';
+import { MoneroService } from '@lib/monero';
+import { prisma } from '@lib/db';
 
 export async function POST(req: Request) {
   try {

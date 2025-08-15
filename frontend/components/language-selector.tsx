@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from 'react';
-import { Button } from 'ù/button';
+import { Button } from '@ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'ù/dropdown-menu';
+} from '@ui/dropdown-menu';
 import { Globe } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -16,7 +16,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "ù/tooltip";
+} from "@ui/tooltip";
 
 const languages = [
   { code: 'ar', name: 'العربية', flag: '/flags/pl.jpg' },

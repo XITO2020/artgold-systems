@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import Image from "next/image";
 import { TOKEN_CONFIG } from "@LIB/token-config";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 import { Heart } from "lucide-react";
 import { useToast } from "#/use-toast";
 

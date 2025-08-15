@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
-import { pinFileToIPFS } from '$/services/pinataServices';
+import { prisma } from '@lib/db';
+import { pinFileToIPFS } from '@/../services/pinataServices';
 
 export async function POST(req: Request) {
   const session = await getServerSession();

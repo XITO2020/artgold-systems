@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
 import { Search, ShoppingBag, Heart } from "lucide-react";
 import Link from 'next/link';
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 
 interface TShirt {
   id: string;

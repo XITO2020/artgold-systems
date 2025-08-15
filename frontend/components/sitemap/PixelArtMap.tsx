@@ -7,7 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import styles from '@/app/wonderstyles/sitemap.module.css';
 import MapUI from './MapUI';
-import { MapLocation } from 'T/sitemap.ts;
+import { MapLocation } from '@t/sitemap.ts;
 
 export default function PixelArtMap() {
   const mountRef = useRef<HTMLDivElement>(null);

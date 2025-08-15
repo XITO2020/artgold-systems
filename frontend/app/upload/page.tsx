@@ -1,8 +1,8 @@
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Label } from "ù/label";
-import { Textarea } from "ù/textarea";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { Textarea } from "@ui/textarea";
 import { MapPin, Upload } from "lucide-react";
 
 export default function UploadPage() {

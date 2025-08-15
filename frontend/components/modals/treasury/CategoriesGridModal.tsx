@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, DialogContent } from "ù/dialog";
+import { Dialog, DialogContent } from "@ui/dialog";
 import Link from 'next/link';
 import Image from 'next/image';
 

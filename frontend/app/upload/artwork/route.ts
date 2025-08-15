@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
-import { validateArtworkContent } from '@LIB/admin';
-import { generateQRCode, generateSerialNumber } from '@LIB/artwork';
+import { prisma } from '@lib/db';
+import { validateArtworkContent } from '@lib/admin';
+import { generateQRCode, generateSerialNumber } from '@lib/artwork';
 
 export async function POST(req: Request) {
   try {

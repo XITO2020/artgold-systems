@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import Stripe from 'stripe';
-import { prisma } from '@LIB/db';
-import { CONVERSION_RATES } from '@LIB/token-config';
+import { prisma } from '@lib/db';
+import { CONVERSION_RATES } from '@lib/token-config';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',

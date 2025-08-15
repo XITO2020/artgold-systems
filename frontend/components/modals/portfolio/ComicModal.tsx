@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 import { FaDiscord } from "react-icons/fa";
 import { Share, Heart, Facebook, Twitter } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "ù/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@ui/dialog";
 
 interface ComicsModalProps {
   isOpen: boolean;

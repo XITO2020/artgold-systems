@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { 
   Palette, 
   Video, 
@@ -13,7 +13,7 @@ import {
   Clock
 } from "lucide-react";
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "ù/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 
 interface ServicePrice {
   eur: number;

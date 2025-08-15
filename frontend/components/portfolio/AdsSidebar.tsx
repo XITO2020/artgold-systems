@@ -1,8 +1,8 @@
 "use client";
 
 import { Menu } from 'lucide-react';
-import { Button } from 'ù/button';
-import { Sheet, SheetContent, SheetTrigger } from 'ù/sheet';
+import { Button } from '@ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@ui/sheet';
 
 const links = [
   { id: 'friend1', label: 'Artist Friend 1', url: '#' },

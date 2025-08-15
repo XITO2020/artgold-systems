@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import { Button } from 'ù/button';
+import { Button } from '@ui/button';
 import { useToast } from '#/use-toast';
 
 interface PaymentFormProps {

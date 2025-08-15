@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Slider } from "ù/slider";
-import { Input } from "ù/input";
+import { Slider } from "@ui/slider";
+import { Input } from "@ui/input";
 
 interface PriceRangeFilterProps {
   range: {

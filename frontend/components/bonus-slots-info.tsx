@@ -1,9 +1,9 @@
 "use client";
 
-import { Card } from "ù/card";
-import { Progress } from "ù/progress";
-import { Button } from "ù/button";
-import { Badge } from "ù/badge";
+import { Card } from "@ui/card";
+import { Progress } from "@ui/progress";
+import { Button } from "@ui/button";
+import { Badge } from "@ui/badge";
 import { Gift, Lock, Unlock, ArrowRight } from "lucide-react";
 import { BONUS_SLOTS_CONFIG } from "@LIB/constants";
 import { useToast } from "#/use-toast";

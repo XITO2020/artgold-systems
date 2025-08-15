@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { detectAIArtwork } from '@LIB/ai-detection';
-import { prisma } from '@LIB/db';
+import { detectAIArtwork } from '@lib/ai-detection';
+import { prisma } from '@lib/db';
 
 export async function POST(req: Request) {
   try {

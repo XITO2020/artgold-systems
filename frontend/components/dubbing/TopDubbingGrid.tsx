@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import LazyLoad from 'react-lazy-load';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
 import { Heart, Play, Pause } from "lucide-react";
 
 // Sample data generator - replace with API call

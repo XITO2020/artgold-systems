@@ -1,10 +1,10 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Card } from "ù/card";
+import { Card } from "@ui/card";
 import { AlertTriangle } from "lucide-react";
 import Link from "next/link";
-import { Button } from "ù/button";
+import { Button } from "@ui/button";
 
 const getErrorMessage = (error: string | null) => {
   switch (error) {
@@ -33,11 +33,9 @@ export default function ErrorPage() {
           <p className="text-muted-foreground mb-6">
             {errorMessage}
           </p>
-          <Button asChild>
-            <Link href="/auth/signin">
-              Try Again
+            <Link href="/" className="inline-block">
+              <Button>Revenir à l'accueil</Button>
             </Link>
-          </Button>
         </div>
       </Card>
     </div>

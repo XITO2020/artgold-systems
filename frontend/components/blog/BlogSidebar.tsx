@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-import { Card } from "ù/card";
-import { Button } from "ù/button";
-import { ScrollArea } from "ù/scroll-area";
-import { Calendar } from "ù/calendar";
-import { Badge } from "ù/badge";
+import { Card } from "@ui/card";
+import { Button } from "@ui/button";
+import { ScrollArea } from "@ui/scroll-area";
+import { Calendar } from "@ui/calendar";
+import { Badge } from "@ui/badge";
 import { Folder, Tag, Calendar as CalendarIcon } from "lucide-react";
 import Link from "next/link";
 

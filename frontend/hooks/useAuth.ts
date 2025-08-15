@@ -48,5 +48,22 @@ export function useAuth() {
     refreshMe();
   }, [refreshMe]);
 
-  return { user, loading, login, logout, refreshMe, isAuthenticated: !!user };
+  const signup = useCallback(async (email: string, password: string, name?: string) => {
+    // crée l’utilisateur
+    await api('/api/user/signup', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, name }),
+    });
+    // enchaîne sur le login pour poser les cookies
+    await api('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
+    await refreshMe();
+  }, [refreshMe]);
+
+  return { user, loading, login, logout, refreshMe, isAuthenticated: !!user, signup };
+;
 }
+
+

@@ -1,4 +1,4 @@
-import { getDictionary } from '@LIB/dictionary';
+import { getDictionary } from '@lib/dictionary';
 import BlogClient from '@comp/sections/BlogClient';
 
 export default async function BlogPage({ params: { lang } }: { params: { lang: string } }) {

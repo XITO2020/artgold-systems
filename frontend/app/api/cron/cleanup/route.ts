@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { cleanupInactiveContent } from '@LIB/content-cleanup';
-import { prisma } from '@LIB/db';
+import { cleanupInactiveContent } from '@lib/content-cleanup';
+import { prisma } from '@lib/db';
 
 // Constants for cleanup configuration
 const CLEANUP_CONFIG = {

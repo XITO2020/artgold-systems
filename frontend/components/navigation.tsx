@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "ù/button";
-import { Input } from "ù/input";
-import { Sheet, SheetContent, SheetTrigger } from "ù/sheet";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { Coins, Search, Palette, Mic, Menu } from "lucide-react";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
