@@ -1,26 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-declare global {
-  var prisma: PrismaClient | undefined;
+// Frontend must NEVER access the database directly. Use the API client in `lib/db/prisma.ts`.
+export function getPrismaOnFrontend(): never {
+  throw new Error('Direct Prisma access is disabled on the frontend. Use apiClient in lib/db/prisma.ts');
 }
-
-const prismaClientSingleton = () => {
-  return new PrismaClient({
-    log: ['error'],
-    datasourceUrl: process.env.POSTGRES_PRISMA_URL,
-  });
-};
-
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
-
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
-};
-
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma;
-}
-
-export { prisma };

@@ -3,12 +3,11 @@ import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Textarea } from "@ui/textarea";
-import { Label } from "@ui/label";
 import { VoiceRecorder } from "./VoiceRecorder";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ui/select";
 import { Mic, Type, Save, Download, Share, Upload } from "lucide-react";
-import { useToast } from "#/use-toast";
-import { pinFileToIPFS } from '$/services/pinataServices';
+import { useToast } from "@hooks/use-toast";
+import { pinFileToIPFS } from '../../services/pinataServices';
 import { ShareModal } from '../modals/dubbing/ShareModal';
 
 export interface ScriptEditorProps {
@@ -255,8 +254,7 @@ export function ScriptEditor({ mode, onComplete }: ScriptEditorProps) {
       <ShareModal
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}
-        videoBlob={finalVideo}
-        mode={mode}
+        contentType={mode}
       />
     </div>
   );

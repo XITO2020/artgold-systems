@@ -1,5 +1,5 @@
-import { ArtCategory } from 'T/artwork';
-import { prisma } from './db';
+import { ArtCategory } from '@t/artwork';
+import { apiClient } from '@lib/db/prisma';
 
 // Points awarded for each category
 export const POINTS_SYSTEM = {
@@ -89,30 +89,8 @@ export const BONUS_SLOTS_CRITERIA = {
 } as const;
 
 export async function checkBonusSlotEligibility(userId: string): Promise<boolean> {
-  if (!prisma) return false;
-
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    include: {
-      artworks: {
-        where: { status: 'SOLD' }
-      },
-      tokens: true
-    }
-  });
-
-  if (!user) return false;
-
-  const soldArtworks = user.artworks.length;
-  const tabzBalance = user.tokens.find(t => t.type === 'TABZ')?.amount || 0;
-  const agtBalance = user.tokens.find(t => t.type === 'AGT')?.amount || 0;
-
-  return (
-    soldArtworks >= BONUS_SLOTS_CRITERIA.ARTWORK_COUNT &&
-    (Number(tabzBalance) >= BONUS_SLOTS_CRITERIA.TABZ_VALUE ||
-     Number(agtBalance) >= BONUS_SLOTS_CRITERIA.AGT_VALUE) &&
-    user.bonusSlots === 0
-  );
+  const data = await apiClient.get(`/users/${userId}/bonus-eligibility`);
+  return !!data?.eligible;
 }
 
 export function calculatePoints(category: ArtCategory, isFirst: boolean): number {

@@ -1,4 +1,4 @@
-import { ArtCategory } from 'T/artwork';
+import { ArtCategory } from '@t/artwork';
 
 export const CATEGORY_CONFIG = {
   points: {

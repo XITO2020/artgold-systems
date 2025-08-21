@@ -5,7 +5,7 @@ import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import { QRCodeSVG } from 'qrcode.react';
 import { Copy, Check, Loader2 } from 'lucide-react';
-import { useToast } from '#//use-toast';
+import { useToast } from '@hooks/use-toast';
 
 interface MoneroPaymentProps {
   amount: number;

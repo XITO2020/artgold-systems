@@ -1,7 +1,6 @@
-import { prisma } from '../db';
+import { apiClient } from '../db/prisma';
 import { validateTransaction } from './validation';
 import type { CreateTransactionParams, TransactionStatus } from './types';
-import type { Prisma } from '@prisma/client';
 
 export class TransactionService {
   async createTransaction(params: CreateTransactionParams) {
@@ -11,54 +10,31 @@ export class TransactionService {
       throw new Error(`Invalid transaction: ${validation.errors.join(', ')}`);
     }
 
-    // Create transaction record
-    const transaction = await prisma.transaction.create({
-      data: {
-        userId: params.userId,
-        type: params.type as Prisma.TransactionCreateInput['type'],
-        amount: params.amount,
-        status: 'PENDING',
-        paymentId: params.paymentId,
-        metadata: params.metadata as Prisma.JsonObject || null
-      }
+    // Create transaction via backend API
+    const transaction = await apiClient.post('/transactions', {
+      userId: params.userId,
+      type: params.type,
+      amount: params.amount,
+      status: 'PENDING',
+      paymentId: params.paymentId,
+      metadata: params.metadata ?? null
     });
 
     return transaction;
   }
 
   async updateStatus(id: string, status: TransactionStatus) {
-    return await prisma.transaction.update({
-      where: { id },
-      data: { 
-        status: status as Prisma.TransactionUpdateInput['status']
-      }
-    });
+    return await apiClient.put(`/transactions/${id}/status`, { status });
   }
 
   async getTransactionHistory(userId: string) {
-    return await prisma.transaction.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-      include: {
-        user: true
-      }
-    });
+    const qs = new URLSearchParams({ userId });
+    return await apiClient.get(`/transactions/history?${qs.toString()}`);
   }
 
   async getTransactionStats(userId: string) {
-    const stats = await prisma.transaction.groupBy({
-      by: ['type'],
-      where: { 
-        userId,
-        status: 'COMPLETED'
-      },
-      _sum: {
-        amount: true
-      },
-      _count: true
-    });
-
-    return stats;
+    const qs = new URLSearchParams({ userId });
+    return await apiClient.get(`/transactions/stats?${qs.toString()}`);
   }
 }
 

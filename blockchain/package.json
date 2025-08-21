@@ -9,16 +9,22 @@
     "node": "cd .. && npx hardhat node"
   },
   "dependencies": {
-    "ethers": "^6.9.0",
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/hardhat-upgrades": "^3.9.0",
-    "@solana/spl-token": "^0.4.9",
-    "@solana/web3.js": "^1.87.6",
+    "@solana/spl-token": "^0.1.8",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.34",
     "@solana/wallet-adapter-wallets": "^0.19.23",
-    "@solana/web3.js": "^1.87.6"
-}
-
+    "@solana/web3.js": "^1.87.6",
+    "ethers": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/node": "^24.3.0",
+    "dotenv": "^17.2.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.2"
+  }
 }

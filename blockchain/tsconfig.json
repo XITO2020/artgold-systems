@@ -1,20 +1,30 @@
 {
-    "compilerOptions": {
-      "target": "es2020",
-      "lib": ["esnext"],
-      "strict": true,
-      "noEmit": false,
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "baseUrl": ".",
-      "paths": {
-        "@blockchain/*": ["./*"],
-        "@shared/*": ["../shared/*"]
-      }
-    },
-    "include": ["**/*.ts", "**/*.tsx", "../shared/**/*.ts"],
-    "exclude": ["node_modules", "dist", "build", "out"]
-  }
-  
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["es2020"],
+    "strict": true,
+    "noEmit": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
+  },
+  "include": [
+    "hardhat.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "out",
+    "scripts",
+    "test",
+    "../shared"
+  ]
+}

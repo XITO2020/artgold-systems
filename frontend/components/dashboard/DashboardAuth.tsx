@@ -7,7 +7,7 @@ import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { FcGoogle } from "react-icons/fc";
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 
 export function DashboardAuth() {
   const [isLogin, setIsLogin] = useState(true);

@@ -1,5 +1,5 @@
 
-import { PrismaClient } from '@prisma/client';
+import prisma from './lib/prisma';
 //infra web
 import express from 'express';
 import cors from 'cors';
@@ -17,12 +17,17 @@ import tabascoRoutes from './token/tabascoin';
 // ➕ nouvelles routes
 import { authRouter } from './auth/routes';
 import { walletRouter } from './wallet/routes';
+import artworksRouter from './artworks/controller';
+import usersRouter from './users/controller';
+import transactionsRouter from './transactions/controller';
+import portfolioRouter from './portfolio/controller';
+import categoriesRouter from './categories/controller';
+import contentValidationsRouter from './content-validations/controller';
 // Dashboard
 import { collectMetrics, renderDashboardHtml } from './metrics';
 
 dotenv.config(); // 1 charge .env: jwt_secret , database_url
 
-const prismaRoot = new PrismaClient();
 const app = express(); //2 crée serveur
 
 //3 infra web
@@ -44,11 +49,19 @@ app.use('/api/user', userRoutes);
 app.use('/api/nft', authenticate, requireAuth, nftRoutes);
 app.use('/api/token/agt', authenticate, requireAuth, agtokenRoutes);
 app.use('/api/token/tabascoin', authenticate, requireAuth, tabascoRoutes);
+app.use('/api/artworks', authenticate, requireAuth, artworksRouter);
+app.use('/api/users', authenticate, requireAuth, usersRouter);
+app.use('/api/transactions', authenticate, requireAuth, transactionsRouter);
+// Public listing endpoint for portfolio
+app.use('/api/portfolio', portfolioRouter);
+// Public categories endpoints
+app.use('/api/categories', categoriesRouter);
+// Protected content validations
+app.use('/api/content-validations', authenticate, requireAuth, contentValidationsRouter);
 
 // ➕ Nouvelles routes JWT & Wallet
 app.use('/auth', authRouter);
 app.use('/wallet',authenticate, requireAuth, walletRouter);
-
 
 // 5 endpoint JSON si je veux consommer depuis autre chose, par exemple ici mon dashboard
 app.get('/metrics.json', async (_req, res) => {

@@ -1,8 +1,7 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { prisma } from '@lib/db';
-import type { Prisma } from '@prisma/client';
+import { apiClient } from '@lib/db/prisma';
 import { distributeValue } from '@lib/value-distribution';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -31,37 +30,25 @@ export async function POST(req: Request) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         
-        // Find transaction by payment ID
-        const transaction = await prisma.transaction.findFirst({
-          where: { paymentId: paymentIntent.id }
-        });
+        // Récupérer la transaction depuis le backend (via API)
+        const transaction = await apiClient.get(`/transactions/by-payment/${paymentIntent.id}`);
 
         if (transaction) {
-          await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-            // Update transaction status
-            await tx.transaction.update({
-              where: { id: transaction.id },
-              data: { status: 'COMPLETED' }
-            });
-
-            // Handle artwork purchase if artworkId exists in metadata
-            const metadata = transaction.metadata as { artworkId?: string };
-            if (metadata?.artworkId) {
-              await distributeValue(
-                metadata.artworkId,
-                transaction.amount,
-                'SALE'
-              );
-            }
-
-            // Handle token purchase
-            if (!metadata?.artworkId) {
-              await tx.user.update({
-                where: { id: transaction.userId },
-                data: { balance: { increment: transaction.amount } }
-              });
-            }
+          // Marquer la transaction comme complétée (via API)
+          await apiClient.post('/transactions/complete', {
+            transactionId: transaction.id,
+            paymentId: paymentIntent.id
           });
+
+          // Répartition de valeur éventuelle (si oeuvre)
+          const metadata = transaction.metadata as { artworkId?: string };
+          if (metadata?.artworkId) {
+            await distributeValue(
+              metadata.artworkId,
+              transaction.amount,
+              'SALE'
+            );
+          }
         }
         break;
       }
@@ -69,9 +56,8 @@ export async function POST(req: Request) {
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         
-        await prisma.transaction.updateMany({
-          where: { paymentId: paymentIntent.id },
-          data: { status: 'FAILED' }
+        await apiClient.post('/transactions/fail', {
+          paymentId: paymentIntent.id
         });
         break;
       }

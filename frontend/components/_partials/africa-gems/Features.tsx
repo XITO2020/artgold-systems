@@ -20,9 +20,10 @@ interface FeaturesProps {
 
 const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
   const { theme } = useTheme();
-  const bgRef = useRef(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
-  const themeVars = {
+  // Define theme variables
+  const themeVars: Record<string, Record<string, string>> = {
     'silver-berry': {
       '--accent': 'hsl(10, 100%, 77%)',
       '--accentOne': 'hsl(365, 92.6%, 47.5%)', /* hover: links nav */
@@ -261,11 +262,13 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
   };
 
   useEffect(() => {
-    if (bgRef.current) {
-      const themeName = theme.name.toLowerCase().replace(/ /g, '-');
-      const themeVars = themeVars[themeName];
-      Object.keys(themeVars).forEach(key => {
-        bgRef.current.style.setProperty(key, themeVars[key]);
+    if (bgRef.current && theme) {
+      // Handle both string theme and theme object with name property
+      const themeName = (typeof theme === 'string' ? theme : (theme as any).name || '').toLowerCase().replace(/ /g, '-');
+      const currentThemeVars = themeVars[themeName] || themeVars['silver-berry']; // Fallback to default theme
+      
+      Object.entries(currentThemeVars).forEach(([key, value]) => {
+        bgRef.current?.style.setProperty(key, value);
       });
     }
   }, [theme]);

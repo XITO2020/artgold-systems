@@ -6,9 +6,22 @@ import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ui/select";
-import { useToast } from '#//use-toast';
-import { TOKEN_CONFIG, CONVERSION_RATES } from '@LIB/token-config';
-import { ethers } from 'ethers';
+import { useToast } from '@hooks/use-toast';
+import { TOKEN_CONFIG, CONVERSION_RATES } from '@lib/token-config';
+import { providers } from 'ethers';
+import type { ExternalProvider } from '@ethersproject/providers';
+
+declare global {
+  interface Window {
+    ethereum?: ExternalProvider & {
+      isMetaMask?: boolean;
+      isConnected: () => boolean;
+      request: (request: { method: string; params?: any[] }) => Promise<any>;
+      on: (event: string, handler: (...args: any[]) => void) => void;
+      removeListener: (event: string, handler: (...args: any[]) => void) => void;
+    };
+  }
+}
 
 interface TokenExchangeProps {
   tokenType: 'TABZ' | 'AGT';
@@ -28,13 +41,13 @@ export function TokenExchange({ tokenType, onSuccess }: TokenExchangeProps) {
       (tokenType === 'TABZ' ? CONVERSION_RATES.TABZ_TO_SOL : CONVERSION_RATES.AGT_TO_SOL);
     return value * rate;
   };
-
+  
   const handleExchange = async () => {
     if (!window.ethereum) {
       toast({
-        title: "Error",
-        description: "Please install MetaMask to exchange tokens",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Please install MetaMask to use this feature',
+        variant: 'destructive',
       });
       return;
     }
@@ -43,9 +56,13 @@ export function TokenExchange({ tokenType, onSuccess }: TokenExchangeProps) {
 
     try {
       // Connect to MetaMask
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
+      const ethereum = window.ethereum;
+      if (!ethereum) {
+        throw new Error('Ethereum provider not found');
+      }
+      const provider = new providers.Web3Provider(ethereum as ExternalProvider);
+      await provider.send('eth_requestAccounts', []);
+      const signer = provider.getSigner();
 
       // Create exchange transaction
       const response = await fetch('/api/exchange', {

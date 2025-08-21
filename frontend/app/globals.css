@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -295,7 +298,7 @@ h1, h3, h4 {
     --light:#EEDD66;
     --sombre: #54000a;
     --quadriary:#d9a100;
-    --quintary:#black;
+    --quintary:black;
   }
 
   .metal-lazuli {
@@ -587,9 +590,15 @@ h1, h3, h4 {
   }
 }
 
+@layer utilities {
+  .border-border {
+    border-color: hsl(var(--border));
+  }
+}
+
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
   body {
     background: var(--background);

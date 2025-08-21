@@ -5,7 +5,7 @@ import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import { Upload, Edit } from "lucide-react";
 import Image from "next/image";
-import { ArtworkMetadata } from "T/artwork";
+import { ArtworkMetadata } from "@t/artwork";
 
 export function CreatedArtworks() {
   const [artworks, setArtworks] = useState<ArtworkMetadata[]>([]);

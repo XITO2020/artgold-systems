@@ -5,7 +5,7 @@ import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import { Heart, Share } from 'lucide-react';
 import Image from 'next/image';
-import { useToast } from '#//use-toast';
+import { useToast } from '@hooks/use-toast';
 
 interface GalleryGridProps {
   view: 'grid' | 'masonry' | 'list';

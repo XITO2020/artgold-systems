@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ui/dialog';
 import { Input } from "@ui/input";
 import { Heart, Share, MessageSquare, RotateCw } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { useToast } from '#/use-toast';
+import { useToast } from '@hooks/use-toast';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';

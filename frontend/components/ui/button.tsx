@@ -35,10 +35,20 @@ const sizes: Record<Size, string> = {
   icon: "h-10 w-10"
 };
 
+export const buttonVariants = ({ variant = 'default', size = 'default', className = '' }: { variant?: Variant; size?: Size; className?: string } = {}) => {
+  return cn(
+    base,
+    variants[variant],
+    sizes[size],
+    className
+  );
+};
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", ...props }, ref) => (
     <button ref={ref} className={cn(base, variants[variant], sizes[size], className)} {...props} />
   )
 );
 Button.displayName = "Button";
+
 export default Button;

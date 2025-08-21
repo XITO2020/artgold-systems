@@ -2,8 +2,7 @@
 import os from "os";
 import process from "process";
 import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "./lib/prisma";
 
 export type Metrics = {
   app: {

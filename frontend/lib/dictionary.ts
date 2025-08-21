@@ -2,14 +2,14 @@ import 'server-only';
 
 const dictionaries = {
   en: {
-    home: () => import('$/locales/en/home.json').then((module) => module.default),
-    slider: () => import('$/locales/en/slider.json').then((module) => module.default),
-    explore: () => import('$/locales/en/explore.json').then((module) => module.default)
+    home: () => import('../locales/en/home.json').then((module) => module.default),
+    slider: () => import('../locales/en/slider.json').then((module) => module.default),
+    explore: () => import('../locales/en/explore.json').then((module) => module.default)
   },
   fr: {
-    home: () => import('$/locales/fr/home.json').then((module) => module.default),
-    slider: () => import('$/locales/fr/slider.json').then((module) => module.default),
-    explore: () => import('$/locales/fr/explore.json').then((module) => module.default)
+    home: () => import('../locales/fr/home.json').then((module) => module.default),
+    slider: () => import('../locales/fr/slider.json').then((module) => module.default),
+    explore: () => import('../locales/fr/explore.json').then((module) => module.default)
   }
 };
 

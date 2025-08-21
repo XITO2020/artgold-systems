@@ -1,4 +1,4 @@
-import { ArtworkMetadata } from 'T/artwork';
+import { ArtworkMetadata } from '@t/artwork';
 import Jimp from 'jimp';
 import deepai from 'deepai';
 

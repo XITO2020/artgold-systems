@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --project tsconfig.dev.json --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "postinstall": "prisma generate --schema ../shared/prisma/schema.prisma",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^6.14.0",
     "@solana/web3.js": "^1.98.4",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
@@ -31,8 +32,9 @@
     "@types/express-validator": "^3.0.2",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.6.0",
-    "prisma": "^5.0.0",
+    "prisma": "^6.14.0",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247"

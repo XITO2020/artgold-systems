@@ -6,8 +6,7 @@ import { normalizeEvmAddress, normalizeSolAddress } from "./normalize";
 import nacl from "tweetnacl";
 import { PublicKey } from "@solana/web3.js";
 import { verifyMessage } from "viem";
-
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma";
 export const walletRouter = Router();
 
 const WalletChainSchema = z.enum(["EVM", "SOLANA"]);

@@ -7,7 +7,7 @@ import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Heart, Share, MessageSquare, Play, Pause } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { useToast } from '#/use-toast';
+import { useToast } from '@hooks/use-toast';
 
 interface VideoModalProps {
   isOpen: boolean;

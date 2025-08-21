@@ -35,6 +35,8 @@ model IPFSMedia {
   tshirts           TShirt[]
   chapterThumbnails Chapter[]       @relation("ChapterThumbnail")
   chapterVideos     Chapter[]       @relation("ChapterVideo")
+  nfts              Nft[]
+  tokens            Token[]
 
   @@index([cid])
   @@index([status])
@@ -44,7 +46,6 @@ model IPFSMedia {
 model Article {
   id        String     @id @default(cuid())
   title     String
-  slug      String
   content   String     @db.Text
   imageId   String?
   image     IPFSMedia? @relation(fields: [imageId], references: [id])
@@ -122,34 +123,34 @@ enum UserStatus {
 model User {
   id              String    @id @default(cuid())
   name            String?
+  passwordHash    String?
   email           String?   @unique
   emailVerified   DateTime?
   image           String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  loginCount      Int       @default(0)
-  discordVerified Boolean   @default(false)
-  discordRoles    String[]  @default([])
-  isAdmin         Boolean   @default(false)
-  status          String    @default("PENDING")
   balance         Decimal   @default(0) @db.Decimal(20, 8)
   artworkCount    Int       @default(0)
-  fontColor       String?
-  fontFamily      String?
-  
-  accounts        Account[]
-  sessions        Session[]
-  articles        Article[]
+  isAdmin         Boolean   @default(false)
+  status          String    @default("ACTIVE") // ACTIVE, FROZEN, BANNED
+  discordVerified Boolean   @default(false)
+  discordRoles    String[]  @default([])
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  bonusSlots      Int       @default(0)
+  maxArtworks     Int       @default(12)
+  bonusSlotTokens Int       @default(0)
+
+  //user relations
+  accounts                  Account[]
+  sessions                  Session[]
   artworks                  Artwork[]
   artworkOffers             ArtworkOffer[]
-  memeralUploads            MemeralReserve[]
   portfolioItems            PortfolioItem[]
   portfolioComments         PortfolioComment[]
   portfolioLikes            PortfolioLike[]
   metrics                   UserMetrics?
   notifications             Notification[]
   tokens                    Token[]
-  transactions              BankTransaction[]
+  transactions              Transaction[]
   exchanges                 Exchange[]
   fraudAttempts             FraudAttempt[]
   artworkPurchases          ArtworkPurchase[]
@@ -160,8 +161,13 @@ model User {
   bonusSlotsList            BonusSlot[]
   bonusSlotTransfersFrom    BonusSlotTransfer[]        @relation("FromUser")
   bonusSlotTransfersTo      BonusSlotTransfer[]        @relation("ToUser")
+  articles                  Article[]
   tshirtPurchases           TShirtPurchase[]
-  Transaction               Transaction[]
+  refreshTokens             RefreshToken[]
+  wallets                   Wallet[]
+  paymentAccounts           PaymentAccount[]
+  nftsOwned                 Nft[]                      @relation("NftOwner")
+  nftsCreated               Nft[]                      @relation("NftCreator")
 }
 
 enum Visibility {
@@ -209,7 +215,7 @@ model Artwork {
   valueDistributions ValueDistribution[]
   bonusSlots         BonusSlot[]
   offers             ArtworkOffer[]
-  bankTransactions   BankTransaction[]
+  Nft                Nft?
 }
 
 model ArtworkValidation {
@@ -300,6 +306,7 @@ model MarketMetrics {
 }
 
 // Tokens and Transactions
+
 // 1 Definition des Enums
 enum TokenType {
   TABZ
@@ -336,7 +343,9 @@ model Token {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
+  user        User       @relation(fields: [userId], references: [id])
+  IPFSMedia   IPFSMedia? @relation(fields: [iPFSMediaId], references: [id])
+  iPFSMediaId String?
 }
 
 model Transaction {
@@ -367,52 +376,11 @@ model Exchange {
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
-}
+  user     User    @relation(fields: [userId], references: [id])
+  walletId String?
+  wallet   Wallet? @relation(fields: [walletId], references: [id])
 
-model MemeralReserve {
-  id           String            @id @default(cuid())
-  memeHash     String            @unique
-  title        String
-  url          String
-  addedBy      String
-  tabzValue    Int               @default(1000)
-  createdAt    DateTime          @default(now())
-  //Relations
-  user         User              @relation(fields: [addedBy], references: [id])
-  transactions BankTransaction[]
-
-  @@map("memeral_reserve")
-}
-
-model BankTransaction {
-  id          String          @id @default(cuid())
-  userId      String
-  type        String
-  tokenType   String          @map("token_type")
-  amount      Decimal
-  fromAddress String          @map("from_address")
-  toAddress   String          @map("to_address")
-  artworkId   String?         @map("artwork_id")
-  memeHash    String?         @map("meme_hash")
-  metadata    Json?
-  createdAt   DateTime        @default(now())
-  //Relations
-  user        User            @relation(fields: [userId], references: [id])
-  artwork     Artwork?        @relation(fields: [artworkId], references: [id])
-  meme        MemeralReserve? @relation(fields: [memeHash], references: [memeHash])
-
-  @@map("bank_transactions")
-}
-
-model BankReserve {
-  id            String   @id @default(cuid())
-  tokenType     String   @unique @map("token_type")
-  currentAmount Decimal  @map("current_amount")
-  minReserve    Decimal  @map("min_reserve")
-  lastUpdated   DateTime @default(now()) @map("last_updated")
-
-  @@map("bank_reserves")
+  @@index([walletId])
 }
 
 // Categories and Submissions
@@ -575,6 +543,7 @@ model WebhookRetry {
 }
 
 //  Add notification system:
+
 model Notification {
   id        String           @id @default(cuid())
   userId    String
@@ -737,12 +706,146 @@ model PortfolioComment {
 model PortfolioLike {
   userId    String
   itemId    String
-  createdAt DateTime      @default(now())
+  createdAt DateTime @default(now())
+
   // Relations
-  user      User          @relation(fields: [userId], references: [id])
-  item      PortfolioItem @relation(fields: [itemId], references: [id])
+  user User          @relation(fields: [userId], references: [id])
+  item PortfolioItem @relation(fields: [itemId], references: [id])
 
   @@id([userId, itemId])
   @@index([userId])
   @@index([itemId])
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+/// Chaînes supportées
+enum WalletChain {
+  EVM
+  SOLANA
+}
+
+/// Compte / wallet on-chain lié à un user
+model Wallet {
+  id                String      @id @default(cuid())
+  userId            String
+  chain             WalletChain
+  network           String // ex: 'mainnet', 'sepolia', 'polygon', 'arbitrum', 'solana-mainnet', 'devnet'
+  address           String // adresse telle que saisie (checksum EVM, base58 Solana)
+  addressNormalized String // ex: EVM en lowercase, Solana en base58 normalisé
+  publicKey         String? // utile surtout pour Solana (base58)
+  signatureAlg      String? // "secp256k1" (EVM) | "ed25519" (Solana)
+  nonce             String? // dernier challenge à signer pour (re)lier
+  verifiedAt        DateTime?
+  isPrimary         Boolean     @default(false)
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  exchanges         Exchange[]
+  user              User        @relation(fields: [userId], references: [id])
+
+  // Snapshots on-chain des balances ERC20 / SPL associés :
+  tokenBalances WalletTokenBalance[]
+
+  @@unique([chain, network, addressNormalized])
+  @@index([userId])
+  @@index([isPrimary])
+}
+
+/// Contrat / Mint on-chain pour un token fongible
+/// - EVM: address = contrat ERC-20, mint = null
+/// - Solana: address = null, mint = adresse mint SPL
+model TokenContract {
+  id        String      @id @default(cuid())
+  chain     WalletChain
+  network   String
+  address   String? // ERC-20
+  mint      String? // SPL mint
+  symbol    String
+  name      String?
+  decimals  Int
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  balances WalletTokenBalance[]
+
+  @@unique([chain, network, address, mint])
+  @@index([symbol])
+}
+
+/// Snapshot de balance on-chain pour un wallet donné et un token donné
+model WalletTokenBalance {
+  id           String   @id @default(cuid())
+  walletId     String
+  contractId   String
+  amount       Decimal  @db.Decimal(38, 18) // grande précision pour ERC20/SPL
+  lastSyncedAt DateTime @default(now())
+
+  wallet   Wallet        @relation(fields: [walletId], references: [id])
+  contract TokenContract @relation(fields: [contractId], references: [id])
+
+  @@unique([walletId, contractId])
+  @@index([lastSyncedAt])
+}
+
+/// Comptes de paiement off-chain (ex: Stripe)
+enum PaymentProvider {
+  STRIPE
+}
+
+model PaymentAccount {
+  id         String          @id @default(cuid())
+  userId     String
+  provider   PaymentProvider
+  customerId String? // ex: Stripe customer id (pour acheteur)
+  accountId  String? // ex: Stripe connect account id (pour créateur)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([provider, customerId])
+  @@unique([provider, accountId])
+  @@index([userId])
+}
+
+model Nft {
+  id           String    @id @default(cuid())
+  title        String
+  description  String?   @db.Text
+  mediaId      String
+  media        IPFSMedia @relation(fields: [mediaId], references: [id])
+  ownerId      String
+  owner        User      @relation("NftOwner", fields: [ownerId], references: [id])
+  creatorId    String
+  creator      User      @relation("NftCreator", fields: [creatorId], references: [id])
+  chain        String
+  network      String
+  tokenAddress String?
+  tokenId      String?
+  metadataUri  String?
+  price        Decimal?  @db.Decimal(20, 8)
+  status       String    @default("DRAFT")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // 🔗 Lien optionnel vers l'œuvre d'origine
+  artworkId String?
+  artwork   Artwork? @relation(fields: [artworkId], references: [id], onDelete: SetNull)
+
+  @@unique([artworkId])
+  @@index([ownerId])
+  @@index([creatorId])
+  @@index([chain, network])
+  @@index([artworkId])
 }

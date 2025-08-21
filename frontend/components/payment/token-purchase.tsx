@@ -6,8 +6,8 @@ import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import { useToast } from '#/use-toast';
-import { TOKEN_CONFIG } from '@LIB/token-config';
+import { useToast } from '@hooks/use-toast';
+import { TOKEN_CONFIG } from '@lib/token-config';
 
 interface TokenPurchaseProps {
   tokenType: 'TABZ' | 'AGT';

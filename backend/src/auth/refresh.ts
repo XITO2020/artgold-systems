@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 
-const prisma = new PrismaClient();
 const REFRESH_TTL_DAYS = Number(process.env.REFRESH_TOKEN_TTL_DAYS || 14);
 
 function base64url(buf: Buffer) {

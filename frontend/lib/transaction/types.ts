@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client';
+// Local transaction types for frontend usage (no Prisma types on frontend)
 
 export type TransactionStatus = 'PENDING' | 'COMPLETED' | 'FAILED';
 export type TransactionType = 'PURCHASE' | 'SALE' | 'EXCHANGE' | 'CONVERSION' | 'AIRDROP';

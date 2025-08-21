@@ -1,12 +1,11 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import { signToken, verifyToken } from "./jwt";
 import { setAuthCookies, clearAuthCookies } from "./cookies";
 import { issueRefreshToken, rotateRefreshToken, revokeRefreshToken, hashToken } from "./refresh";
 import { deriveRoles } from "./roles";
 
-const prisma = new PrismaClient();
 export const authRouter = Router();
 
 authRouter.post("/login",

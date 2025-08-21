@@ -3,7 +3,7 @@
 import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import Image from "next/image";
-import { TOKEN_CONFIG } from "@LIB/token-config";
+import { TOKEN_CONFIG } from "@lib/token-config";
 
 export default function TokenInfoPage() {
   const addToMetaMask = async (token: 'TABZ' | 'AGT') => {

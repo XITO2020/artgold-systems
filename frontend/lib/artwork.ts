@@ -1,6 +1,6 @@
 import QRCode from 'qrcode';
 import { customAlphabet } from 'nanoid';
-import { ArtworkMetadata } from 'T/artwork';
+import { ArtworkMetadata } from '@t/artwork';
 
 const nanoid = customAlphabet('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 12);
 

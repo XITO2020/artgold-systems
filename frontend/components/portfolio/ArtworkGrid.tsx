@@ -6,7 +6,13 @@ import { Button } from "@ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import Image from 'next/image';
 import { EnhancedImageModal } from '@comp/modals/portfolio/EnhancedImageModal';
-import { getIPFSUrl } from '$/services/pinataServices';
+
+// Simple IPFS gateway resolver
+function getIPFSUrl(cid: string): string {
+  if (!cid) return '';
+  if (cid.startsWith('http')) return cid;
+  return `https://ipfs.io/ipfs/${cid}`;
+}
 
 interface Artwork {
   id: string;

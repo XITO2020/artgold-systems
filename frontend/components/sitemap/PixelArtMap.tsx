@@ -3,11 +3,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader, OrbitControls, type GLTF } from 'three-stdlib';
 import styles from '@/app/wonderstyles/sitemap.module.css';
 import MapUI from './MapUI';
-import { MapLocation } from '@t/sitemap.ts;
+import type { MapLocation } from '@t/sitemap';
 
 export default function PixelArtMap() {
   const mountRef = useRef<HTMLDivElement>(null);

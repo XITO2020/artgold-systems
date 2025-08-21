@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import Image from "next/image";
-import type { ArtworkMetadata } from "T/artwork";
+import type { ArtworkMetadata } from "@t/artwork";
 
 export function ArtworkCollection() {
   const [artworks, setArtworks] = useState<ArtworkMetadata[]>([]);

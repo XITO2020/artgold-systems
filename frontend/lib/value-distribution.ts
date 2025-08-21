@@ -1,6 +1,5 @@
-import { prisma } from './db';
+import { apiClient } from './db/prisma';
 import { sendValueChangeNotifications } from './mail/notifications';
-import { Decimal } from '@prisma/client/runtime/library';
 
 export const VALUE_SHARES = {
   CREATOR: 0.10, // 10%
@@ -13,15 +12,8 @@ export async function distributeValue(
   valueIncrease: number,
   reason: 'SALE' | 'LIKES' | 'ADMIN'
 ) {
-  const artwork = await prisma.artwork.findUnique({
-    where: { id: artworkId },
-    include: {
-      artist: true,
-      purchases: {
-        include: { buyer: true }
-      }
-    }
-  });
+  // Fetch artwork from backend API
+  const artwork = await apiClient.get(`/artworks/${artworkId}`);
 
   if (!artwork) throw new Error('Artwork not found');
 
@@ -33,51 +25,15 @@ export async function distributeValue(
   const ownerShare = valueIncrease * VALUE_SHARES.OWNER;
   const buyersShare = valueIncrease * VALUE_SHARES.BUYERS;
 
-  await prisma.$transaction(async (tx) => {
-    // Update artwork value
-    await tx.artwork.update({
-      where: { id: artworkId },
-      data: { currentValue: newValue }
-    });
-
-    // Update creator balance
-    await tx.user.update({
-      where: { id: artwork.artist.id },
-      data: { balance: { increment: creatorShare } }
-    });
-
-    // Update owner balance
-    await tx.user.update({
-      where: { id: artwork.artistId },
-      data: { balance: { increment: ownerShare } }
-    });
-
-    // Distribute buyers share
-    if (artwork.purchases.length > 0) {
-      const sharePerBuyer = buyersShare / artwork.purchases.length;
-      
-      await Promise.all(
-        artwork.purchases.map(purchase => 
-          tx.user.update({
-            where: { id: purchase.buyerId },
-            data: { balance: { increment: sharePerBuyer } }
-          })
-        )
-      );
-    }
-
-    // Record distribution
-    await tx.valueDistribution.create({
-      data: {
-        artworkId,
-        previousValue,
-        newValue,
-        creatorShare,
-        ownerShare,
-        buyersShare,
-        reason
-      }
-    });
+  // Perform distribution via backend API (single transactional endpoint)
+  await apiClient.post(`/artworks/${artworkId}/distribute`, {
+    valueIncrease,
+    reason,
+    previousValue,
+    newValue,
+    creatorShare,
+    ownerShare,
+    buyersShare
   });
 
   // Send notifications

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@lib/cn";
 
-type Variant = "default" | "secondary" | "destructive" | "outline" | "accentOne"; // ← ajout
+type Variant = "default" | "secondary" | "destructive" | "outline" | "accentOne" | "success"; // ← ajout
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: Variant;
@@ -14,7 +14,8 @@ const variants: Record<Variant, string> = {
   secondary: "border-transparent bg-secondary text-secondary-foreground",
   destructive: "border-transparent bg-red-600 text-white",
   outline: "text-foreground",
-  accentOne: "border-transparent bg-violet-600 text-white"
+  accentOne: "border-transparent bg-violet-600 text-white",
+  success: "border-transparent bg-green-600 text-white"
 };
 
 export function Badge({ className, variant = "default", ...props }: BadgeProps) {

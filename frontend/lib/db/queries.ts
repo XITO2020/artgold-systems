@@ -1,34 +1,13 @@
-import { prisma } from './prisma';
-import { ArtCategory } from 'T/artist';
-import type { User, Artwork } from '@prisma/client';
+import { apiClient } from './prisma';
+import { ArtCategory } from '@t/artwork';
 
-export async function getArtistLevel(userId: string): Promise<(User & {
-  artworks: Pick<Artwork, 'id' | 'category' | 'points' | 'createdAt'>[];
-}) | null> {
-  return await prisma.user.findUnique({
-    where: { id: userId },
-    include: {
-      artworks: {
-        select: {
-          id: true,
-          category: true,
-          points: true,
-          createdAt: true
-        }
-      }
-    }
-  });
+export async function getArtistLevel(userId: string) {
+  // Délégué au backend
+  return await apiClient.get(`/users/${userId}/level`);
 }
 
-
 export async function getArtistArtworks(userId: string, category?: ArtCategory) {
-  return await prisma.artwork.findMany({
-    where: {
-      artistId: userId,
-      ...(category && { category })
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
+  const qs = new URLSearchParams();
+  if (category) qs.set('category', String(category));
+  return await apiClient.get(`/users/${userId}/artworks?${qs.toString()}`);
 }

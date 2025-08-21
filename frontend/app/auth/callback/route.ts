@@ -1,15 +1,8 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+// frontend/app/auth/callback/route.ts
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
-  const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get('code');
-
-  if (code) {
-    const supabase = createRouteHandlerClient({ cookies });
-    await supabase.auth.exchangeCodeForSession(code);
-  }
-
-  return NextResponse.redirect(requestUrl.origin);
+  const url = new URL(request.url);
+  // on ignore tout (ex-code) et on renvoie à l’accueil (localisé si besoin)
+  return NextResponse.redirect(url.origin + '/fr');
 }

@@ -1,4 +1,4 @@
-import { ArtworkMetadata } from 'T/artwork';
+import { ArtworkMetadata } from '@t/artwork';
 import { POINTS_SYSTEM } from './artist-level';
 
 interface PricingFactors {

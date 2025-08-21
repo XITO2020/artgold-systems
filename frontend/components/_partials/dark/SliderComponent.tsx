@@ -2,10 +2,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useTheme } from '@comp/theme/ThemeContext';
-import { useMediaQuery } from '#/use-media-query';
+import { useMediaQuery } from '@hooks/use-media-query';
 import Link from 'next/link';
 import "./neon.module.scss";
 

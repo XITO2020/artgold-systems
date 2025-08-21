@@ -10,7 +10,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useTheme } from '@comp/theme/ThemeContext';
-import { useMediaQuery } from "#/use-media-query";
+import { useMediaQuery } from "@hooks/use-media-query";
 
 export default function Navigation() {
   const params = useParams();

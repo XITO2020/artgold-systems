@@ -10,7 +10,7 @@ import {
   Video
 } from 'lucide-react';
 import { FaDiscord, FaTiktok, FaInstagram } from "react-icons/fa";
-import { useToast } from "#//use-toast";
+import { useToast } from "@hooks/use-toast";
 
 interface ShareModalProps {
   isOpen: boolean;

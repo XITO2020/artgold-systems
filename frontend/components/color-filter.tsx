@@ -5,7 +5,7 @@ import { Button } from "@ui/button";
 import { ScrollArea } from "@ui/scroll-area";
 import { Check } from "lucide-react";
 import { useTheme } from "next-themes";
-import { COLOR_FILTERS } from "T/gallery";  
+import { COLOR_FILTERS } from "@t/gallery";
 
 interface ColorFilterProps {
   onColorSelect: (color: string) => void;

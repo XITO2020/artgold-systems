@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
-import { validateArtworkContent } from '@LIB/admin';
-import { generateQRCode, generateSerialNumber } from '@LIB/artwork';
-import { pinFileToIPFS } from '$/services/pinataServices';
+import apiClient from '@lib/db/prisma';
+import { validateArtworkContent } from '@lib/admin';
+import { generateQRCode, generateSerialNumber } from '@lib/artwork';
 
 export async function POST(req: Request) {
   try {
@@ -14,26 +13,27 @@ export async function POST(req: Request) {
 
     const { title, description, category, ipfsCid } = await req.json();
 
-    // Generate serial number first
+    // Optionally validate content before sending to backend
+    // await validateArtworkContent({ title, description, category });
+
+    // Prepare identifiers required by backend
+    const id = crypto.randomUUID();
     const serialNumber = await generateSerialNumber();
     const qrCode = await generateQRCode(serialNumber);
 
-    // Create artwork record with IPFS media reference
-    const artwork = await prisma.artwork.create({
-      data: {
-        title,
-        description,
-        category,
-        serialNumber,
-        qrCode,
-        imageId: ipfsCid,
-        location: { latitude: 0, longitude: 0, address: "Digital Content" },
-        dimensions: { width: 1920, height: 1080, unit: "px" },
-        artistId: session.user.id,
-        points: 0,
-        isFirst: true,
-        currentValue: 0
-      },
+    // Create artwork via backend API; backend handles media record creation
+    const artwork = await apiClient.post(`/users/${session.user.id}/artworks`, {
+      id,
+      title,
+      description,
+      category,
+      serialNumber,
+      qrCode,
+      imageUrl: ipfsCid,
+      location: { latitude: 0, longitude: 0, address: 'Digital Content' },
+      dimensions: { width: 1920, height: 1080, unit: 'px' },
+      points: 0,
+      isFirst: true
     });
 
     // Update artist level

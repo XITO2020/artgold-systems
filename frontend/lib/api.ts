@@ -1,5 +1,5 @@
 // frontend/lib/api.ts
-const API = process.env.NEXT_PUBLIC_API_BASE!;
+const API = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
 type Opts = RequestInit & { auth?: boolean };
 
@@ -7,7 +7,7 @@ export async function api(path: string, opts: Opts = {}) {
   const url = `${API}${path}`;
   const res = await fetch(url, {
     ...opts,
-    credentials: 'include',            // <- cookies HttpOnly
+    credentials: 'include', // <- cookies HttpOnly
     headers: {
       'Content-Type': 'application/json',
       ...(opts.headers || {}),
@@ -48,7 +48,9 @@ async function handleJson(res: Response) {
   return data;
 }
 
-// Inscription (on garde ton endpoint actuel côté back)
+// Helpers alignés sur ton backend
+
+// Inscription (ton endpoint existant côté back)
 export function signupEmailPassword(data: { email: string; password: string; name?: string }) {
   return api(`/api/user/signup`, {
     method: "POST",

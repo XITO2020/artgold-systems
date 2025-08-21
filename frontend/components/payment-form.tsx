@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { Button } from '@ui/button';
-import { useToast } from '#/use-toast';
+import { useToast } from '@hooks/use-toast';
 
 interface PaymentFormProps {
   amount: number;

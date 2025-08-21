@@ -1,94 +1,115 @@
-"use client";
+'use client'
 
-import React, { useRef, useEffect } from 'react';
-import { Card } from "@ui/card";
-import {
-  Shield,
-  TrendingUp,
-  Users,
-  Banknote,
-  Store,
-  Factory
-} from 'lucide-react';
-import Link from 'next/link';
-import { useTheme } from '../../theme/ThemeContext';
+import React, { useRef, useEffect, useMemo } from 'react'
+import { Card } from '@ui/card'
+import { Shield, TrendingUp, Users, Banknote, Store, Factory } from 'lucide-react'
+import Link from 'next/link'
+import { useTheme } from '../../theme/ThemeContext'
 
 interface FeaturesProps {
-  dict: any;
-  lang: string;
+  dict: any
+  lang: string
 }
 
-const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
-  const { theme } = useTheme();
-  const bgRef = useRef(null);
+/* === Utilitaires pour lire les variables CSS de TOUTES tes classes de thème === */
+const THEME_NAMES = [
+  'light',          // <- correspond à :root
+  'dark',
+  'emerald',
+  'silver-berry',
+  'metal-lazuli',
+  'diamond-pastel',
+  'africa-gems',
+  'golden-tacos',
+  'agua-saphir',
+  'chili-ruby',
+] as const
+type ThemeName = typeof THEME_NAMES[number]
 
-  const themeVars = {
-    'dark': {
-      '--background': 'linear-gradient(94deg, hsl(0, 0%, 0%) 0%, hsl(289, 100%, 9%) 50%, hsl(241, 100%, 12%) 100%)',
-      '--foreground': 'hsl(240, 100%, 100%)',
-      '--card': 'hsl(222.2, 84%, 4.9%)',
-      '--card-foreground': 'hsl(210, 40%, 98%)',
-      '--popover': 'hsl(222.2, 84%, 4.9%)',
-      '--popover-foreground': 'hsl(210, 40%, 98%)',
-      '--primary': 'hsl(245, 92.6%, 47.5%)',
-      '--primary-foreground': 'hsl(222.2, 47.4%, 11.2%)',
-      '--secondary': 'hsl(217.2, 32.6%, 17.5%)',
-      '--secondary-foreground': 'hsl(210, 40%, 98%)',
-      '--quadrary': 'hsl(190, 100%, 88%)',
-      '--muted': 'hsl(217.2, 32.6%, 17.5%)',
-      '--muted-foreground': 'hsl(303, 100%, 72%)',
-      '--accent': 'hsl(245, 92.6%, 27.5%)', /* hover: liens nav */
-      '--accentOne': 'hsl(365, 92.6%, 47.5%)', /* hover: liens nav */
-      '--accentTwo': 'hsl(289, 92.6%, 27.5%)', /* hover: liens nav */
-      '--accentThree': 'hsl(9, 92.6%, 57.5%)', /* hover: liens nav */
-      '--accentFour': 'hsl(215, 92.6%, 77.5%)', /* hover: liens nav */
-      '--accent-foreground': 'hsl(210, 40%, 98%)',
-      '--destructive': 'hsl(0, 62.8%, 30.6%)',
-      '--destructive-foreground': 'hsl(210, 40%, 98%)',
-      '--border': 'hsl(217.2, 32.6%, 17.5%)',
-      '--input': 'hsl(217.2, 32.6%, 17.5%)',
-      '--ring': 'hsl(224.3, 76.3%, 48%)',
-      '--radius': '0.5rem',
-      '--classic': '#ffeb3b',
-      '--covering': 'linear-gradient(#040008 45%, midnightblue)',
-      '--white': '#fff',
-      '--sidebars': 'black',
-      '--sidetext': 'hsl(180, 100%, 65%)',
-      '--sidetext2': 'hsl(52, 100%, 70%)',
-      '--accent-hover': 'lightcyan',
-      '--accentOne-hover': 'lavender',
-      '--accentTwo-hover': 'peachpuff',
-      '--accentThree-hover': 'lemonchiffon',
-      '--accentFour-hover': 'palegreen',
-      '--accentOneText-hover': 'black',
-      '--accentTwoText-hover': 'black',
-      '--accentThreeText-hover': 'black',
-      '--accentFourText-hover': 'black',
+const VAR_KEYS = [
+  '--background',
+  '--card',
+  '--card-foreground',
+  '--primary',
+  '--primary-foreground',
+  '--secondary',
+  '--secondary-foreground',
+  '--muted',
+  '--muted-foreground',
+  '--accent',
+  '--accentOne',
+  '--accentTwo',
+  '--accentThree',
+  '--accentFour',
+  '--accent-foreground',
+  '--border',
+  '--ring',
+  '--quadriary',
+  '--quintary',
+  '--light',
+  '--sombre',
+] as const
+
+function readVarsFromElement(el: Element) {
+  const cs = getComputedStyle(el)
+  const out: Record<string, string> = {}
+  // ⚠️ on garde la clé AVEC les deux tirets (ex: "--background")
+  for (const k of VAR_KEYS) out[k] = cs.getPropertyValue(k).trim()
+  return out
+}
+
+function collectThemeVars(theme: ThemeName) {
+  if (theme === 'light') {
+    return readVarsFromElement(document.documentElement)
+  }
+  const probe = document.createElement('div')
+  probe.className = theme
+  probe.style.cssText = 'position:absolute;opacity:0;pointer-events:none'
+  document.body.appendChild(probe)
+  const vars = readVarsFromElement(probe)
+  probe.remove()
+  return vars
+}
+
+function useThemeVarsMap() {
+  return useMemo(() => {
+    if (typeof window === 'undefined') {
+      return {} as Record<ThemeName, Record<string, string>>
     }
-  };
+    const map = {} as Record<ThemeName, Record<string, string>>
+    for (const name of THEME_NAMES) map[name] = collectThemeVars(name)
+    return map
+  }, [])
+}
+/* === fin utilitaires === */
 
-  // Define themeVarsMap separately to avoid recursive reference
-  const themeVarsMap: Record<string, Record<string, string>> = {
-    'dark': darkThemeVars,
-    'light': lightThemeVars
-  };
+const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
+  const { theme } = useTheme()
+  const themeVarsMap = useThemeVarsMap()
+  const sectionRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (bgRef.current) {
-      const themeName = theme.toLowerCase();
-      const currentThemeVars = themeVarsMap[themeName] || darkThemeVars;
-      Object.keys(currentThemeVars).forEach(key => {
-        bgRef.current?.style.setProperty(key, currentThemeVars[key]);
-      });
+    if (!sectionRef.current) return
+    // normalise le nom (tes classes CSS sont en kebab-case)
+    const normalized = (theme || 'light').toLowerCase() as ThemeName
+    const currentVars =
+      themeVarsMap[normalized] ??
+      themeVarsMap['light'] ??
+      {}
+
+    // pousse les CSS custom properties sur la section si tu en as besoin localement
+    for (const [k, v] of Object.entries(currentVars)) {
+      if (v) sectionRef.current.style.setProperty(k, v)
     }
-  }, [theme]);
+  }, [theme, themeVarsMap])
 
   return (
-    <section className="py-20 bg-muted/50">
+    <section ref={sectionRef} className="py-20 bg-muted/50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12" style={{ color: "var(--classic)" }}>
+        <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--classic)' }}>
           {dict.home.features.title}
         </h2>
+
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="p-6 mb-2">
             <div className="mb-4">
@@ -96,11 +117,13 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
             </div>
             <h3 className="text-2xl font-semibold mb-2">{dict.home.features.validation.title}</h3>
             <p className="text-2xl text-muted-foreground text-yellow-200">
-              {dict.home.features.validation.description} 
+              {dict.home.features.validation.description}
             </p>
             <p className="text-2xl text-muted-foreground text-yellow-300">
-               {dict.home.features.validation.description2}</p>
+              {dict.home.features.validation.description2}
+            </p>
           </Card>
+
           <Card className="p-6 mb-2">
             <div className="mb-4">
               <TrendingUp className="h-12 w-12 text-teal-400" />
@@ -113,6 +136,7 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
               {dict.home.features.growth.description2}
             </p>
           </Card>
+
           <Card className="p-6">
             <div className="mb-4">
               <Users className="h-12 w-12 text-emerald-500" />
@@ -125,6 +149,7 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
               {dict.home.features.distribution.description2}
             </p>
           </Card>
+
           <Card className="p-6">
             <div className="flex flex-col items-center justify-center text-center">
               <Banknote className="h-12 w-12 text-lime-500" />
@@ -139,24 +164,23 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
               <p className="text-cyan-300">{dict.home.features.details.exp4}</p>
             </div>
           </Card>
+
           <Card className="p-6">
             <div className="flex flex-col items-center justify-center gap-2">
               <Store className="h-12 w-12 mb-2 text-pink-400" />
-              <h3 className="text-2xl  font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-2">
                 {dict.home.features.financing.title}
               </h3>
             </div>
             <div className="text-2xl flex flex-col justify-between h-[60%] mt-4 mx-auto">
               <p className="text-white">{dict.home.features.financing.exp1}</p>
               <div className="flex justify-evenly mb-3">
-                <Link href={`/${lang}/shop`}
-                className="h-[120px]">
+                <Link href={`/${lang}/shop`} className="h-[120px]">
                   <img src="/icons/tbcity.png" width="160" alt="tabascocity" />
                   <p>Opérer depuis ces sites</p>
                 </Link>
                 <Link href="www.tshirts.land" className="mx-auto h-[120px] text-center">
                   <img src="/icons/tshirtsland.png" width="100" alt="tshirtland" />
-                  
                 </Link>
               </div>
               <p className="mb-2 text-rose-200 text-center">{dict.home.features.financing.exp2}</p>
@@ -164,10 +188,11 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
               <p className="text-violet-200 text-center">{dict.home.features.financing.exp4}</p>
             </div>
           </Card>
+
           <Card className="p-6">
             <div className="flex flex-col items-center justify-center">
               <Factory className="h-12 w-12 mb-2 text-amber-500" />
-              <h3 className="text-2xl  font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-2">
                 {dict.home.features.industries.title}
               </h3>
             </div>
@@ -175,8 +200,7 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
               <p className="text-white mb-2">{dict.home.features.industries.exp1}</p>
               <div className="flex justify-evenly mb-3">
                 <Link href={`/${lang}/shop`}>
-                  <img src="/icons/shonen-detoured.png" width="160" alt="Shonen Industries"
-                  />
+                  <img src="/icons/shonen-detoured.png" width="160" alt="Shonen Industries" />
                 </Link>
               </div>
               <p className="mb-2 text-amber-500">{dict.home.features.industries.exp2}</p>
@@ -186,9 +210,11 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
           </Card>
         </div>
       </div>
-      <h2 className="text-center w-full mt-2 text-3xl font-neontitle text-yellow-200">{dict.home.nogen}</h2>
+      <h2 className="text-center w-full mt-2 text-3xl font-neontitle text-yellow-200">
+        {dict.home.nogen}
+      </h2>
     </section>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features

@@ -1,4 +1,4 @@
-import { ArtCategory } from 'T/artwork';
+import { ArtCategory } from '@t/artwork';
 import { CATEGORY_CONFIG } from '../config/categories';
 
 // Types for Google Vision API responses

@@ -1,4 +1,5 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "lib": [
       "dom",
@@ -18,6 +19,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/*": [
+        "./app/*"
+      ],
       "@comp/*": [
         "./components/*"
       ],

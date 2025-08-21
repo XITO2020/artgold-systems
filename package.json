@@ -1,6 +1,22 @@
 {
 	"dependencies": {
-		"@prisma/client": "^6.14.0"
+		"@prisma/client": "^6.14.0",
+		"@radix-ui/react-dialog": "^1.1.15",
+		"@radix-ui/react-dropdown-menu": "^2.1.16",
+		"@radix-ui/react-progress": "^1.1.7",
+		"@radix-ui/react-toast": "^1.2.15",
+		"@radix-ui/react-tooltip": "^1.2.8",
+		"@react-three/fiber": "8.15.18",
+		"class-variance-authority": "^0.7.1",
+		"slick-carousel": "^1.8.1",
+		"tailwind-merge": "^3.3.1",
+		"three": "0.153.0"
 	},
-	"packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247"
+	"packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
+	"devDependencies": {
+		"@types/react": "18",
+		"@types/react-dom": "18",
+		"@types/react-slick": "^0.23.13",
+		"sass": "^1.90.0"
+	}
 }

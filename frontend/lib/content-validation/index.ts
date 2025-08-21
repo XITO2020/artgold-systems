@@ -1,8 +1,8 @@
-import { prisma } from '../db';
+import { apiClient } from '@lib/db/prisma';
 import { detectExplicitContent } from './explicit-content';
 import { detectHateSpeech } from './hate-speech';
 import { validateCategory } from './category-validation';
-import type { ArtCategory } from 'T/artwork';
+import type { ArtCategory } from '@t/artwork';
 
 export interface ValidationResult {
   isValid: boolean;
@@ -65,21 +65,19 @@ export async function validateContent(
                  confidence > 0.8 ? 'APPROVED' :
                  'PENDING_REVIEW';
 
-  // Create validation record
-  await prisma.contentValidation.create({
-    data: {
-      contentId: metadata.reviewerId,
-      reviewerId: metadata.reviewerId,
-      status,
-      confidence,
-      details: {
-        aiScore: categoryResult.score,
-        explicitScore: Math.max(explicitResult.adult, explicitResult.racy),
-        hateScore: hateResult.score,
-        categoryScore: categoryResult.score,
-        reasons,
-        warnings
-      }
+  // Create validation record via backend
+  await apiClient.post('/content-validations', {
+    contentId: metadata.reviewerId,
+    reviewerId: metadata.reviewerId,
+    status,
+    confidence,
+    details: {
+      aiScore: categoryResult.score,
+      explicitScore: Math.max(explicitResult.adult, explicitResult.racy),
+      hateScore: hateResult.score,
+      categoryScore: categoryResult.score,
+      reasons,
+      warnings
     }
   });
 
