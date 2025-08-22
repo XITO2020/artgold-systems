@@ -1,5 +1,5 @@
 import { prisma } from './db';
-import { distributeValue } from './value-distribution';
+import { distributeValue } from '@lib/value-distribution';
 
 export async function reviewContent(
   contentId: string,

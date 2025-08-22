@@ -5,6 +5,7 @@ import { useTheme } from '@comp/theme/ThemeContext';
 import dynamic from 'next/dynamic';
 import LoadingScreen from './LoadingScreen';
 import VideoPlayer from "./VideoPlayer";
+// ValueDistribution will be imported dynamically based on theme
 
 interface HomeClientProps {
     initialDict: any;
@@ -14,6 +15,25 @@ interface HomeClientProps {
 const HomeClient: React.FC<HomeClientProps> = ({ initialDict, lang }) => {
     const { theme } = useTheme();
     const [matrixColumns, setMatrixColumns] = useState<JSX.Element[]>([]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Gérer le redimensionnement de la fenêtre
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        // Initialiser isMobile
+        handleResize();
+
+        // Ajouter l'écouteur d'événement
+        window.addEventListener('resize', handleResize);
+
+        // Nettoyer l'écouteur d'événement lors du démontage du composant
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // Générer les colonnes de la matrice
     useEffect(() => {
@@ -47,30 +67,43 @@ const HomeClient: React.FC<HomeClientProps> = ({ initialDict, lang }) => {
         return <LoadingScreen />;
     }
 
-    // Single dynamic import for each component
+    // Dynamic imports with explicit theme paths
     const SliderComponent = dynamic(
-        () => import(`../_partials/${theme}/SliderComponent`),
+        () => import(`../_partials/${theme}/SliderComponent`).catch(() => 
+            import('../_partials/light/SliderComponent')
+        ),
         { ssr: false, loading: () => <div>Loading Slider...</div> }
     );
 
+    const MobileSlider = dynamic(
+        () => import(`../_partials/${theme}/MobileSlider`).catch(() => 
+            import('../_partials/light/MobileSlider')
+        ),
+        { ssr: false, loading: () => <div>Loading Mobile Slider...</div> }
+    );
+
     const Hero = dynamic(
-        () => import(`../_partials/${theme}/Hero`),
-        { loading: () => <div>Loading Hero...</div> }
+        () => import(`../_partials/${theme}/Hero`).catch(() => 
+            import('../_partials/light/Hero')
+        ),
+        { ssr: false, loading: () => <div>Loading Hero...</div> }
     );
 
     const Features = dynamic(
-        () => import(`../_partials/${theme}/Features`),
-        { loading: () => <div>Loading Features...</div> }
+        () => import(`../_partials/${theme}/Features`).catch(() => 
+            import('../_partials/light/Features')
+        ),
+        { ssr: false, loading: () => <div>Loading Features...</div> }
     );
 
     const ValidationProcess = dynamic(
-        () => import(`../_partials/${theme}/validation-process`).then(mod => mod.ValidationProcess),
-        { loading: () => <div>Loading Validation Process...</div> }
+        () => import(`../_partials/${theme}/validation-process`).then(mod => mod.default || mod.ValidationProcess),
+        { ssr: false, loading: () => <div>Loading Validation Process...</div> }
     );
 
     const ValueDistribution = dynamic(
-        () => import(`../_partials/${theme}/value-distribution`).then(mod => mod.ValueDistribution),
-        { loading: () => <div>Loading Value Distribution...</div> }
+        () => import(`../_partials/${theme}/value-distribution`),
+        { ssr: false, loading: () => <div>Loading Value Distribution...</div> }
     );
 
     return (
@@ -81,7 +114,11 @@ const HomeClient: React.FC<HomeClientProps> = ({ initialDict, lang }) => {
                 </div>
             )}
             <section className="sliding">
-                <SliderComponent dict={initialDict} lang={lang} />
+                {isMobile ? (
+                    <MobileSlider dict={initialDict} lang={lang} />
+                ) : (
+                    <SliderComponent dict={initialDict} lang={lang} />
+                )}
             </section>
             
             <section className="homing mt-12">

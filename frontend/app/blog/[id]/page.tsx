@@ -64,10 +64,16 @@ export default function BlogArticlePage({ params }: { params: { id: string } }) 
   return (
     <div className="container max-w-4xl mx-auto py-8">
       <div className="mb-8">
-        <Link href="/blog" className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Articles
-        </Link>
+        <div className="mb-4">
+          <Button 
+            variant="ghost" 
+            className="p-0 h-auto text-muted-foreground hover:text-foreground"
+            onClick={() => window.history.back()}
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Articles
+          </Button>
+        </div>
         <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
         <p className="text-xl text-muted-foreground mb-6">{article.description}</p>
         
@@ -90,7 +96,7 @@ export default function BlogArticlePage({ params }: { params: { id: string } }) 
             <Video className={`h-5 w-5 ${viewMode === "video" ? "text-primary" : "text-muted-foreground"}`} />
             <Switch
               checked={viewMode === "text"}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setViewMode(e.target.checked ? "text" : "video")}
+              onCheckedChange={(checked: boolean) => setViewMode(checked ? "text" : "video")}
             />
             <FileText className={`h-5 w-5 ${viewMode === "text" ? "text-primary" : "text-muted-foreground"}`} />
           </div>

@@ -257,10 +257,10 @@ h1, h3, h4 {
   }
 
   .africa-gems {
-    --titleFont: "diamond-title";
-    --textFont: "diamond-text";
-    --PlusFont: "diamond-plus";
-    --background: linear-gradient(45deg, hsl(222.2, 84%, 89%), hsl(12, 100%, 98%));
+    --titleFont: "africa-title";
+    --textFont: "africa-text";
+    --PlusFont: "africa-plus";
+    --background: linear-gradient(45deg, #f9f2e8, #f5e6d9, #f2d9c9, #eccfb8);
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -302,9 +302,9 @@ h1, h3, h4 {
   }
 
   .metal-lazuli {
-    --titleFont: "diamond-title";
-    --textFont: "diamond-text";
-    --PlusFont: "diamond-plus";
+    --titleFont: "metal-title";
+    --textFont: "metal-text";
+    --PlusFont: "metal-plus";
     --background: linear-gradient(45deg, hsl(222.2, 84%, 89%), hsl(12, 100%, 98%));
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;

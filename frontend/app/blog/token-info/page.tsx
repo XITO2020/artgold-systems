@@ -8,29 +8,52 @@ import { TOKEN_CONFIG } from "@lib/token-config";
 export default function TokenInfoPage() {
   const addToMetaMask = async (token: 'TABZ' | 'AGT') => {
     try {
+      // Vérification du navigateur
+      if (typeof window === 'undefined') {
+        console.error('This function should be called in the browser');
+        return;
+      }
+
       const config = TOKEN_CONFIG[token];
-      // @ts-ignore
-      const ethereum = window.ethereum;
+      const ethereum = (window as any).ethereum as any;
       
       if (!ethereum) {
         alert('Please install MetaMask!');
         return;
       }
 
+      // Vérification de la configuration du token
+      if (!config.contractAddress) {
+        console.error('Contract address not found for token:', token);
+        return;
+      }
+
+      // Construction des paramètres de la requête
+      const params = {
+        type: 'ERC20',
+        options: {
+          address: config.contractAddress,
+          symbol: config.symbol,
+          decimals: config.decimals,
+          image: `${window.location.origin}${config.logo}`,
+        },
+      };
+
+      // Vérification de la chaîne de connexion
+      const chainId = await ethereum.request({ method: 'eth_chainId' });
+      if (config.network === 'ethereum' && chainId !== '0x1') {
+        alert('Please connect to Ethereum Mainnet to add this token');
+        return;
+      }
+
+      // Envoi de la requête à MetaMask
       await ethereum.request({
         method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20',
-          options: {
-            address: config.network === 'ethereum' ? config.contractAddress : '',
-            symbol: config.symbol,
-            decimals: config.decimals,
-            image: `${window.location.origin}${config.logo}`,
-          },
-        },
+        params
       });
     } catch (error) {
       console.error('Error adding token:', error);
+      alert('Failed to add token to MetaMask. Please try again.');
     }
   };
 

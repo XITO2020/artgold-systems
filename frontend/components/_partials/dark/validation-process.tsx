@@ -8,7 +8,7 @@ interface ValueDistributionProps {
   lang: string;
 }
 
-export function ValidationProcess({ dict, lang }: ValueDistributionProps) {
+const ValidationProcess = ({ dict, lang }: ValueDistributionProps) => {
   return (
     <div className="grid md:grid-cols-2 gap-8 my-8">
       <Card className="p-6 mx-8">
@@ -117,4 +117,6 @@ export function ValidationProcess({ dict, lang }: ValueDistributionProps) {
       </Card>
     </div>
   );
-}
+};
+
+export default ValidationProcess;

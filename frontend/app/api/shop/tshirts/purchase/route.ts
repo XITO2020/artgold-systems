@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
-import { distributeValue } from '@LIB/value-distribution';
+import { prisma } from '@lib/db';
+import { distributeValue } from '@lib/value-distribution';
 
 const TABZ_REWARD_RATE = 0.05; // 5% of purchase price in TABZ
 

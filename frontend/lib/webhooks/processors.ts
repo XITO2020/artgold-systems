@@ -1,7 +1,7 @@
 
 import { prisma } from '../db';
 import { paymentService } from '../payment';
-import { distributeValue } from '../value-distribution';
+import { distributeValue } from '@lib/value-distribution';
 
 export async function processWebhook(event: any, provider: string) {
   switch (provider) {

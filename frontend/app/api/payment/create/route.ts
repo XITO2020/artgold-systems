@@ -5,7 +5,10 @@ import { prisma } from '@lib/db';
 import { CONVERSION_RATES } from '@lib/token-config';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-07-30.basil',
+  typescript: true,
+  timeout: 80000,
+  maxNetworkRetries: 3,
 });
 
 export async function POST(req: Request) {
@@ -15,19 +18,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { amount, tokenType, artworkId } = await req.json();
+    const body = await req.json();
+    const amount = Number(body.amount);
+    const tokenType = String(body.tokenType || '');
+    const artworkId = body.artworkId ? String(body.artworkId) : undefined;
+
+    if (isNaN(amount) || !tokenType) {
+      return NextResponse.json(
+        { error: 'Missing or invalid required fields' },
+        { status: 400 }
+      );
+    }
 
     // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert to cents
       currency: 'eur',
       metadata: {
-        userId: session.user.id,
-        tokenType,
-        artworkId,
-        conversionRate: tokenType === 'TABZ' ? 
-          CONVERSION_RATES.EUR_TO_TABZ.toString() : 
-          CONVERSION_RATES.EUR_TO_AGT.toString(),
+        userId: session.user.id || '',
+        tokenType: tokenType || '',
+        artworkId: artworkId || '',
+        conversionRate: (tokenType === 'TABZ' ? 
+          CONVERSION_RATES.EUR_TO_TABZ : 
+          CONVERSION_RATES.EUR_TO_AGT
+        ).toString(),
       },
     });
 

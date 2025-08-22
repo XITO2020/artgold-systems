@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useTheme } from '@comp/theme/ThemeContext';
-import Link from 'next/link';
+import Image from 'next/image';
 
 interface MobileSliderProps {
   dict: {
@@ -204,58 +204,63 @@ const MobileSlider: React.FC<MobileSliderProps> = ({ dict, lang }) => {
   ];
 
   return (
-    <div className="mobile-slider-container mx-auto w-[444px] h-[888px] mt-5">
+    <div className="mobile-slider-container">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index} className={`slide ${slide.background}`}>
-            <div className="links-container flex flex-col items-center justify-between h-full">
-              <div className="right-links flex justify-end w-full mb-auto">
+            <div className="links-container">
+              <div className="right-links">
                 {slide.roundLinks.map((link, linkIndex) => (
-                  <Link
+                  <a
                     key={linkIndex}
                     href={link.href}
-                    className="w-12 h-12 flex items-center justify-center transition-transform hover:scale-110"
+                    className="social-link"
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                     rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    aria-label={link.name}
                   >
-                    <img
+                    <Image
                       src={link.img}
                       alt={link.name}
-                      className="w-full h-full"
+                      width={24}
+                      height={24}
+                      className="social-icon"
+                      loading="lazy"
                     />
-                  </Link>
+                  </a>
                 ))}
               </div>
-              <div className="hero-title text-center mb-4">
-                <h1 className="text-lg font-bold">{slide.HeroTitle}</h1>
-                <Link href={slide.centralLink}>
-                  <button
-                    ref={heroButtonRef}
-                    className="central-button text-sm transition-all duration-300 hover:opacity-90 hover:scale-105"
+              <div className="hero-title">
+                <h1 className="slide-title">{slide.HeroTitle}</h1>
+                <div className="central-link">
+                  <a 
+                    href={slide.centralLink}
+                    className="central-button"
+                    aria-label={slide.centralText || "Explore"}
                   >
                     {slide.centralText || "Explore"}
-                  </button>
-                </Link>
+                  </a>
+                </div>
               </div>
-              <div className="left-links flex flex-col items-center mt-auto">
+              <div className="left-links">
                 {slide.links.map((link, linkIndex) => (
-                  <Link
+                  <a
                     key={linkIndex}
                     href={link.href}
-                    className="link text-sm transition-all duration-300 hover:bg-accent-hover hover:text-accentText-hover mb-2"
+                    className="nav-link"
+                    aria-label={link.text}
                   >
                     {link.text}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
           </div>
         ))}
       </Slider>
-      <div className="w-full text-center bg-white">
-        <h3 className="mode text-neon-200 hover:text-cyan-300 mt-3 text-center">{dict.slider.neon.mode}</h3>
+      <div className="slider-mode">
+        <span className="mode-text">{dict.slider.neon.mode}</span>
       </div>
-     
     </div>
   );
 };

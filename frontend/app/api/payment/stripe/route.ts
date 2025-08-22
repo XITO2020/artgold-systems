@@ -1,44 +1,81 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import Stripe from 'stripe';
-import { prisma } from '@LIB/db';
+import { prisma } from '@lib/db';
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      STRIPE_SECRET_KEY: string;
+    }
+  }
+}
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not defined in environment variables');
+}
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-07-30.basil',
+  typescript: true,
+  timeout: 80000,
+  maxNetworkRetries: 3,
 });
 
 export async function POST(req: Request) {
   try {
     const session = await getServerSession();
-    if (!session?.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+    
+    const userId = session.user.id as string;
 
-    const { amount } = await req.json();
+    const body = await req.json();
+    const amount = body.amount as number;
+    
+    if (!amount) {
+      return NextResponse.json({ error: 'Amount is required' }, { status: 400 });
+    }
 
     // Create PaymentIntent
+    // Validation du montant
+    const amountInCents = Math.round(Number(amount) * 100);
+    if (isNaN(amountInCents) || amountInCents < 50) { // Minimum 0.50 USD
+      return NextResponse.json(
+        { error: 'Invalid amount' }, 
+        { status: 400 }
+      );
+    }
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Convert to cents
+      amount: amountInCents,
       currency: 'usd',
       automatic_payment_methods: {
         enabled: true,
       },
       metadata: {
-        userId: session.user.id,
+        userId,
         conversionRate: '1', // 1 USD = 1 TABZ
       },
     });
 
     // Record the pending transaction
-    await prisma.transaction.create({
-      data: {
-        userId: session.user.id,
-        amount,
-        type: 'PURCHASE',
-        status: 'PENDING',
-        paymentId: paymentIntent.id,
-      },
-    });
+    try {
+      await prisma.transaction.create({
+        data: {
+          userId,
+          amount: amountInCents / 100, // Stocker en dollars
+          type: 'PURCHASE',
+          status: 'PENDING',
+          paymentId: paymentIntent.id,
+        },
+      });
+    } catch (dbError) {
+      console.error('Database error:', dbError);
+      // On ne renvoie pas d'erreur à l'utilisateur pour ne pas bloquer le paiement
+      // mais on log l'erreur pour investigation
+    }
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,

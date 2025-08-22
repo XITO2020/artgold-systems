@@ -37,14 +37,17 @@ export function ThemeAside({ isOpen, onToggle, lang }: ThemeAsideProps) {
               { href: `/${lang}/contact`, icon: User, text: 'Contact & CV' },
               { href: `/${lang}/newsletter`, icon: Mail, text: 'Newsletter' },
               { href: `/${lang}/ebooks`, icon: Gift, text: 'Win eBooks' },
-            ].map((item, index) => (
-              <li key={index} className="aside-nav-link">
-                <Link href={item.href} className="aside-nav-parts">
-                  <item.icon className="aside-icon" />
-                  <span>{item.text}</span>
-                </Link>
-              </li>
-            ))}
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <li key={index} className="aside-nav-link">
+                  <a href={item.href} className="aside-nav-parts">
+                    <IconComponent className="aside-icon" />
+                    <span>{item.text}</span>
+                  </a>
+                </li>
+              );
+            })}
             <button
                 onClick={onToggle}
                 className={`close-button theme-${theme}`}

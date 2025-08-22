@@ -14,14 +14,43 @@ export async function POST(req: Request) {
     }
 
     const formData = await req.formData();
-    const title = formData.get('title') as string;
-    const description = formData.get('description') as string;
-    const category = formData.get('category') as ArtCategory;
-    const image = formData.get('image') as File;
-    const location = JSON.parse(formData.get('location') as string);
-    const dimensions = JSON.parse(formData.get('dimensions') as string);
-    const weight = JSON.parse(formData.get('weight') as string);
-    const materials = JSON.parse(formData.get('materials') as string);
+    
+    // Récupération et validation des champs requis
+    const title = String(formData.get('title') || '');
+    const description = String(formData.get('description') || '');
+    const category = formData.get('category') as ArtCategory | null;
+    const image = formData.get('image');
+    
+    // Vérification des champs requis
+    if (!title || !description || !category || !(image instanceof File)) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+    
+    // Parsing des champs JSON
+    let location, dimensions, weight, materials;
+    
+    try {
+      location = formData.get('location') ? 
+        JSON.parse(String(formData.get('location'))) : 
+        null;
+      dimensions = formData.get('dimensions') ? 
+        JSON.parse(String(formData.get('dimensions'))) : 
+        null;
+      weight = formData.get('weight') ? 
+        JSON.parse(String(formData.get('weight'))) : 
+        null;
+      materials = formData.get('materials') ? 
+        JSON.parse(String(formData.get('materials'))) : 
+        [];
+    } catch (error) {
+      return NextResponse.json(
+        { error: 'Invalid JSON data in form fields' },
+        { status: 400 }
+      );
+    }
 
     // Validate content
     const validation = await validateArtworkContent(image);
@@ -34,9 +63,17 @@ export async function POST(req: Request) {
     // Convert File to Buffer for IPFS upload
     const buffer = Buffer.from(await image.arrayBuffer());
 
+    // Vérification de l'ID utilisateur
+    if (!session.user.id) {
+      return NextResponse.json(
+        { error: 'User ID is missing' },
+        { status: 400 }
+      );
+    }
+
     // Upload to IPFS via Pinata
-    const pinataResponse = await pinFileToIPFS(buffer, image.name, {
-      userId: session.user.id,
+    const pinataResponse = await pinFileToIPFS(buffer, image.name || 'artwork', {
+      userId: String(session.user.id),
       artworkTitle: title,
       category
     });

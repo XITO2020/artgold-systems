@@ -1,4 +1,4 @@
-﻿/* Mobile Slider Container */
+/* Mobile Slider Container */
 .mobile-slider-container {
   position: relative;
   width: 100%;
@@ -100,60 +100,34 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .central-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0.95;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Left Links (Navigation) */
 .left-links {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: auto;
   width: 100%;
 }
 
 .nav-link {
-  display: block;
-  width: 100%;
-  max-width: 280px;
-  padding: 0.75rem 1.5rem;
-  text-align: center;
   color: white;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
   text-decoration: none;
   font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateX(5px);
-}
-
-/* Slider Mode */
-.slider-mode {
-  text-align: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 0 0 1rem 1rem;
-}
-
-.mode-text {
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 /* Slick Overrides */
@@ -163,43 +137,25 @@
 
 .slick-dots li button:before {
   color: white !important;
-  opacity: 0.5 !important;
-  font-size: 10px !important;
+  opacity: 0.5;
+  font-size: 10px;
 }
 
 .slick-dots li.slick-active button:before {
   color: var(--accent-color) !important;
-  opacity: 1 !important;
-}
-
-.slick-prev,
-.slick-next {
-  z-index: 1;
-  width: 40px;
-  height: 40px;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  font-size: 24px !important;
-  color: white !important;
-  opacity: 0.8 !important;
-}
-
-.slick-prev {
-  left: 15px !important;
-}
-
-.slick-next {
-  right: 15px !important;
+  opacity: 1;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 480px) {
   .mobile-slider-container {
-    height: 700px;
+    height: 100vh;
     max-width: 100%;
     border-radius: 0;
+  }
+  
+  .slide {
+    padding: 1rem;
   }
   
   .slide-title {
@@ -208,11 +164,6 @@
   
   .central-button {
     padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .nav-link {
-    padding: 0.6rem 1.25rem;
     font-size: 0.9rem;
   }
 }

@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "types": ["node"],
     "lib": [
       "dom",
       "dom.iterable",
@@ -25,14 +26,14 @@
       "@comp/*": [
         "./components/*"
       ],
+      "@lib/*": [
+        "./lib/*"
+      ],
       "@ui/*": [
         "./components/ui/*"
       ],
       "@hooks/*": [
         "./hooks/*"
-      ],
-      "@lib/*": [
-        "./lib/*"
       ],
       "@shared/*": [
         "../shared/*"
@@ -49,10 +50,15 @@
     ],
     "target": "ES2017"
   },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./types"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "types/**/*.d.ts",
     "../shared/types/**/*.ts",
     ".next/types/**/*.ts",
     "types/**/*"

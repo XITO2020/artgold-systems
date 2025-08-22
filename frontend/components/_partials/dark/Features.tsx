@@ -175,13 +175,13 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
             <div className="text-2xl flex flex-col justify-between h-[60%] mt-4 mx-auto">
               <p className="text-white">{dict.home.features.financing.exp1}</p>
               <div className="flex justify-evenly mb-3">
-                <Link href={`/${lang}/shop`} className="h-[120px]">
+                <a href={`/${lang}/shop`} className="h-[120px] block text-center">
                   <img src="/icons/tbcity.png" width="160" alt="tabascocity" />
                   <p>Opérer depuis ces sites</p>
-                </Link>
-                <Link href="www.tshirts.land" className="mx-auto h-[120px] text-center">
+                </a>
+                <a href="https://www.tshirts.land" target="_blank" rel="noopener noreferrer" className="mx-auto h-[120px] text-center block">
                   <img src="/icons/tshirtsland.png" width="100" alt="tshirtland" />
-                </Link>
+                </a>
               </div>
               <p className="mb-2 text-rose-200 text-center">{dict.home.features.financing.exp2}</p>
               <p className="mb-2 text-purple-200 text-center">{dict.home.features.financing.exp3}</p>
@@ -199,9 +199,9 @@ const Features: React.FC<FeaturesProps> = ({ dict, lang }) => {
             <div className="text-2xl flex flex-col justify-between h-[60%] mt-4 mx-auto">
               <p className="text-white mb-2">{dict.home.features.industries.exp1}</p>
               <div className="flex justify-evenly mb-3">
-                <Link href={`/${lang}/shop`}>
+                <a href={`/${lang}/shop`} className="block">
                   <img src="/icons/shonen-detoured.png" width="160" alt="Shonen Industries" />
-                </Link>
+                </a>
               </div>
               <p className="mb-2 text-amber-500">{dict.home.features.industries.exp2}</p>
               <p className="mb-2 text-amber-400">{dict.home.features.industries.exp3}</p>

@@ -33,9 +33,14 @@ export default function ErrorPage() {
           <p className="text-muted-foreground mb-6">
             {errorMessage}
           </p>
-            <Link href="/" className="inline-block">
-              <Button>Revenir à l'accueil</Button>
-            </Link>
+          <div className="inline-block">
+            <a 
+              href="/" 
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              Revenir à l'accueil
+            </a>
+          </div>
         </div>
       </Card>
     </div>

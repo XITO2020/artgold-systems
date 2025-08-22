@@ -13,10 +13,21 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <WalletContextProvider>
       <ThemeProvider
         attribute="class"
-        defaultTheme="system"
-        enableSystem
+        defaultTheme="light"
+        enableSystem={false}
         disableTransitionOnChange
-        themes={["light", "dark", "golden-tacos", "emerald", "chili-ruby", "agua-saphir"]}
+        themes={[
+          "light", 
+          "dark", 
+          "emerald",
+          "silver-berry",
+          "metal-lazuli",
+          "diamond-pastel",
+          "africa-gems",
+          "golden-tacos",
+          "agua-saphir",
+          "chili-ruby"
+        ]}
       >
         {children}
       </ThemeProvider>

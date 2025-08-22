@@ -11,7 +11,7 @@ interface ValueDistributionProps {
   lang: string;
 }
 
-export function ValueDistribution({ dict, lang }: ValueDistributionProps) {
+const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
   // Gestion de l'animation GIF au défilement
   const [gifVisible, setGifVisible] = useState(false);
   const gifRef = useRef<HTMLDivElement>(null);
@@ -331,4 +331,6 @@ export function ValueDistribution({ dict, lang }: ValueDistributionProps) {
       </Card>
     </div>
   );
-}
+};
+
+export default ValueDistribution;

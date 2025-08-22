@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useTheme as useNextTheme } from 'next-themes';
 import { ThemeName } from '@t/theme/types';
 
 interface ThemeContextType {
@@ -19,18 +20,21 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { theme: nextTheme, setTheme: setNextTheme } = useNextTheme();
   const [theme, setThemeState] = useState<ThemeName>('light');
 
+  // Sync with next-themes
+  useEffect(() => {
+    if (nextTheme) {
+      setThemeState(nextTheme as ThemeName);
+    }
+  }, [nextTheme]);
+
   const setTheme = (newTheme: ThemeName) => {
+    setNextTheme(newTheme);
     setThemeState(newTheme);
-    localStorage.setItem('theme', newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
   };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as ThemeName || 'light';
-    setTheme(savedTheme);
-  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

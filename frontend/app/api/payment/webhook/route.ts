@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { handleWebhook } from '@LIB/webhooks';
+import { handleWebhook } from '@lib/webhooks';
 
 export async function POST(req: NextRequest) {
   try {

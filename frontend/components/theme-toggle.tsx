@@ -18,10 +18,10 @@ interface ThemeToggleProps {
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({toggleTheme}) => {
   const { setTheme } = useTheme();
 
-  // Fonction pour changer de thème et forcer un rafraîchissement
+  // Fonction pour changer de thème
   const handleThemeChange = (newTheme: 'dark' | 'light' | 'silver-berry' | 'golden-tacos' | 'emerald' | 'agua-saphir' | 'chili-ruby' | 'metal-lazuli' | 'africa-gems' | 'diamond-pastel') => {
-    setTheme(newTheme);  // Change le thème
-    window.location.reload();  // Recharge la page, à tester sans après multiples améliorations
+    setTheme(newTheme);
+    // No longer reloading the page to improve user experience
   };
 
   return (
@@ -62,9 +62,13 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({toggleTheme}) => {
           <Gem className="mr-2 h-4 w-4" />
           Diamond Pastel
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => toggleTheme("system")}>
-          <Laptop className="mr-2 h-4 w-4" />
-          Your System
+        <DropdownMenuItem onClick={() => handleThemeChange("metal-lazuli")}>
+          <Gem className="mr-2 h-4 w-4" />
+          Metal Lazuli
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => handleThemeChange("africa-gems")}>
+          <Gem className="mr-2 h-4 w-4" />
+          Africa Gems
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleThemeChange("light")}>
         <img src="/icons/chili-icon.svg" alt="Chili Icon" className="mr-2 h-4 w-4" />

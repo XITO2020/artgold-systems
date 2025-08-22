@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@LIB/db';
+import { prisma } from '@lib/db';
 
 const PAYPAL_API = process.env.NODE_ENV === 'production'
   ? 'https://api-m.paypal.com'
@@ -13,10 +13,32 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { amount } = await req.json();
+    const body = await req.json();
+    const amount = Number(body.amount);
+    
+    if (isNaN(amount)) {
+      return NextResponse.json(
+        { error: 'Invalid amount' },
+        { status: 400 }
+      );
+    }
 
     // Get PayPal access token
     const accessToken = await getPayPalAccessToken();
+    if (!accessToken) {
+      return NextResponse.json(
+        { error: 'Failed to get PayPal access token' },
+        { status: 500 }
+      );
+    }
+
+    // Vérification de l'ID utilisateur
+    if (!session.user.id) {
+      return NextResponse.json(
+        { error: 'User ID is missing' },
+        { status: 400 }
+      );
+    }
 
     // Create PayPal order
     const order = await createPayPalOrder(accessToken, amount, session.user.id);
@@ -24,8 +46,8 @@ export async function POST(req: Request) {
     // Record the pending transaction
     await prisma.transaction.create({
       data: {
-        userId: session.user.id,
-        amount,
+        userId: session.user.id || '',
+        amount: amount,
         type: 'PURCHASE',
         status: 'PENDING',
         paymentId: order.id,

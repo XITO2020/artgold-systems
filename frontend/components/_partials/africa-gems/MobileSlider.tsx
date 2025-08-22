@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useTheme } from '@comp/theme/ThemeContext';
 import Link from 'next/link';
+import '../../../app/wonderstyles/africa-gems-slider.css';
 
 interface MobileSliderProps {
   dict: {
@@ -84,9 +85,11 @@ const MobileSlider: React.FC<MobileSliderProps> = ({ dict, lang }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
     arrows: false,
     adaptiveHeight: true,
+    className: 'mobile-slider-container'
   };
 
   useEffect(() => {
@@ -194,14 +197,14 @@ const MobileSlider: React.FC<MobileSliderProps> = ({ dict, lang }) => {
   ];
 
   return (
-    <div className="mobile-slider-container mx-auto w-[444px] h-[888px] mt-5">
+    <div className="slider-wrapper">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index} className={`slide ${slide.background}`}>
             <div className="links-container flex flex-col items-center justify-between h-full">
               <div className="right-links flex justify-end w-full mb-auto">
                 {slide.roundLinks.map((link, linkIndex) => (
-                  <Link
+                  <a
                     key={linkIndex}
                     href={link.href}
                     className="w-12 h-12 flex items-center justify-center transition-transform hover:scale-110"
@@ -213,29 +216,29 @@ const MobileSlider: React.FC<MobileSliderProps> = ({ dict, lang }) => {
                       alt={link.name}
                       className="w-full h-full"
                     />
-                  </Link>
+                  </a>
                 ))}
               </div>
               <div className="hero-title text-center mb-4">
                 <h1 className="text-lg font-bold">{slide.HeroTitle}</h1>
-                <Link href={slide.centralLink}>
+                <a href={slide.centralLink}>
                   <button
                     ref={heroButtonRef}
                     className="central-button text-sm transition-all duration-300 hover:opacity-90 hover:scale-105"
                   >
                     {slide.centralText || "Explore"}
                   </button>
-                </Link>
+                </a>
               </div>
               <div className="left-links flex flex-col items-center mt-auto">
                 {slide.links.map((link, linkIndex) => (
-                  <Link
+                  <a
                     key={linkIndex}
                     href={link.href}
                     className="link text-sm transition-all duration-300 hover:bg-accent-hover hover:text-accentText-hover mb-2"
                   >
                     {link.text}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
