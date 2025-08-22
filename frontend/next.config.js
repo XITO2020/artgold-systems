@@ -1,43 +1,43 @@
+
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com' },
-      // ajoute ici d'autres domaines d'images si besoin
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
     ],
-    unoptimized: true,
+    unoptimized: true
   },
+  webpack: (config, { isServer }) => {
+    // Configuration des alias de chemins
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@comp': path.resolve(__dirname, 'components'),
+      '@lib': path.resolve(__dirname, 'lib')
+    };
 
-  // Ces libs ESM ont parfois besoin d'être transpilées côté Next
-  transpilePackages: [
-    '@solana/wallet-adapter-base',
-    '@solana/wallet-adapter-react',
-    '@solana/wallet-adapter-react-ui',
-    '@solana/wallet-adapter-wallets',
-    '@walletconnect/solana-adapter',
-    '@walletconnect/universal-provider',
-    '@walletconnect/logger',
-  ],
-
-  webpack: (config) => {
-    // Fallbacks Node pour le bundle frontend
+    // Configuration pour les modules natifs
     config.resolve.fallback = {
-      ...(config.resolve.fallback || {}),
+      ...config.resolve.fallback,
       fs: false,
       net: false,
       tls: false,
       crypto: false,
     };
 
-    // Évite que WalletConnect/Pino tente d'inclure ces modules Node uniquement
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      'pino-pretty': false,
-      'sonic-boom': false,
-    };
+    // Désactiver le cache pour le développement
+    if (!isServer) {
+      config.cache = false;
+    }
 
     return config;
   },
+  // Désactiver le cache complet pour le développement
+  cache: false
 };
 
 module.exports = nextConfig;

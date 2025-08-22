@@ -1,5 +1,6 @@
+import { PrismaClient } from '@prisma/client';
 import { prisma } from './db';
-import { distributeValue } from '@lib/value-distribution';
+import { distributeValue } from './value-distribution';
 
 export async function reviewContent(
   contentId: string,
@@ -15,7 +16,7 @@ export async function reviewContent(
 
   if (!content) throw new Error('Content not found');
 
-  await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx: PrismaClient) => {
     // Update content status
     await tx.content.update({
       where: { id: contentId },
@@ -40,7 +41,7 @@ export async function reviewContent(
 
     // If marked as artwork, distribute initial value
     if (isArtwork && baseValue) {
-      await distributeValue(contentId, baseValue);
+      await distributeValue(contentId, baseValue, 'ADMIN');
     }
   });
 
@@ -67,7 +68,7 @@ export async function likeContent(contentId: string, userId: string) {
   });
 
   if (valueIncrease > 0) {
-    await distributeValue(contentId, valueIncrease);
+    await distributeValue(contentId, valueIncrease, 'LIKES');
   }
 
   return { success: true };
