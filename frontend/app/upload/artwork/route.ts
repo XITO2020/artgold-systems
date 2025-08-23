@@ -1,7 +1,6 @@
 // frontend/app/upload/artwork/route.ts
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@lib/auth';
+import { verifyToken } from '@/lib/jwt';
 import { prisma } from '@lib/db';
 import { validateArtworkContent } from '@lib/admin';
 import { generateQRCode, generateSerialNumber } from '@lib/artwork';
@@ -11,10 +10,19 @@ import crypto from 'crypto';
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Vérification du token JWT
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    const userId = decoded.id;
 
     const formData = await req.formData();
 
@@ -44,14 +52,14 @@ export async function POST(req: Request) {
     const ext = (image.name.split('.').pop() || 'bin').toLowerCase();
     const filename = `${Date.now()}_${crypto.randomBytes(6).toString('hex')}.${ext}`;
 
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'artworks', session.user.id);
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'artworks', userId);
     await fs.mkdir(uploadDir, { recursive: true });
 
     const filepath = path.join(uploadDir, filename);
     await fs.writeFile(filepath, buffer);
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const imageUrl = `${baseUrl}/uploads/artworks/${session.user.id}/${filename}`;
+    const imageUrl = `${baseUrl}/uploads/artworks/${userId}/${filename}`;
 
     // ===== Validation de contenu (si tu veux vérifier l’image) =====
     const validation = await validateArtworkContent(image);
@@ -76,7 +84,7 @@ export async function POST(req: Request) {
         dimensions,
         weight,
         materials,
-        artistId: session.user.id,
+        userId,
         points: 0, // à calculer selon ta logique
         isFirst: true, // idem
       },

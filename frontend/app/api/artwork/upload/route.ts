@@ -1,15 +1,23 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { verifyToken } from '@/lib/jwt';
 import apiClient from '@lib/db/prisma';
 import { validateArtworkContent } from '@lib/admin';
 import { generateQRCode, generateSerialNumber } from '@lib/artwork';
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+  
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !('id' in decoded)) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    const userId = decoded.id;
 
     const { title, description, category, ipfsCid } = await req.json();
 
@@ -22,7 +30,7 @@ export async function POST(req: Request) {
     const qrCode = await generateQRCode(serialNumber);
 
     // Create artwork via backend API; backend handles media record creation
-    const artwork = await apiClient.post(`/users/${session.user.id}/artworks`, {
+    const artwork = await apiClient.post(`/users/${userId}/artworks`, {
       id,
       title,
       description,

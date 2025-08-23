@@ -45,15 +45,15 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
   return (
     <div className="mx-8 space-y-8 my-12">
       {/* Distribution des valeurs */}
-      <Card className="p-6">
-        <h3 className="text-xl font-semibold mb-8">{dict.home.value.title}</h3>
+      <Card className="p-6 bg-card text-card-foreground border-border">
+        <h3 className="text-xl font-semibold mb-8 text-foreground">{dict.home.value.title}</h3>
         <div className="space-y-6 mb-8">
           <div>
             <div className="flex justify-between mb-8">
-              <span className="font-medium">{dict.home.value.royalties}</span>
+              <span className="font-medium text-foreground">{dict.home.value.royalties}</span>
               <span className="text-muted-foreground">10%</span>
             </div>
-            <Progress value={10} className="h-2" />
+            <Progress value={10} className="h-2 bg-muted" />
             <p className="text-sm text-muted-foreground mt-1">
               {dict.home.value.exp1}
             </p>
@@ -61,10 +61,10 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
 
           <div>
             <div className="flex justify-between mb-8">
-              <span className="font-medium">{dict.home.value.own}</span>
+              <span className="font-medium text-foreground">{dict.home.value.own}</span>
               <span className="text-muted-foreground">80%</span>
             </div>
-            <Progress value={80} className="h-2" />
+            <Progress value={80} className="h-2 bg-muted" />
             <p className="text-sm text-muted-foreground mt-1">
               {dict.home.value.exp2}
             </p>
@@ -72,10 +72,10 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
 
           <div>
             <div className="flex justify-between mb-8">
-              <span className="font-medium">{dict.home.value.shares}</span>
+              <span className="font-medium text-foreground">{dict.home.value.shares}</span>
               <span className="text-muted-foreground">10%</span>
             </div>
-            <Progress value={10} className="h-2" />
+            <Progress value={10} className="h-2 bg-muted" />
             <p className="text-sm text-muted-foreground mt-1">
               {dict.home.value.exp3}
             </p>
@@ -84,13 +84,13 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
       </Card>
 
       {/* Système de tokens */}
-      <Card className="p-6">
-        <div className="flex">
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold mb-4">{dict.home.validation.token.title}</h3>
+      <Card className="p-6 bg-card text-card-foreground border-border mt-8">
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="space-y-6 flex-1">
+            <h3 className="text-xl font-semibold text-foreground">{dict.home.validation.token.title}</h3>
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-full bg-yellow-100">
-                <Coins className="h-6 w-6 text-yellow-600" />
+              <div className="p-3 rounded-full bg-primary/10">
+                <Coins className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">TABZ Token (Gold-Backed)</h4>
@@ -105,8 +105,8 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-full bg-gray-100">
-                <TrendingUp className="h-6 w-6 text-gray-600" />
+              <div className="p-3 rounded-full bg-accent/10">
+                <TrendingUp className="h-6 w-6 text-accent-foreground" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">AGT Token (Silver-Backed)</h4>
@@ -121,8 +121,8 @@ export const ValueDistribution = ({ dict, lang }: ValueDistributionProps) => {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-full bg-blue-100">
-                <Lock className="h-6 w-6 text-blue-600" />
+ <div className="p-3 rounded-full bg-secondary/10">
+                <Lock className="h-6 w-6 text-secondary-foreground" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">1 to 3 -Years Lockup Period</h4>

@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import { useTheme } from '@comp/theme/ThemeContext';
 import { useMediaQuery } from '@hooks/use-media-query';
 import Link from 'next/link';
-import "./neon.module.scss";
+import styles from "./neon.module.scss";
 
 interface SliderProps {
   dict: {
@@ -234,7 +234,7 @@ const SliderComponent: React.FC<SliderProps> = ({ dict, lang }) => {
                       <img
                         src={link.img}
                         alt={link.name}
-                        className="w-full h-full"
+                        className="w-full h-full object-contain"
                       />
                     </Link>
                   ))}

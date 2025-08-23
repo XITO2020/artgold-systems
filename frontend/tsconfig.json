@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["node", "next"],
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,27 +20,14 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./app/*"
-      ],
-      "@comp/*": [
-        "./components/*"
-      ],
-      "@lib/*": [
-        "./lib/*"
-      ],
-      "@ui/*": [
-        "./components/ui/*"
-      ],
-      "@hooks/*": [
-        "./hooks/*"
-      ],
-      "@shared/*": [
-        "../shared/*"
-      ],
-      "@t/*": [
-        "../shared/types/*"
-      ],
+      "@/*": ["./*"],
+      "@comp/*": ["./components/*"],
+      "@comp/_partials/*": ["./components/_partials/*"],
+      "@lib/*": ["./lib/*"],
+      "@ui/*": ["./components/ui/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@shared/*": ["../shared/*"],
+      "@t/*": ["../shared/types/*"],
       "@tfront/*": ["types/*"]
     },
     "plugins": [
@@ -58,9 +45,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.d.ts",
     "types/**/*.d.ts",
     "../shared/types/**/*.ts",
     ".next/types/**/*.ts",
+    "node_modules/next/types/**/*.ts",
     "types/**/*"
   ],
   "exclude": [

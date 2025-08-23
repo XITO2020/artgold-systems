@@ -1,5 +1,7 @@
 // components/_partials/load.ts
-export const THEME_FOLDERS = [
+import { ThemeName } from '@t/theme/types';
+
+export const THEME_FOLDERS: ThemeName[] = [
   'dark',
   'emerald',
   'silver-berry',
@@ -9,7 +11,7 @@ export const THEME_FOLDERS = [
   'golden-tacos',
   'agua-saphir',
   'chili-ruby',
-] as const;
+];
 
 // Interface pour les props des composants thématiques
 export interface ThemeComponentProps {
@@ -19,23 +21,42 @@ export interface ThemeComponentProps {
   [key: string]: any; // Pour les props supplémentaires spécifiques à chaque composant
 }
 
-export type ThemeFolder = typeof THEME_FOLDERS[number];
-
-export function normalizeTheme(t?: string): ThemeFolder {
+/**
+ * Normalise le nom du thème et gère les cas spéciaux
+ * - 'system' : utilise les préférences système (sombre/clair)
+ * - 'light' : mappé sur 'diamond-pastel' (thème clair par défaut)
+ * - Autres noms : vérifie s'ils font partie des thèmes valides, sinon retourne 'dark'
+ */
+export function normalizeTheme(t?: string): ThemeName {
   const name = (t || '').toLowerCase();
+  
+  // Gestion du thème système
   if (name === 'system') {
-    const prefersDark =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'diamond-pastel';
+    // Vérifie si on est côté client (navigateur)
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return isDarkMode ? 'dark' : 'diamond-pastel';
+    }
+    // Par défaut, retourne un thème clair si on ne peut pas détecter les préférences
+    return 'diamond-pastel';
   }
-  if (name === 'light') return 'diamond-pastel';
-  return THEME_FOLDERS.includes(name as ThemeFolder) ? (name as ThemeFolder) : 'dark';
+  
+  // Mappage explicite de 'light' vers 'diamond-pastel'
+  if (name === 'light') {
+    return 'diamond-pastel';
+  }
+  
+  // Vérifie si le thème fait partie de la liste des thèmes valides
+  if (THEME_FOLDERS.includes(name as ThemeName)) {
+    return name as ThemeName;
+  }
+  
+  // Par défaut, retourne le thème sombre
+  return 'dark';
 }
 
 // Fonction pour importer dynamiquement un composant thématique
-export function importPartial(theme: string, partial:
+export async function importPartial(theme: string, partial:
   'value-distribution' |
   'validation-process' |
   'mobile-slider' |
@@ -50,17 +71,26 @@ export function importPartial(theme: string, partial:
   // Log pour le débogage
   console.log(`Chargement du composant: ${basePath}/${partial}`);
   
-  switch (partial) {
-    case 'value-distribution': return import(`@comp/_partials/${t}/value-distribution`);
-    case 'validation-process': return import(`@comp/_partials/${t}/validation-process`);
-    case 'mobile-slider':      return import(`@comp/_partials/${t}/mobile-slider`);
-    case 'SliderComponent':    return import(`@comp/_partials/${t}/SliderComponent`);
-    case 'LoadingScreen':      return import(`@comp/_partials/${t}/LoadingScreen`);
-    case 'Hero':               return import(`@comp/_partials/${t}/Hero`);
-    case 'Features':           return import(`@comp/_partials/${t}/Features`);
-    default: {
-      console.error(`Composant inconnu: ${partial}`);
-      throw new Error(`Composant ${partial} non trouvé pour le thème ${t}`);
-    }
+  try {
+    // Utiliser l'import dynamique avec des chemins complets
+    const themePath = `@comp/_partials/${t}/${partial}`;
+    console.log(`Tentative de chargement du composant: ${themePath}`);
+    
+    // Essayer de charger le composant du thème spécifié
+    return import(/* webpackMode: "eager" */ themePath).catch((error) => {
+      console.warn(`Composant ${partial} non trouvé dans le thème ${t}, utilisation du thème par défaut`, error);
+      
+      // Charger le composant du thème dark par défaut
+      const defaultThemePath = `@comp/_partials/dark/${partial}`;
+      console.log(`Tentative de chargement du composant par défaut: ${defaultThemePath}`);
+      
+      return import(/* webpackMode: "eager" */ defaultThemePath).catch((defaultError) => {
+        console.error(`Impossible de charger le composant par défaut: ${defaultThemePath}`, defaultError);
+        throw new Error(`Impossible de charger le composant ${partial} (thème: ${t} ou dark)`);
+      });
+    });
+  } catch (error) {
+    console.error(`Erreur lors du chargement du composant ${partial} pour le thème ${t}:`, error);
+    throw error; // Propager l'erreur pour qu'elle soit gérée plus haut
   }
 }

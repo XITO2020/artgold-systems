@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useTheme } from '@comp/theme/ThemeContext';
 import Link from 'next/link';
-import '../../../app/wonderstyles/africa-gems-slider.css';
+// Le CSS est maintenant chargé via le fichier global.css
 
 interface MobileSliderProps {
   dict: {

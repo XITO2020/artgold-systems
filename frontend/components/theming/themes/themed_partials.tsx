@@ -3,9 +3,11 @@
 import dynamic from "next/dynamic";
 import { importPartial } from "@comp/_partials/load";
 
+import { ThemeName } from '@t/theme/types';
+
 // Interface commune pour les props des composants thématiques
 interface ThemeComponentProps {
-  theme?: string;
+  theme?: ThemeName | 'system' | 'light';
   dict: any;
   lang: string;
   [key: string]: any; // Pour les props supplémentaires spécifiques à chaque composant
@@ -35,7 +37,5 @@ export const ThemedHero = createThemedComponent<ThemeComponentProps>('Hero');
 export const ThemedFeatures = createThemedComponent<ThemeComponentProps>('Features');
 
 // Export des types pour une meilleure expérience TypeScript
-export type {
-  ThemeComponentProps as ThemedComponentProps,
-  ThemeFolder as ThemeName
-} from '@comp/_partials/load';
+export type { ThemeComponentProps as ThemedComponentProps };
+export type { ThemeName } from '@t/theme/types';

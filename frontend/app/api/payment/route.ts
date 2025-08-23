@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@lib/db';
+import { verifyToken } from '@/lib/jwt';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Vérification de la clé API Stripe
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not defined in environment variables');
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2025-07-30.basil',
   typescript: true,
   timeout: 80000,
@@ -12,30 +16,46 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Vérification de l'authentification
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json(
+        { error: 'Token manquant' }, 
+        { status: 401 }
+      );
     }
 
-    const body = await req.json();
-    const amount = Number(body.amount);
-    const paymentMethod = String(body.paymentMethod || '');
-    
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json(
+        { error: 'Token invalide ou expiré' }, 
+        { status: 401 }
+      );
+    }
+    const userId = decoded.id;
+
+    // Récupération des données de la requête
+    const { amount, paymentMethod } = await req.json();
+
+    // Validation des données
     if (isNaN(amount) || !paymentMethod) {
       return NextResponse.json(
-        { error: 'Missing or invalid required fields' }, 
+        { error: 'Données de paiement manquantes ou invalides' }, 
         { status: 400 }
       );
     }
 
+    // Traitement en fonction de la méthode de paiement
     if (paymentMethod === 'stripe') {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: amount * 100, // Convert to cents
+        amount: Math.round(amount * 100), // Conversion en centimes
         currency: 'usd',
         metadata: {
-          userId: session.user.id || '',
+          userId: userId,
           conversionRate: '1', // 1 USD = 1 TABZ
-        } as const,
+        },
       });
 
       return NextResponse.json({
@@ -44,37 +64,38 @@ export async function POST(req: Request) {
     }
 
     if (paymentMethod === 'paypal') {
-      // Vérification de l'ID utilisateur
-      if (!session.user.id) {
-        return NextResponse.json(
-          { error: 'User ID is missing' },
-          { status: 400 }
-        );
-      }
-      
-      // Create PayPal order
-      const order = await createPayPalOrder(amount, session.user.id);
+      const order = await createPayPalOrder(amount, userId);
       return NextResponse.json(order);
     }
 
+    // Si la méthode de paiement n'est pas reconnue
     return NextResponse.json(
-      { error: 'Invalid payment method' },
+      { error: 'Méthode de paiement non supportée' },
       { status: 400 }
     );
+    
   } catch (error) {
-    console.error('Payment error:', error);
+    console.error('Erreur lors du traitement du paiement:', error);
     return NextResponse.json(
-      { error: 'Payment processing failed' },
+      { error: 'Une erreur est survenue lors du traitement du paiement' },
       { status: 500 }
     );
   }
 }
 
+/**
+ * Crée une commande PayPal
+ */
 async function createPayPalOrder(amount: number, userId: string) {
-  // Implement PayPal order creation
+  // Implémentation de la création de commande PayPal
   // https://developer.paypal.com/docs/api/orders/v2/
+  
+  // Pour l'instant, on retourne un objet de test
   return {
-    id: 'test_order',
+    id: `order_${Date.now()}`,
     status: 'CREATED',
+    amount,
+    userId,
+    // Ajoutez ici les détails spécifiques à PayPal
   };
 }

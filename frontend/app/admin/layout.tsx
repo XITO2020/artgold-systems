@@ -1,7 +1,7 @@
 "use client";
 
 import { Sidebar } from "@comp/admin/sidebar";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 
 export default function AdminLayout({
@@ -9,13 +9,13 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: session, status } = useSession();
+  const { user, loading } = useAuth();
 
-  if (status === "loading") {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!session?.user?.isAdmin) {
+  if (!user?.isAdmin) {
     redirect("/");
   }
 

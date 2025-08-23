@@ -1,14 +1,23 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { verifyToken } from '@/lib/jwt';
 import { detectAIArtwork } from '@lib/ai-detection';
 import { prisma } from '@lib/db';
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Vérification du token JWT
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    const userId = decoded.id;
 
     const { artworkData, imageBuffer } = await req.json();
 
@@ -19,7 +28,7 @@ export async function POST(req: Request) {
       // Record fraud attempt
       await prisma.fraudAttempt.create({
         data: {
-          userId: session.user.id,
+          userId: userId,
           type: 'AI_GENERATED',
           confidence: aiAnalysis.confidence,
           details: aiAnalysis.details
@@ -28,7 +37,7 @@ export async function POST(req: Request) {
 
       // Freeze user account
       await prisma.user.update({
-        where: { id: session.user.id },
+        where: { id: userId },
         data: { status: 'FROZEN' }
       });
 

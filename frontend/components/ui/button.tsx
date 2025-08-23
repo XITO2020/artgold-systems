@@ -9,9 +9,12 @@ type Variant =
 
 type Size = "default" | "sm" | "lg" | "icon";
 
+import { Slot } from '@radix-ui/react-slot';
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
+  asChild?: boolean;
 }
 
 const base =
@@ -45,9 +48,16 @@ export const buttonVariants = ({ variant = 'default', size = 'default', classNam
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", ...props }, ref) => (
-    <button ref={ref} className={cn(base, variants[variant], sizes[size], className)} {...props} />
-  )
+  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
+    return (
+      <Comp
+        className={cn(base, variants[variant], sizes[size], className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
 );
 Button.displayName = "Button";
 

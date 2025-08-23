@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { verifyToken } from '@/lib/jwt';
 import { prisma } from '@lib/db';
 import { distributeValue } from '@lib/value-distribution';
 
@@ -7,7 +7,20 @@ const TABZ_REWARD_RATE = 0.05; // 5% of purchase price in TABZ
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
+    // Vérification du token JWT
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
+    }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    const userId = decoded.id;
+    
     const { tshirtId, size, color, quantity } = await req.json();
 
     const tshirt = await prisma.tShirt.findUnique({
@@ -28,7 +41,7 @@ export async function POST(req: Request) {
     const purchase = await prisma.tShirtPurchase.create({
       data: {
         tshirtId,
-        userId: session?.user?.id,
+        userId,
         size,
         color,
         quantity,
@@ -37,26 +50,36 @@ export async function POST(req: Request) {
       }
     });
 
-    // If user is logged in, award TABZ tokens
-    if (session?.user) {
-      await prisma.user.update({
-        where: { id: session.user.id },
-        data: {
-          balance: {
-            increment: tabzReward
-          }
-        }
-      });
+    // Distribute value - Note: This needs to be updated to use a valid artwork ID
+    // For now, we'll skip this as it's not clear what should be distributed
+    console.log('Value distribution for t-shirt purchase is not yet implemented');
 
-      // If purchase supports a project, distribute value
-      if (tshirt.projectId) {
-        await distributeValue(tshirt.projectId, tabzReward, 'SALE');
+    // Award TABZ tokens to the user
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        balance: {
+          increment: tabzReward
+        }
+      }
+    });
+
+    // If purchase supports a project, distribute value
+    if (tshirt.projectId) {
+      // Convert tabzReward to number if it's not already
+      const rewardAmount = Number(tabzReward);
+      if (!isNaN(rewardAmount)) {
+        await distributeValue(
+          tshirt.projectId,
+          rewardAmount,
+          'SALE'
+        );
       }
     }
 
     return NextResponse.json({
       purchase,
-      tabzReward: session?.user ? tabzReward : 0
+      tabzReward: tabzReward
     });
   } catch (error) {
     console.error('Purchase error:', error);

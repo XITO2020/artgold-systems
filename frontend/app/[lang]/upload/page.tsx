@@ -9,11 +9,11 @@ import { Textarea } from "@ui/textarea";
 import { Upload, MapPin, AlertTriangle } from "lucide-react";
 import { LocationPicker } from "@comp/location-picker";
 import { useToast } from "@hooks/use-toast";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { Alert, AlertTitle, AlertDescription } from "@ui/alert";
 
 export default function UploadPage() {
-  const { data: session } = useSession();
+  const { user, loading } = useAuth();
   const [availableSlots, setAvailableSlots] = useState<number | null>(null);
   const [bonusSlots, setBonusSlots] = useState<number>(0);
   const [showMap, setShowMap] = useState(false);
@@ -26,10 +26,10 @@ export default function UploadPage() {
   const [theme, setTheme] = useState("default");
 
     useEffect(() => {
-    if (session?.user) {
+    if (user) {
       fetchSlotInfo();
     }
-  }, [session]);
+  }, [user]);
 
    // Change the theme dynamically
    useEffect(() => {
@@ -44,7 +44,7 @@ export default function UploadPage() {
   
     // Charger le fichier SCSS correspondant au thème
     if (theme !== "default") {
-      import(`@/wonderstyles/effects/${theme}.scss`).then(() => {
+      import(`@/app/wonderstyles/effects/${theme}.scss`).then(() => {
         // Réinitialiser l'animation après un court délai pour garantir que le thème soit appliqué
         setTimeout(() => {
           const laserboxContainer = document.querySelector(".laserbox-container");

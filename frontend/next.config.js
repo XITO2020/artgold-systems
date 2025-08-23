@@ -1,26 +1,30 @@
-
 /** @type {import('next').NextConfig} */
 const path = require('path');
 
 const nextConfig = {
+  serverExternalPackages: ['@solana/wallet-adapter-react-ui'],
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com'
-      }
-    ],
-    unoptimized: true
+    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
+    unoptimized: true,
   },
   webpack: (config, { isServer }) => {
-    // Configuration des alias de chemins
+    // Alias propres
     config.resolve.alias = {
       ...config.resolve.alias,
+      '@': path.resolve(__dirname, './'),
       '@comp': path.resolve(__dirname, 'components'),
-      '@lib': path.resolve(__dirname, 'lib')
+      '@comp/_partials': path.resolve(__dirname, 'components/_partials'),
+      '@lib': path.resolve(__dirname, 'lib'),
+      '@ui': path.resolve(__dirname, 'components/ui'),
+      '@hooks': path.resolve(__dirname, 'hooks'),
+      '@shared': path.resolve(__dirname, '../shared'),
+      '@t': path.resolve(__dirname, '../shared/types'),
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      '@tfront': path.resolve(__dirname, 'types')
     };
 
-    // Configuration pour les modules natifs
+    // Fallbacks node (si nécessaires)
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -29,15 +33,11 @@ const nextConfig = {
       crypto: false,
     };
 
-    // Désactiver le cache pour le développement
-    if (!isServer) {
-      config.cache = false;
-    }
+    // ❌ NE PAS ajouter de rules .css / .scss ici
+    // Next s’en occupe. (Garder uniquement ce webpack callback pour les alias.)
 
     return config;
   },
-  // Désactiver le cache complet pour le développement
-  cache: false
 };
 
 module.exports = nextConfig;

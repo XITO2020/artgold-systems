@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { verifyToken } from '@/lib/jwt';
 import { prisma } from '@lib/db';
 
 const PAYPAL_API = process.env.NODE_ENV === 'production'
@@ -8,45 +8,47 @@ const PAYPAL_API = process.env.NODE_ENV === 'production'
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Vérification du token JWT
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    
+    const userId = decoded.id;
 
     const body = await req.json();
     const amount = Number(body.amount);
     
     if (isNaN(amount)) {
       return NextResponse.json(
-        { error: 'Invalid amount' },
+        { error: 'Montant invalide' },
         { status: 400 }
       );
     }
 
-    // Get PayPal access token
+    // Récupération du token d'accès PayPal
     const accessToken = await getPayPalAccessToken();
     if (!accessToken) {
       return NextResponse.json(
-        { error: 'Failed to get PayPal access token' },
+        { error: 'Échec de la récupération du token d\'accès PayPal' },
         { status: 500 }
       );
     }
 
-    // Vérification de l'ID utilisateur
-    if (!session.user.id) {
-      return NextResponse.json(
-        { error: 'User ID is missing' },
-        { status: 400 }
-      );
-    }
+    // Création de la commande PayPal
+    const order = await createPayPalOrder(accessToken, amount, userId);
 
-    // Create PayPal order
-    const order = await createPayPalOrder(accessToken, amount, session.user.id);
-
-    // Record the pending transaction
+    // Enregistrement de la transaction en attente
     await prisma.transaction.create({
       data: {
-        userId: session.user.id || '',
+        userId: userId,
         amount: amount,
         type: 'PURCHASE',
         status: 'PENDING',

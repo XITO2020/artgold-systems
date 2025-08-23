@@ -4,8 +4,6 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { signIn } from "next-auth/react"; // OAuth providers (Google/Discord/TikTok/Instagram/Twitter)
-
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Card } from "@ui/card";
@@ -74,52 +72,57 @@ export default function SignInPage() {
             </p>
           </div>
 
-          {/* OAuth via NextAuth */}
+          {/* OAuth Providers - Coming Soon */}
           <div className="grid gap-3 mb-6">
             <Button
               type="button"
               variant="outline"
-              onClick={() => signIn("google")}
+              onClick={() => alert('OAuth providers will be implemented soon')}
               className="flex items-center gap-2"
+              disabled
             >
               <FcGoogle className="h-5 w-5" />
-              Continue with Google
+              Continue with Google (Coming Soon)
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => signIn("discord")}
+              onClick={() => alert('OAuth providers will be implemented soon')}
               className="flex items-center gap-2"
+              disabled
             >
               <FaDiscord className="h-5 w-5 text-indigo-600" />
-              Continue with Discord
+              Continue with Discord (Coming Soon)
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => signIn("tiktok")}
+              onClick={() => alert('OAuth providers will be implemented soon')}
               className="flex items-center gap-2"
+              disabled
             >
               <FaTiktok className="h-5 w-5" />
-              Continue with TikTok
+              Continue with TikTok (Coming Soon)
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => signIn("instagram")}
+              onClick={() => alert('OAuth providers will be implemented soon')}
               className="flex items-center gap-2"
+              disabled
             >
               <FaInstagram className="h-5 w-5 text-pink-600" />
-              Continue with Instagram
+              Continue with Instagram (Coming Soon)
             </Button>
             <Button
               type="button"
               variant="outline"
-              onClick={() => signIn("twitter")}
+              onClick={() => alert('OAuth providers will be implemented soon')}
               className="flex items-center gap-2"
+              disabled
             >
               <FaTwitter className="h-5 w-5 text-blue-400" />
-              Continue with Twitter
+              Continue with Twitter (Coming Soon)
             </Button>
           </div>
 
@@ -194,12 +197,14 @@ export default function SignInPage() {
           </button>
 
           {/* Lien vers une page dédiée d’inscription si tu veux la garder */}
-          <Link
-            href="/auth/register"
-            className="text-center block mt-2 underline text-sm text-muted-foreground"
-          >
-            Prefer a dedicated signup page?
-          </Link>
+          <div className="text-center mt-2">
+            <a 
+              href="/auth/register"
+              className="underline text-sm text-muted-foreground"
+            >
+              Prefer a dedicated signup page?
+            </a>
+          </div>
         </Card>
       </div>
     </>

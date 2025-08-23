@@ -1,6 +1,7 @@
 // frontend/middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifyToken } from './lib/jwt';
 
 const locales = ['fr', 'en', 'es', 'de', 'ar', 'zu', 'ha'] as const;
 const defaultLocale = 'fr';
@@ -32,8 +33,26 @@ function negotiateLocale(accept: string | null, supported: readonly string[], fa
   return fallback;
 }
 
+// Liste des chemins protégés
+const protectedRoutes = [
+  '/dashboard',
+  '/profile',
+  '/api/private',
+];
+
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+  
+  // Vérification de l'authentification pour les routes protégées
+  if (protectedRoutes.some(route => pathname.startsWith(route))) {
+    const token = request.cookies.get('auth_token')?.value;
+    
+    if (!token || !verifyToken(token)) {
+      const url = new URL('/login', request.url);
+      url.searchParams.set('from', pathname);
+      return NextResponse.redirect(url);
+    }
+  }
 
   // Laisse passer les assets statiques & l’API
   if (

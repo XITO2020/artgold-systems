@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { apiClient } from '@lib/db/prisma';
@@ -40,7 +39,7 @@ export async function POST(req: Request) {
 
   // Récupération du corps et de la signature
   const body = await req.text();
-  const signature = headers().get('stripe-signature');
+  const signature = req.headers.get('stripe-signature');
   
   if (!signature) {
     return NextResponse.json(

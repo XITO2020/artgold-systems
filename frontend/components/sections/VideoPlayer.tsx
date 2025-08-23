@@ -1,11 +1,11 @@
 // components/VideoPlayer.tsx
 import React, { useState } from 'react';
-import ReactPlayer from 'react-player';
-import styles from '@/wonderstyles/videoplayer.module.css';
+import styles from '@/app/wonderstyles/videoplayer.module.css';
 
 interface Video {
   url: string;
   title: string;
+  type?: string; // 'video/mp4', 'video/webm', etc.
 }
 
 const videos: Video[] = [
@@ -35,8 +35,22 @@ const VideoPlayer: React.FC = () => {
       <div className={`w-[70%] ${styles.videoContainer}`} >
         {activeVideos.map((video, index) => (
           <div key={index} className={` ${styles.videoWrapper}`}>
-            <div className={styles.videoTitle}>{video.title}</div>
-            <ReactPlayer url={video.url} controls width="100%" height="100%" />
+            <div className={styles.videoPlayer}>
+              <div className={styles.videoWrapper}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  className={styles.videoElement}
+                >
+                  <source src={video.url} type={video.type || 'video/mp4'} />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+              <div className={styles.videoInfo}>
+                <h3>{video.title}</h3>
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -1,9 +1,72 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
+
+/* Mobile Slider Styles */
+.mobile-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 444px;
+  height: 888px;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.slide {
+  height: 100%;
+  padding: 2rem;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.right-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-bottom: auto;
+  width: 100%;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Autres styles du slider... */
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
@@ -110,7 +173,7 @@ h1, h3, h4 {
 }
 
 :root {
-  --bg-tb: url("/backgrounds/pimients.jpg");
+  --bg-tb: linear-gradient(45deg, #f5f5f5, #e0e0e0);
 }
 
 @layer base {
@@ -584,7 +647,7 @@ h1, h3, h4 {
     --accentThreeText-hover: black;
     --accentFourText-hover: black;
     --light:white;
-    --sombre: url("/backgrounds/rubies.jpg");
+    --sombre: linear-gradient(45deg, #f5f5f5, #e0e0e0);
     --quadriary:#a30021;
     --quintary:#black;
   }
@@ -606,10 +669,10 @@ h1, h3, h4 {
 
   /* autre maniere de modifier les theme par body sans créé de classe diamond-light directement, la classe peut servir pour le components/providers */
 body[data-theme="diamond-light"] {
-  background-image: url("/backgrounds/diamond-light.png");
+  background: linear-gradient(45deg, #f5f5f5, #e0e0e0);
 }
 
 body[data-theme=""] {
-  background-image: url("/backgrounds/greenemerald.jpg");
+  background: linear-gradient(45deg, #e0f7fa, #b2ebf2);
 }
 }

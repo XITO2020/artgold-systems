@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import { ArtworkCollection } from "@comp/dashboard/ArtworkCollection";
 import { DubbedVideos } from "@comp/dashboard/DubbedVideos";
@@ -10,9 +10,9 @@ import { Coins, ArrowUpRight, Wallet } from "lucide-react";
 import { AuthForm } from "@comp/auth/AuthForm";
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession();
+  const { user, loading } = useAuth();
 
-  if (status === "loading") {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
@@ -20,7 +20,7 @@ export default function DashboardPage() {
     );
   }
 
-  if (!session) {
+  if (!user) {
     return (
       <div className="container mx-auto py-16 px-4">
         <AuthForm />
@@ -30,7 +30,7 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8">Welcome, {session.user?.name || 'Artist'}</h1>
+      <h1 className="text-3xl font-bold mb-8">Welcome, {user.name || 'Artist'}</h1>
       
       <Tabs defaultValue="collection" className="space-y-4">
         <TabsList>

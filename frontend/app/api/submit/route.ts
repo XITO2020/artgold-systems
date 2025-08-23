@@ -1,8 +1,7 @@
 // app/api/submit/route.ts
 import { NextResponse } from 'next/server';
 import { prisma } from '@lib/db';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@lib/auth';
+import { verifyToken } from '@/lib/jwt';
 import {
   createArtistCategorySubmission,
   getExistingSubmission,
@@ -10,13 +9,20 @@ import {
 
 export async function POST(request: Request) {
   try {
-    // 1) Auth
-    const session = await getServerSession(authOptions);
-    const user = session?.user as { id?: string } | undefined;
-    if (!user?.id) {
-      return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    // 1) Vérification du token JWT
+    const authHeader = request.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
-    const userId: string = user.id;
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    
+    const userId: string = decoded.id;
 
     // 2) Body + validations
     const body = await request.json().catch(() => null as any);

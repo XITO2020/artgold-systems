@@ -1,7 +1,7 @@
 import './globals.css';
-import '@/wonderstyles/fonts.css';
-import '@/wonderstyles/images.css';
-import '@/wonderstyles/mobile.css';
+import '@/app/wonderstyles/fonts.css';
+import '@/app/wonderstyles/images.css';
+import '@/app/wonderstyles/mobile.css';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 

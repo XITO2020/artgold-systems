@@ -1,5 +1,5 @@
 "use client";
-import "@/wonderstyles/slider.css";
+import "@/app/wonderstyles/slider.css";
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@comp/theme/ThemeContext';
 import dynamic from 'next/dynamic';

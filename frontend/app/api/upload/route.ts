@@ -1,17 +1,26 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { verifyToken } from '@/lib/jwt';
 import { prisma } from '@lib/db';
 import { validateArtworkContent } from '@lib/admin';
 import { generateQRCode, generateSerialNumber } from '@lib/artwork';
 import { ArtCategory } from '@t/artwork';
-import { pinFileToIPFS } from '@/../services/pinataServices';
+import { pinFileToIPFS } from '@/services/pinataServices';
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession();
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Vérification du token JWT
+    const authHeader = req.headers.get('authorization');
+    const token = authHeader?.split(' ')[1];
+    
+    if (!token) {
+      return NextResponse.json({ error: 'Token manquant' }, { status: 401 });
     }
+
+    const decoded = verifyToken(token);
+    if (!decoded || typeof decoded === 'string' || !decoded.id) {
+      return NextResponse.json({ error: 'Token invalide ou expiré' }, { status: 401 });
+    }
+    const userId = decoded.id;
 
     const formData = await req.formData();
     
@@ -63,17 +72,9 @@ export async function POST(req: Request) {
     // Convert File to Buffer for IPFS upload
     const buffer = Buffer.from(await image.arrayBuffer());
 
-    // Vérification de l'ID utilisateur
-    if (!session.user.id) {
-      return NextResponse.json(
-        { error: 'User ID is missing' },
-        { status: 400 }
-      );
-    }
-
     // Upload to IPFS via Pinata
     const pinataResponse = await pinFileToIPFS(buffer, image.name || 'artwork', {
-      userId: String(session.user.id),
+      userId: String(userId),
       artworkTitle: title,
       category
     });
@@ -107,7 +108,7 @@ export async function POST(req: Request) {
         dimensions,
         weight,
         materials,
-        artistId: session.user.id,
+        userId: userId,
         points: 0,
         isFirst: true,
         currentValue: 0
@@ -117,11 +118,11 @@ export async function POST(req: Request) {
     // Update artist level
     await fetch('/api/artist/level', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        category,
-        artworkId: artwork.id,
-      }),
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ userId })
     });
 
     return NextResponse.json({

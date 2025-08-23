@@ -1,5 +1,3 @@
-/* neon.module.scss */
-
 // Variables pour les couleurs et les tailles
 $dot-size: 25px;
 $dot-active-color: hotpink;
@@ -9,42 +7,44 @@ $inner-dot-size: 9px;
 $inner-dot-active-color: cyan;
 
 // Styles pour les dots avec une spécificité accrue
-.slick-dots {
-  position: relative;
-  top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  color: white;
-  background-color: white;
+.container :global {
+  .slick-dots {
+    position: relative;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    color: white;
+    background-color: white;
 
-  li {
-    button {
-      width: $dot-size !important;
-      height: $dot-size !important;
-      border-radius: 50%;
-      background-color: $dot-inactive-color !important;
-      border: 2px solid $dot-border-color !important;
-
-      &::before {
-        content: '';
-        display: block;
-        width: $inner-dot-size !important;
-        height: $inner-dot-size !important;
-        border-radius: 50%;
-        background-color: transparent !important;
-        margin: auto;
-      }
-    }
-
-    &.slick-active {
+    li {
       button {
-        background-color: $dot-active-color !important;
+        width: $dot-size !important;
+        height: $dot-size !important;
+        border-radius: 50%;
+        background-color: $dot-inactive-color !important;
+        border: 2px solid $dot-border-color !important;
 
         &::before {
-          background-color: $inner-dot-active-color !important;
+          content: '';
+          display: block;
+          width: $inner-dot-size !important;
+          height: $inner-dot-size !important;
+          border-radius: 50%;
+          background-color: transparent !important;
+          margin: auto;
+        }
+      }
+
+      &.slick-active {
+        button {
+          background-color: $dot-active-color !important;
+
+          &::before {
+            background-color: $inner-dot-active-color !important;
+          }
         }
       }
     }

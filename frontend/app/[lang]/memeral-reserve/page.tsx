@@ -5,7 +5,7 @@ import { Card } from "@ui/card";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Badge } from "@ui/badge";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@hooks/use-toast";
 import {  ImageIcon, Heart, Coins } from "lucide-react";
 
@@ -30,9 +30,9 @@ export default function MemeralReservePage() {
   const [memes, setMemes] = useState<MemeralItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  const { data: session } = useSession();
+  const { user } = useAuth();
   const { toast } = useToast();
-  const isAdmin = Boolean((session?.user as UserLike)?.isAdmin);
+  const isAdmin = Boolean(user?.isAdmin);
 
   // Admin upload state
   const [newMeme, setNewMeme] = useState({
@@ -191,7 +191,7 @@ export default function MemeralReservePage() {
                 </div>
                 <Button
                   onClick={() => handlePurchase(meme.id)}
-                  disabled={!session}
+                  disabled={!user}
                 >
                   Purchase
                 </Button>

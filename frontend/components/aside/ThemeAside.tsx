@@ -3,7 +3,7 @@
 import { useTheme } from '@comp/theme/ThemeContext';
 import {  CircleArrowRight,  CircleArrowLeft,  Telescope, Tent,  ShoppingBag,  BookOpen,  User,  Mail,  Gift } from 'lucide-react';
 import Link from 'next/link';
-import '@/wonderstyles/aside.css';
+import '@/app/wonderstyles/aside.css';
 
 interface ThemeAsideProps {
   isOpen: boolean;

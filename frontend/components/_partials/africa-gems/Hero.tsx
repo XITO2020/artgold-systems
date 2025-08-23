@@ -1,8 +1,36 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from "@ui/button";
-import Link from 'next/link';
 import { useTheme } from "@comp/theme/ThemeContext";
-import "./africa.module.scss";
+import styles from "./africa.module.scss";
+
+// Create a button that handles navigation
+const NavButton = ({
+  href,
+  children,
+  variant = 'default',
+  size = 'default',
+  className = ''
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: 'default' | 'outline' | 'ghost' | 'link';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
+  className?: string;
+}) => {
+  const router = useRouter();
+  
+  return (
+    <Button
+      variant={variant}
+      size={size}
+      className={className}
+      onClick={() => router.push(href)}
+    >
+      {children}
+    </Button>
+  );
+};
 
 interface HeroProps {
   dict: any;
@@ -45,16 +73,21 @@ const Hero: React.FC<HeroProps> = ({ dict, lang }) => {
           {dict.home.hero.description}
         </p>
         <div className="flex justify-center gap-4">
-          <Link href={`/${lang}/upload`}>
-            <Button size="lg" className="text-lg hover:bg-yellow-100">
-              {dict.home.cta.convert}
-            </Button>
-          </Link>
-          <Link href={`/${lang}/explore`}>
-            <Button size="lg" variant="outline" className="text-lg">
-              {dict.home.cta.explore}
-            </Button>
-          </Link>
+          <NavButton 
+            href={`/${lang}/upload`}
+            size="lg" 
+            className="text-lg hover:bg-yellow-100"
+          >
+            {dict.home.cta.convert}
+          </NavButton>
+          <NavButton 
+            href={`/${lang}/explore`}
+            size="lg" 
+            variant="outline" 
+            className="text-lg"
+          >
+            {dict.home.cta.explore}
+          </NavButton>
         </div>
         <p className="text-xl text-muted-foreground mt-8 max-w-2xl mx-auto">
           {dict.home.hero.detail}

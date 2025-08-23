@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+// @ts-ignore
+export default {
+  experimental: { optimizeUniversalDefaults: true },
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -150,6 +150,4 @@ const config: Config = {
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
-}
-
-export default config;
+};

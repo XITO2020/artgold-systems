@@ -1,4 +1,5 @@
 import { apiClient } from './db/prisma';
+import { prisma } from './db';
 import { sendValueChangeNotifications } from './mail/notifications';
 
 export const VALUE_SHARES = {
@@ -54,6 +55,10 @@ export async function distributeValue(
 }
 
 export async function canDeleteArtwork(artworkId: string, userId: string): Promise<boolean> {
+  if (!prisma) {
+    console.error('Prisma client is not initialized');
+    return false;
+  }
   const artwork = await prisma.artwork.findUnique({
     where: { id: artworkId },
     include: {

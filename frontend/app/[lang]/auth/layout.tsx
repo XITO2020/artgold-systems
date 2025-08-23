@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 
 export default function AuthLayout({
@@ -8,13 +8,13 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: session, status } = useSession();
+  const { user, loading } = useAuth();
 
-  if (status === "loading") {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (session) {
+  if (user) {
     redirect("/dashboard");
   }
 
