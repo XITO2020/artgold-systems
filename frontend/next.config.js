@@ -2,13 +2,19 @@
 const path = require('path');
 
 const nextConfig = {
-  serverExternalPackages: ['@solana/wallet-adapter-react-ui'],
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: '**' }
+    ],
     unoptimized: true,
   },
+  experimental: {
+    serverComponentsExternalPackages: ['@solana/wallet-adapter-react-ui'],
+    serverActions: true
+  },
   webpack: (config, { isServer }) => {
-    // Alias propres
+    // Configuration des alias
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, './'),
@@ -24,17 +30,22 @@ const nextConfig = {
       '@tfront': path.resolve(__dirname, 'types')
     };
 
-    // Fallbacks node (si nécessaires)
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      net: false,
-      tls: false,
-      crypto: false,
-    };
-
-    // ❌ NE PAS ajouter de rules .css / .scss ici
-    // Next s’en occupe. (Garder uniquement ce webpack callback pour les alias.)
+    // Fallbacks pour les modules Node.js côté client
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+        http: require.resolve('stream-http'),
+        https: require.resolve('https-browserify'),
+        os: require.resolve('os-browserify/browser'),
+        path: require.resolve('path-browserify'),
+        zlib: require.resolve('browserify-zlib')
+      };
+    }
 
     return config;
   },

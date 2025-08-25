@@ -1,23 +1,23 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["node", "next"],
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "incremental": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
@@ -34,8 +34,7 @@
       {
         "name": "next"
       }
-    ],
-    "target": "ES2017"
+    ]
   },
   "typeRoots": [
     "./node_modules/@types",

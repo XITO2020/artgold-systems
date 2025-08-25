@@ -1,8 +1,20 @@
 // Type definitions for Next.js modules
 declare module 'next/link' {
-  import { ComponentType, HTMLAttributes } from 'react';
-  import { LinkProps as NextLinkProps } from 'next/dist/client/link';
-  const Link: ComponentType<NextLinkProps>;
+  import { ComponentType, AnchorHTMLAttributes, ReactNode } from 'react';
+  
+  export interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+    href: string | { pathname: string; query?: Record<string, string> };
+    as?: string;
+    replace?: boolean;
+    scroll?: boolean;
+    shallow?: boolean;
+    passHref?: boolean;
+    prefetch?: boolean;
+    locale?: string | false;
+    children: ReactNode;
+  }
+  
+  const Link: ComponentType<LinkProps>;
   export default Link;
 }
 

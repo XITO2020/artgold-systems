@@ -2,7 +2,6 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { type ThemeProviderProps } from "next-themes/dist/types";
-import dynamic from "next/dynamic";
 import React from "react";
 import { SolanaProvider } from "@/contexts/SolanaProvider";
 
@@ -20,18 +19,6 @@ const THEMES: string[] = [
   "agua-saphir",
   "chili-ruby"
 ];
-
-// Composant WalletContextProvider avec typage explicite
-const WalletContextProvider = dynamic<{ children: React.ReactNode }>(
-  async () => {
-    const mod = await import("@comp/wallet-provider");
-    return { default: mod.WalletContextProvider };
-  },
-  { 
-    ssr: false,
-    loading: () => <div>Loading wallet provider...</div>
-  }
-);
 
 // Composant ThemeProvider avec configuration des thèmes
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
@@ -55,9 +42,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
       <SolanaProvider>
-        <WalletContextProvider>
-          {children}
-        </WalletContextProvider>
+        {children}
       </SolanaProvider>
     </ThemeProvider>
   );

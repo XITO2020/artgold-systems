@@ -1,7 +1,7 @@
 "use client";
 import "@/app/wonderstyles/slider.css";
 import React, { useEffect, useState } from 'react';
-import { useTheme } from '@comp/theme/ThemeContext';
+import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import LoadingScreen from './LoadingScreen';
 import VideoPlayer from "./VideoPlayer";
@@ -14,8 +14,17 @@ interface HomeClientProps {
 
 const HomeClient: React.FC<HomeClientProps> = ({ initialDict, lang }) => {
     const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
     const [matrixColumns, setMatrixColumns] = useState<JSX.Element[]>([]);
     const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <LoadingScreen />;
+    }
 
     // Gérer le redimensionnement de la fenêtre
     useEffect(() => {

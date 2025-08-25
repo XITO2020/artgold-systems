@@ -1,6 +1,5 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { Card } from "@comp/ui/card";
 import { Button } from "@comp/ui/button";
 import { FcGoogle } from "react-icons/fc";
@@ -12,6 +11,7 @@ import { useToast } from "@hooks/use-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Tabs, TabsList, TabsTrigger } from "@comp/ui/tabs";
+import { loginEmailPassword, signupEmailPassword } from "@lib/api";
 
 const providers = [
   {
@@ -54,6 +54,8 @@ const providers = [
 export function AuthForm() {
   const [isEmailMode, setIsEmailMode] = useState(false);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const { toast } = useToast();
@@ -65,51 +67,28 @@ export function AuthForm() {
 
     try {
       if (authMode === "signup") {
-        // First check if user exists
-        const checkUser = await fetch("/api/auth/check-user", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
-        
-        if (checkUser.ok) {
-          const { exists } = await checkUser.json();
-          if (exists) {
-            toast({
-              title: "Account exists",
-              description: "This email is already registered. Please log in instead.",
-              variant: "destructive",
-            });
-            setAuthMode("login");
-            setIsLoading(false);
-            return;
-          }
-        }
-      }
-
-      const result = await signIn("email", {
-        email,
-        redirect: false,
-        callbackUrl: "/dashboard",
-      });
-
-      if (result?.error) {
+        await signupEmailPassword({ email, password, name });
         toast({
-          title: "Error",
-          description: result.error,
-          variant: "destructive",
+          title: "Account created!",
+          description: "Your account has been created successfully!",
         });
+        // Reset form
+        setEmail("");
+        setPassword("");
+        setName("");
+        setAuthMode("login");
       } else {
+        await loginEmailPassword(email, password);
         toast({
-          title: authMode === "signup" ? "Welcome brave creator!" : "Welcome back, brave one!",
-          description: "A magic link has been sent to your email. Join the ranks of the brave ones!",
+          title: "Welcome back!",
+          description: "You have been successfully logged in!",
         });
-        setIsEmailMode(false);
+        router.push("/dashboard");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "An error occurred. The path of the brave awaits another try.",
+        description: error.message || "An error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -120,16 +99,14 @@ export function AuthForm() {
   const handleProviderSignIn = async (providerId: string) => {
     setIsLoading(true);
     try {
-      await signIn(providerId, {
-        callbackUrl: "/dashboard",
-      });
+      // Rediriger vers l'endpoint d'authentification du fournisseur
+      window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/${providerId}`;
     } catch (error) {
       toast({
         title: "Error",
         description: "An error occurred. Please try again.",
         variant: "destructive",
       });
-    } finally {
       setIsLoading(false);
     }
   };
@@ -160,14 +137,33 @@ export function AuthForm() {
 
       {isEmailMode ? (
         <form onSubmit={handleEmailAuth} className="space-y-4">
-          <Input
-            type="email"
-            placeholder={authMode === "signup" ? "Enter your email to begin" : "Enter your email, brave one"}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isLoading}
-            required
-          />
+          <div className="space-y-2">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
+              required
+            />
+            <Input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading}
+              required
+            />
+            {authMode === "signup" && (
+              <Input
+                type="text"
+                placeholder="Your name (optional)"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+              />
+            )}
+          </div>
           <Button
             type="submit"
             className="w-full bg-gradient-to-r from-emerald-600 to-yellow-200 hover:from-green-400 hover:to-yellow-400 text-white"

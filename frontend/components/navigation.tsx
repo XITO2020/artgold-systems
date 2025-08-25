@@ -7,26 +7,36 @@ import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { Coins, Search, Palette, Mic, Menu } from "lucide-react";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { useTheme } from '@comp/theme/ThemeContext';
+import { useTheme } from "next-themes";
 import { useMediaQuery } from "@hooks/use-media-query";
+import { cn } from "@/lib/utils";
 
 export default function Navigation() {
   const params = useParams();
   const lang = params.lang || "fr";
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isTablet = useMediaQuery("(min-width: 769px) and (max-width: 1024px)");
   const showMobileMenu = isMobile || isTablet;
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "light";
-    setTheme(storedTheme);
-  }, [setTheme]);
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) {
+    return null; // Évite le rendu côté serveur avec un thème incorrect
+  }
+
+  const pathname = usePathname();
+  const isActive = (path: string) => pathname === `/${lang}${path}`;
 
   const logoSrc = (() => {
+    if (!mounted) return "/icons/tbcity-golden.png";
+    
     switch (theme) {
       case 'dark': return "/icons/tbcity-vice.png";
       case 'light': return "/icons/tbcity.png";
@@ -39,6 +49,35 @@ export default function Navigation() {
       default: return "/icons/tbcity-golden.png";
     }
   })();
+
+  // Composant de lien personnalisé avec typage correct
+  interface NavLinkProps {
+    href: string;
+    children: React.ReactNode;
+    variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+    className?: string;
+  }
+
+  const NavLink: React.FC<NavLinkProps> = ({ 
+    href, 
+    children, 
+    variant = 'ghost',
+    className = ''
+  }) => (
+    <Button 
+      asChild 
+      variant={variant}
+      className={cn(
+        'w-full justify-start text-left hover:bg-accent hover:text-accent-foreground',
+        isActive(href) && 'bg-accent text-accent-foreground',
+        className
+      )}
+    >
+      <Link href={`/${lang}${href}`}>
+        {children}
+      </Link>
+    </Button>
+  );
 
   const themeVars = {
     'silver-berry': {
@@ -157,7 +196,10 @@ export default function Navigation() {
 
   // Applique les variables du thème actuel
   useEffect(() => {
-    const currentTheme = themeVars[theme] || themeVars['light'];
+    const currentTheme = theme && theme in themeVars 
+      ? themeVars[theme as keyof typeof themeVars] 
+      : themeVars['light'];
+      
     Object.keys(currentTheme).forEach((key) => {
       document.documentElement.style.setProperty(key, currentTheme[key as keyof typeof currentTheme]);
     });
@@ -168,39 +210,39 @@ export default function Navigation() {
     localStorage.setItem("theme", newTheme);
   };
 
-  const NavigationLinks = () => (
+  const NavigationLinks: React.FC = () => (
     <div className={`flex ${showMobileMenu ? 'flex-col' : 'items-center'} space-y-4 md:space-y-0 md:space-x-4`}>
       <div className="relative flex-1 max-w-sm">
         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input placeholder="Search" className="pl-8 text-secondary-foreground" />
       </div>
-      <Link href={`/${lang}/explore`}>
-        <Button variant="accent" className="transition-button">
+      <Button asChild variant="default" className="transition-button bg-accent hover:bg-accent-hover text-accent-foreground">
+        <Link href={`/${lang}/explore`}>
           Treasury
-        </Button>
-      </Link>
-      <Link href={`/${lang}/upload`}>
-        <Button variant="accentOne" className="transition-button">
+        </Link>
+      </Button>
+      <Button asChild variant="default" className="transition-button bg-accentOne hover:bg-accentOne-hover text-accent-foreground">
+        <Link href={`/${lang}/upload`}>
           Convert
-        </Button>
-      </Link>
-      <Link href={`/${lang}/portfolio`}>
-        <Button variant="accentTwo" className="transition-button">
+        </Link>
+      </Button>
+      <Button asChild variant="default" className="transition-button bg-accentTwo hover:bg-accentTwo-hover text-accent-foreground">
+        <Link href={`/${lang}/portfolio`} className="flex items-center">
           <Palette className="h-4 w-4 mr-2" />
           Portfolio
-        </Button>
-      </Link>
-      <Link href={`/${lang}/dubbing`}>
-        <Button variant="accentThree" className="transition-button">
+        </Link>
+      </Button>
+      <Button asChild variant="default" className="transition-button bg-accentThree hover:bg-accentThree-hover text-accent-foreground">
+        <Link href={`/${lang}/dubbing`} className="flex items-center">
           <Mic className="h-4 w-4 mr-2" />
           Dubbing
-        </Button>
-      </Link>
-      <Link href={`/${lang}/dashboard`}>
-        <Button variant="accentFour" className="transition-button">
+        </Link>
+      </Button>
+      <Button asChild variant="default" className="transition-button bg-accentFour hover:bg-accentFour-hover text-accent-foreground">
+        <Link href={`/${lang}/dashboard`}>
           Dashboard
-        </Button>
-      </Link>
+        </Link>
+      </Button>
     </div>
   );
 
@@ -209,7 +251,7 @@ export default function Navigation() {
       <div className="flex h-16 items-center px-4 container mx-auto">
         <div className="flex items-center space-x-4">
           <Link href={`/${lang}`} className="flex items-center space-x-2">
-            <img src={logoSrc} width={showMobileMenu ? "120" : "180"} height="auto" alt="TabascoCity" />
+            <img src={logoSrc} alt="Logo" className="h-8 w-auto" />
           </Link>
         </div>
 
@@ -217,6 +259,15 @@ export default function Navigation() {
           <div className="flex items-center ml-auto space-x-4">
             <LanguageSelector />
             <ThemeToggle toggleTheme={toggleTheme} />
+            <Button asChild variant="ghost" size="icon" className="relative">
+              <Link href={`/${lang}/shop`}>
+                <Coins className="h-6 w-6" />
+                <span className="sr-only">Shop</span>
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                  0
+                </span>
+              </Link>
+            </Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -231,21 +282,20 @@ export default function Navigation() {
             </Sheet>
           </div>
         ) : (
-          <>
-            <div className="flex items-center space-x-4 mx-6 flex-1">
-              <NavigationLinks />
-            </div>
-            <div className="flex items-center space-x-4 text-primary">
-              <LanguageSelector />
-              <ThemeToggle toggleTheme={toggleTheme} />
-              <div>
-                <Link href="/shop">
-                  <Coins className="h-6 w-6 text-primary" />
-                </Link>
-                <span className="tooltip">Shop !</span>
-              </div>
-            </div>
-          </>
+          <div className="hidden md:flex items-center ml-auto space-x-4">
+            <NavigationLinks />
+            <LanguageSelector />
+            <ThemeToggle toggleTheme={toggleTheme} />
+            <Button asChild variant="ghost" size="icon" className="relative">
+              <Link href={`/${lang}/shop`}>
+                <Coins className="h-6 w-6" />
+                <span className="sr-only">Shop</span>
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                  0
+                </span>
+              </Link>
+            </Button>
+          </div>
         )}
       </div>
     </nav>
